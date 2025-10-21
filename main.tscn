@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnhbasot1u7g4"]
+
+[ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
+[ext_resource type="Material" uid="uid://bgwc1apt2jkac" path="res://AmbientCG/Materials/Ground042.material" id="3_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
+sky_top_color = Color(0.008160021, 0.013533323, 0.121761, 1)
+sky_horizon_color = Color(0.1157838, 0.11597403, 0.44067082, 1)
+sky_curve = 0.086152405
+ground_bottom_color = Color(0.16729829, 0.11075757, 0.090801366, 1)
+ground_horizon_color = Color(0.05683478, 0.029341992, 0.021045009, 1)
+
+[sub_resource type="Sky" id="Sky_1bvp3"]
+sky_material = SubResource("ProceduralSkyMaterial_h2yge")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_1bvp3")
+tonemap_mode = 4
+fog_mode = 1
+fog_light_color = Color(0.14017183, 0.15623155, 0.18122098, 1)
+fog_density = 1.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_h2yge"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
+material = ExtResource("3_h2yge")
+size = Vector2(30, 30)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ig7tw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8301096, 0.55760026, 0, -0.55760026, 0.8301096, 0, 1.8331451, 20.85286)
+light_energy = 0.4
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bvp3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_h2yge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_1bvp3")
+
+[node name="Player" parent="." instance=ExtResource("2_0xm2m")]

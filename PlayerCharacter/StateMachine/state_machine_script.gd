@@ -1,0 +1,60 @@
+extends Node
+
+@export var initial_state : State
+
+var curr_state : State
+var curr_state_name  : String
+var states : Dictionary = {}
+
+@onready var char_ref : CharacterBody3D = $".."
+
+func _ready():
+	if not is_multiplayer_authority():
+		set_process(false)
+		set_physics_process(false)
+		return
+
+	#get all the state childrens
+	for child in get_children():
+		if child is State:
+			states[child.name.to_lower()] = child
+			child.transitioned.connect(on_state_child_transition)
+			
+	#if initial state, transition to it
+	if initial_state:
+		await get_tree().create_timer(0.1).timeout
+		initial_state.enter(char_ref)
+		curr_state = initial_state
+		curr_state_name = curr_state.state_name
+		
+func _process(delta : float):
+	# NOTE: Added
+	if char_ref.immobile:
+		return
+	if curr_state: curr_state.update(delta)
+		
+func _physics_process(delta: float):
+	if char_ref.immobile:
+		char_ref.gravity_apply(delta)
+		char_ref.velocity.x = lerp(char_ref.velocity.x, 0.0, char_ref.move_deccel * delta) 
+		char_ref.velocity.z = lerp(char_ref.velocity.z, 0.0, char_ref.move_deccel * delta) 
+		char_ref.move_and_slide()
+		return
+	if curr_state: curr_state.physics_update(delta)
+	
+func on_state_child_transition(state : State, new_state_name : String):
+	#manage the transition from one state to another
+	
+	if state != curr_state: return
+	
+	var new_state = states.get(new_state_name.to_lower())
+	if !new_state: return
+	
+	#exit the current state
+	if curr_state: curr_state.exit()
+	
+	#enter the new state
+	new_state.enter(char_ref)
+	
+	curr_state = new_state
+	curr_state_name = curr_state.state_name
