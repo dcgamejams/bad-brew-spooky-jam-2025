@@ -6,6 +6,7 @@ extends Node3D
 @onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 
 @onready var center_body: PhysicalBone3D  = $"GodotPlushModel/Rig/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone DEF-hips"
+@onready var center_col: CollisionShape3D = $"GodotPlushModel/Rig/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone DEF-hips/CollisionShape3D"
 
 @onready var cR: CharacterBody3D = get_parent().get_parent()
 
@@ -17,7 +18,8 @@ signal footstep(intensity : float)
 func _ready():
 	set_ragdoll(ragdoll)
 	if is_multiplayer_authority():
-		apply_new_weights()
+		#apply_new_weights()
+		apply_no_weights()
 		set_process(false)
 
 	#else:
@@ -31,16 +33,15 @@ func apply_new_weights():
 
 	center_body.mass = 0.1
 
-#func _process(delta): 
-	#for child in %PhysicalBoneSimulator3D.get_children():
-		#var bone: PhysicalBone3D = child
-		#if bone.name != 'Physical Bone DEF-hips':
-			#bone.global_position = center_body.global_position
-			#
 func apply_no_weights():
 	for child in %PhysicalBoneSimulator3D.get_children():
 		var bone: PhysicalBone3D = child
-		bone.get_node('CollisionShape3D').disabled = true
+		bone.mass = 0.005
+		bone.friction  = 0.01
+
+	center_body.mass = 0.1
+	center_body.friction  = 1.0
+	center_body.get_node('CollisionShape3D').disabled = false
 
 		#bone.gravity_scale = 0.01
 		#bone.friction  = 0.0

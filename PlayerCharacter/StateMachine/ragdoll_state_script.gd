@@ -3,7 +3,7 @@ extends State
 class_name RagdollState
 
 var state_name : String = "Ragdoll"
-var cR : CharacterBody3D
+var cR : Player
 
 var ragdoll_jump_active := false
 var ragdoll_jump_cooldown = Timer.new()
@@ -15,7 +15,7 @@ func _ready():
 	add_child(ragdoll_jump_cooldown)
 	ragdoll_jump_cooldown.start()
 
-func enter(char_ref : CharacterBody3D):
+func enter(char_ref : Player):
 	cR = char_ref
 	
 	apply_ragdoll()
@@ -32,9 +32,10 @@ func apply_ragdoll():
 	#set model to ragdoll mode
 	cR.set_process(false)
 	cR.set_physics_process(false)
-	
+
 	cR.godot_plush_skin.ragdoll = true
-	
+	cR.godot_plush_skin.center_body.linear_velocity = cR.velocity
+
 func update(_delta : float):
 	check_if_ragdoll()
 
@@ -67,8 +68,7 @@ func input_management():
 		elif !cR.ragdoll_on_floor_only:
 			cR.godot_plush_skin.ragdoll = false
 
-		cR.velocity.x = 0.0
-		cR.velocity.z = 0.0
+		cR.velocity = cR.godot_plush_skin.center_body.linear_velocity
 		cR.set_process(true)
 		cR.set_physics_process(true)
 		cR.position = cR.godot_plush_skin.center_body.global_position + Vector3(0.0, 0.6, 0.0)
@@ -97,6 +97,7 @@ func move(delta : float):
 		ragdoll_jump_cooldown.start()
 
 	center.apply_central_impulse(Vector3(force_x, force_y, force_z ) * delta)
+	cR.position = cR.godot_plush_skin.center_col.global_position
 
 #func move(delta : float):
 	#

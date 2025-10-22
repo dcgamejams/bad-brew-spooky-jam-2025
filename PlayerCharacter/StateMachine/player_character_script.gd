@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 #movement variables
 var move_speed : float
 var move_accel : float
@@ -11,6 +13,9 @@ var last_frame_position : Vector3
 var last_frame_velocity : Vector3
 var was_on_floor : bool = false
 var walk_or_run : String = "WalkState" #keep in memory if play char was walking or running before being in the air
+
+# default walk_deccel: 7.5
+# default walk_deccel: 6.5
 
 @export_group("Walk variables")
 @export var walk_speed : float

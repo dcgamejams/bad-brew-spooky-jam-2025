@@ -6,7 +6,7 @@ var curr_state : State
 var curr_state_name  : String
 var states : Dictionary = {}
 
-@onready var char_ref : CharacterBody3D = $".."
+@onready var char_ref : Player = $".."
 
 func _ready():
 	if not is_multiplayer_authority():
@@ -19,7 +19,7 @@ func _ready():
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_state_child_transition)
-			
+
 	#if initial state, transition to it
 	if initial_state:
 		await get_tree().create_timer(0.1).timeout
