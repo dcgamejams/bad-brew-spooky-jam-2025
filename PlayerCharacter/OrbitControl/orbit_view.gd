@@ -1,6 +1,6 @@
 extends SpringArm3D
 
-var active : bool = true : set = set_active
+@export var active : bool = true : set = set_active
 
 @export_group("Camera variables")
 @export_range(0.0, 0.1, 0.0001) var mouse_sens : float

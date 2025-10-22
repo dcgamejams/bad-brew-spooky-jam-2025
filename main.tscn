@@ -67,7 +67,7 @@ mesh = SubResource("PlaneMesh_1bvp3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.118266, 6.1442986, 31.59542)
 
 [node name="TestTerrain1" type="StaticBody3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.36537838, 0)
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, -0.36537838, 0)
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain1"]
@@ -127,3 +127,6 @@ collision_layer = 3
 [node name="Curve3" parent="left2" instance=ExtResource("6_7mycd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -99.902115, 29.560707, 0)
 collision_layer = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8665747, 0.49904746, 0, -0.49904746, 0.8665747, 0, 16, 31.107372)
