@@ -20,9 +20,9 @@ func _ready() -> void:
 	torus_indicator.top_level = true
 	
 	await get_tree().create_timer(0.2).timeout
-	var rand_v = randf_range(-5.0, 5.0) * Vector3.ONE
+	var rand_v = randf_range(-4.0, 4.0) * Vector3(1.0, -0.5, 1.0)
 	
-	var BLAST = 500.0
+	var BLAST = 250.0
 	apply_central_force(rand_v * BLAST)
 
 	%PickupArea.body_entered.connect(on_pickup)

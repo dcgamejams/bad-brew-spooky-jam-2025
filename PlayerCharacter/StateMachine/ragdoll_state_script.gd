@@ -11,11 +11,11 @@ var ragdoll_jump_cooldown = Timer.new()
 var center: PhysicalBone3D
 
 var SLAM_IN_PROGRESS := false
-var RAGDOLL_JUMP_FORCE := 120.0
+var RAGDOLL_JUMP_FORCE := 80.0 # 120
 var RAGDOLL_SPRINT_FORCE := 1.0
 
-var RAGDOLL_ACCEL := 0.4
-var RAGDOLL_DECCEL := 0.01
+var RAGDOLL_ACCEL := 0.3
+var RAGDOLL_DECCEL := 0.02
 
 func _ready():
 	ragdoll_jump_cooldown.wait_time = 1.0

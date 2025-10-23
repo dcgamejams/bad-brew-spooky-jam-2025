@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bqtd1hidne553" path="res://objects/boost.gd" id="1_st5xs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_st5xs"]
-size = Vector3(4, 3.2, 9)
+size = Vector3(4, 1.2, 9)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_st5xs"]
 

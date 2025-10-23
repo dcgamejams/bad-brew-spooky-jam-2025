@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://4lpcaea3woer" path="res://objects/volleyball/volley_ball.gd" id="1_uvwyt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ejlre"]
-bounce = 0.8
+bounce = 0.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6kpcp"]
-radius = 0.7
+radius = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pspu"]
 albedo_color = Color(0.5764706, 1, 0.49411765, 1)
@@ -15,8 +15,8 @@ emission = Color(0, 0.9002212, 0.20708719, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_6kpcp"]
 material = SubResource("StandardMaterial3D_6pspu")
-radius = 0.7
-height = 1.4
+radius = 0.6
+height = 1.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejlre"]
 
