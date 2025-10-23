@@ -40,9 +40,9 @@ func apply_no_weights():
 		bone.friction  = 0.01
 
 	center_body.mass = 0.1
-	center_body.friction  = 1.0
+	center_body.friction = 1.0
 	center_body.get_node('CollisionShape3D').disabled = false
-
+	
 		#bone.gravity_scale = 0.01
 		#bone.friction  = 0.0
 		#bone.mass = 5.0
@@ -104,15 +104,13 @@ func emit_footstep(intensity : float = 1.0) -> void:
 	#call foostep signal in charge of emitting the footstep audio effects
 	footstep.emit(intensity)
 
-func set_mesh_color(new_color: Color):
-	var plush = $GodotPlushModel/Rig/Skeleton3D/GodotPlushMesh
-
-	for i in 3:
-		var mesh_material: ShaderMaterial = plush.get_active_material(i)
-		var new_mat = mesh_material.duplicate()
-		new_mat['shader_parameter/custom_color'] = new_color
-		plush.set_surface_override_material(i, new_mat)
-	
+#func set_mesh_color(new_color: Color):
+	#var plush = $GodotPlushModel/Rig/Skeleton3D/GodotPlushMesh
+	#for i in 3:
+		#var mesh_material: ShaderMaterial = plush.get_active_material(i)
+		#var new_mat = mesh_material.duplicate()
+		#new_mat['shader_parameter/custom_color'] = new_color
+		#plush.set_surface_override_material(i, new_mat)
 func wave():
 	animation_tree["parameters/WaveOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	if is_multiplayer_authority(): sync_wave.rpc()

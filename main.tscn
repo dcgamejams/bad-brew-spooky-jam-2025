@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=16 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
@@ -6,6 +6,8 @@
 [ext_resource type="Shape3D" uid="uid://v2mkkwyer3ua" path="res://assets/test_terrain_1/test_terrain_1_collision.tres" id="4_lquwl"]
 [ext_resource type="ArrayMesh" uid="uid://b66aidtlkxsq3" path="res://assets/test_terrain_1/test_terrain_1.res" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://u4butn5qxdbw" path="res://assets/test_terrain_1/curve.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bisc68om00mfq" path="res://objects/boost.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://jka650tksndx" path="res://objects/spawner.gd" id="8_5vw27"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
 sky_top_color = Color(0.008160021, 0.013533323, 0.121761, 1)
@@ -20,10 +22,22 @@ sky_material = SubResource("ProceduralSkyMaterial_h2yge")
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_mode = 2
 sky = SubResource("Sky_1bvp3")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+reflected_light_source = 2
 tonemap_mode = 4
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 1.4
+glow_bloom = 0.24
+glow_blend_mode = 0
 fog_mode = 1
 fog_light_color = Color(0.14017183, 0.15623155, 0.18122098, 1)
 fog_density = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.82169795, 0.89588344, 0.9999986, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_h2yge"]
 
@@ -45,7 +59,7 @@ bottom_radius = 2.0
 script = ExtResource("1_ig7tw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8301096, 0.55760026, 0, -0.55760026, 0.8301096, 0, 1.8331451, 20.85286)
+transform = Transform3D(-0.37026983, 0.8347955, -0.40745145, 0.8112421, 0.50427616, 0.29595906, 0.45253313, -0.22095707, -0.8639394, -34.786674, 79.16812, 20.85286)
 light_energy = 0.4
 shadow_enabled = true
 directional_shadow_mode = 0
@@ -53,21 +67,22 @@ directional_shadow_mode = 0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1bvp3")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_h2yge")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("PlaneMesh_1bvp3")
 
 [node name="Player" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.118266, 6.1442986, 31.59542)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7095289, 16.96481, 15.773651)
 
 [node name="TestTerrain1" type="StaticBody3D" parent="."]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, -0.36537838, 0)
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, -0.36537838, 0)
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain1"]
@@ -81,52 +96,228 @@ surface_material_override/0 = ExtResource("2_h2yge")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22168946, 0.4830413, -0.48706365)
 mesh = SubResource("CylinderMesh_7mycd")
 
+[node name="TestTerrain2" type="StaticBody3D" parent="."]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, -62.84687, -5.364085, 42.020466)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain2"]
+shape = ExtResource("4_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestTerrain2"]
+mesh = ExtResource("5_7mycd")
+surface_material_override/0 = ExtResource("2_h2yge")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TestTerrain2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22168946, 0.4830413, -0.48706365)
+mesh = SubResource("CylinderMesh_7mycd")
+
+[node name="TestTerrain3" type="StaticBody3D" parent="."]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 74.19155, -5.364085, 42.020466)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain3"]
+shape = ExtResource("4_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestTerrain3"]
+mesh = ExtResource("5_7mycd")
+surface_material_override/0 = ExtResource("2_h2yge")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TestTerrain3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22168946, 0.4830413, -0.48706365)
+mesh = SubResource("CylinderMesh_7mycd")
+
+[node name="TestTerrain4" type="StaticBody3D" parent="."]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, -78.11245, -5.544795, -71.822754)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain4"]
+shape = ExtResource("4_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestTerrain4"]
+mesh = ExtResource("5_7mycd")
+surface_material_override/0 = ExtResource("2_h2yge")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TestTerrain4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22168946, 0.4830413, -0.48706365)
+mesh = SubResource("CylinderMesh_7mycd")
+
+[node name="TestTerrain5" type="StaticBody3D" parent="."]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 21.103958, -5.544795, 74.585724)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain5"]
+shape = ExtResource("4_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestTerrain5"]
+mesh = ExtResource("5_7mycd")
+surface_material_override/0 = ExtResource("2_h2yge")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TestTerrain5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22168946, 0.4830413, -0.48706365)
+mesh = SubResource("CylinderMesh_7mycd")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3126774, -3)
 light_color = Color(1, 0, 1, 1)
 light_energy = 2.905
 light_indirect_energy = 1.05
+light_volumetric_fog_energy = 6.776
+light_bake_mode = 1
 omni_range = 11.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
-[node name="left" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 95.14408)
+[node name="Ramps" type="Node3D" parent="."]
 
-[node name="Curve2" parent="left" instance=ExtResource("6_7mycd")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 122.898026, 29.560707, 0)
+[node name="HalfRamp" type="Node3D" parent="Ramps"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.0119095, 0, -89.8068)
+
+[node name="Curve2" parent="Ramps/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 99.18018, 29.560707, 0)
 collision_layer = 3
 
-[node name="Curve4" parent="left" instance=ExtResource("6_7mycd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 122.898026, 29.560707, 0)
+[node name="Curve4" parent="Ramps/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 99.18018, 29.560707, 0)
 collision_layer = 3
 
-[node name="Curve" parent="left" instance=ExtResource("6_7mycd")]
+[node name="Curve" parent="Ramps/HalfRamp" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.902115, 29.560707, 0)
 collision_layer = 3
 
-[node name="Curve3" parent="left" instance=ExtResource("6_7mycd")]
+[node name="Curve6" parent="Ramps/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.90211, 29.560707, -100.07865)
+collision_layer = 3
+
+[node name="Curve3" parent="Ramps/HalfRamp" instance=ExtResource("6_7mycd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -99.902115, 29.560707, 0)
 collision_layer = 3
 
-[node name="left2" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 23.06623, 0, -106.87114)
-
-[node name="Curve2" parent="left2" instance=ExtResource("6_7mycd")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 122.898026, 29.560707, 0)
+[node name="Curve5" parent="Ramps/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -0.19670868, 29.560707, 7.6293945e-06)
 collision_layer = 3
 
-[node name="Curve4" parent="left2" instance=ExtResource("6_7mycd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 122.898026, 29.560707, 0)
+[node name="HalfRampTwo" type="Node3D" parent="Ramps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 110.439)
+
+[node name="Curve2" parent="Ramps/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 99.18018, 29.560707, 0)
 collision_layer = 3
 
-[node name="Curve" parent="left2" instance=ExtResource("6_7mycd")]
+[node name="Curve4" parent="Ramps/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 99.18018, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve" parent="Ramps/HalfRampTwo" instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.902115, 29.560707, 0)
 collision_layer = 3
 
-[node name="Curve3" parent="left2" instance=ExtResource("6_7mycd")]
+[node name="Curve6" parent="Ramps/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.90211, 29.560707, -100.07865)
+collision_layer = 3
+
+[node name="Curve3" parent="Ramps/HalfRampTwo" instance=ExtResource("6_7mycd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -99.902115, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve5" parent="Ramps/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -0.19670868, 29.560707, 7.6293945e-06)
+collision_layer = 3
+
+[node name="Ramps2" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 59.187675, 20.182858)
+
+[node name="HalfRamp" type="Node3D" parent="Ramps2"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.0119095, 0, -89.8068)
+
+[node name="Curve2" parent="Ramps2/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 99.18018, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve4" parent="Ramps2/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 99.18018, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve" parent="Ramps2/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.902115, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve6" parent="Ramps2/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.90211, 29.560707, -100.07865)
+collision_layer = 3
+
+[node name="Curve3" parent="Ramps2/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -99.902115, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve5" parent="Ramps2/HalfRamp" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -0.19670868, 29.560707, 7.6293945e-06)
+collision_layer = 3
+
+[node name="HalfRampTwo" type="Node3D" parent="Ramps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 110.439)
+
+[node name="Curve2" parent="Ramps2/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 99.18018, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve4" parent="Ramps2/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 99.18018, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve" parent="Ramps2/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.902115, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve6" parent="Ramps2/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.90211, 29.560707, -100.07865)
+collision_layer = 3
+
+[node name="Curve3" parent="Ramps2/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -99.902115, 29.560707, 0)
+collision_layer = 3
+
+[node name="Curve5" parent="Ramps2/HalfRampTwo" instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -0.19670868, 29.560707, 7.6293945e-06)
 collision_layer = 3
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8665747, 0.49904746, 0, -0.49904746, 0.8665747, 0, 16, 31.107372)
+transform = Transform3D(1, 0, 0, 0, 0.7903583, 0.612645, 0, -0.612645, 0.7903583, -0.6103306, 22.497902, 21.32446)
+current = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.4363935, 0.89975595, 0, -0.89975595, -0.4363935, 0, 56.24237, -86.33567)
+light_energy = 5.683
+light_indirect_energy = 1.39
+light_volumetric_fog_energy = 1.42
+spot_range = 236.974
+spot_angle = 49.4
+
+[node name="Boost" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2482872, 0, 39.471004)
+
+[node name="Boost3" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.019581348, 0, 0.9998083, 0, 1, 0, -0.9998083, 0, -0.019581348, 40.186176, 0, -0.68037605)
+
+[node name="Boost4" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.9983658, 0, 0.05714579, 0, 1, 0, -0.05714579, 0, -0.9983658, 0.39429474, 0, -40.45417)
+
+[node name="Boost5" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(0.012775477, 0, -0.99991846, 0, 1, 0, 0.99991846, 0, 0.012775477, -40.50796, 0, -0.31056976)
+
+[node name="Boost7" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.6981779, 0, -0.7159242, 0, 1, 0, 0.7159242, 0, -0.6981779, 48.204147, 0, -49.010735)
+
+[node name="Boost8" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.0811035, 0, 0.99670565, 0, 1, 0, -0.99670565, 0, -0.0811035, 85.084404, 0, -76.53921)
+
+[node name="Boost10" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.0811035, 0, 0.99670565, 0, 1, 0, -0.99670565, 0, -0.0811035, -50.68371, 0, -76.53921)
+
+[node name="Boost11" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(0.53925586, 0, -0.842142, 0, 1, 0, 0.842142, 0, 0.53925586, -84.4227, 0, -31.381401)
+
+[node name="Boost9" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.0811035, 0, 0.99670565, 0, 1, 0, -0.99670565, 0, -0.0811035, 91.42053, 0, 89.63392)
+
+[node name="Spawner" type="Marker3D" parent="."]
+script = ExtResource("8_5vw27")
