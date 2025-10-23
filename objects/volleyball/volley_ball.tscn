@@ -32,8 +32,8 @@ size = Vector3(1, 1.5, 1)
 radius = 1.5
 
 [node name="VolleyBall" type="RigidBody3D"]
-collision_layer = 0
-collision_mask = 3
+collision_layer = 16
+collision_mask = 19
 physics_material_override = SubResource("PhysicsMaterial_ejlre")
 script = ExtResource("1_uvwyt")
 

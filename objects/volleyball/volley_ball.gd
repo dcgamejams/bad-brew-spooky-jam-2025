@@ -36,8 +36,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	#if Input.is_action_just_pressed("debug1"):
-		#apply_central_force(Vector3.UP * 500.0)
+	if Input.is_action_just_pressed("debug1"):
+		apply_central_force(Vector3.UP * 500.0)
 
 	move_ray_casts()
 	check_collision()
@@ -82,8 +82,8 @@ func get_random_point_in_square(pos: Vector2, size: Vector2) -> Vector2:
 func on_pickup(body):
 	if body.is_in_group('Players'):
 		body.add_item()
-		if Engine.is_editor_hint() == false:
-			queue_free()
+		#if Engine.is_editor_hint() == false:
+			#queue_free()
 
 
 func line(pos1: Vector3, pos2: Vector3, color = Color.AQUA, persist_ms = 1):

@@ -30,16 +30,16 @@ reflected_light_source = 2
 tonemap_mode = 4
 tonemap_exposure = 0.63
 glow_enabled = true
-glow_intensity = 1.4
+glow_intensity = 0.99
 glow_bloom = 0.24
 glow_blend_mode = 0
 fog_mode = 1
 fog_light_color = Color(0.14017183, 0.15623155, 0.18122098, 1)
 fog_density = 1.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.02
+volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.78311485, 0.8829565, 0.9999998, 1)
-volumetric_fog_emission = Color(0.17860496, 0.4101248, 1, 1)
+volumetric_fog_emission = Color(1, 1, 1, 1)
 volumetric_fog_emission_energy = 0.03
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_h2yge"]
@@ -67,7 +67,7 @@ plane = Plane(0, 0, 1, 0)
 load_path = "res://.godot/imported/Tiles084_2K-JPG_Color.jpg-15c7ffa86f8b893ef993ade653cf3ab9.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
-albedo_color = Color(0.56351763, 0.5620791, 1, 1)
+albedo_color = Color(0.2245856, 0.00023516685, 0.65977716, 1)
 albedo_texture = SubResource("CompressedTexture2D_kck16")
 metallic_specular = 0.0
 roughness_texture = ExtResource("9_vivmo")
@@ -147,22 +147,24 @@ shape = SubResource("WorldBoundaryShape3D_w48qg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7095289, 7.396944, 3.3361053)
 
 [node name="TestTerrain1" type="StaticBody3D" parent="."]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, -0.36537838, 0)
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, -2.6463375, 2.0018559)
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08677411, 0)
 shape = ExtResource("4_lquwl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestTerrain1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08677411, 0)
 mesh = ExtResource("5_7mycd")
 surface_material_override/0 = SubResource("StandardMaterial3D_efxa6")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="TestTerrain1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22168946, 0.4830413, -0.48706365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22168945, 0.898169, -0.48706365)
 mesh = SubResource("CylinderMesh_7mycd")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64734554, 2.0273867, -1.0373974)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34397125, 3.018056, -0.22285748)
 light_color = Color(1, 0, 1, 1)
 light_energy = 2.905
 light_indirect_energy = 1.05
@@ -226,11 +228,13 @@ current = true
 fov = 50.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.4363935, 0.89975595, 0, -0.89975595, -0.4363935, -2.8370628, 15.309525, -2.875618)
-light_energy = 5.683
-light_indirect_energy = 1.39
-light_volumetric_fog_energy = 1.42
-spot_range = 8.0
+transform = Transform3D(1, 0, 0, 0, -0.4363935, 0.89975595, 0, -0.89975595, -0.4363935, -3.007513, 25.152906, -7.5205793)
+light_energy = 3.573
+light_indirect_energy = 1.518
+light_volumetric_fog_energy = 0.401
+spot_range = 348.656
+spot_attenuation = 0.42
+spot_angle = 42.1
 
 [node name="Spawner" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
