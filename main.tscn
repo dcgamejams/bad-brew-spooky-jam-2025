@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=27 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://jka650tksndx" path="res://objects/spawner.gd" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://becxl13dpxhrg" path="res://AmbientCG/Downloads/Tiles0842K-JPG/Tiles084_2K-JPG_NormalGL.jpg" id="8_w48qg"]
 [ext_resource type="Texture2D" uid="uid://dex62373e5i6p" path="res://AmbientCG/Downloads/Tiles0842K-JPG/Tiles084_2K-JPG_Roughness.jpg" id="9_vivmo"]
+[ext_resource type="PackedScene" uid="uid://8oald4y0be2e" path="res://scenes/valtestscene.tscn" id="12_dg77c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
 sky_top_color = Color(0.008160021, 0.013533323, 0.121761, 1)
@@ -104,6 +105,7 @@ environment = SubResource("Environment_1bvp3")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 2
 collision_mask = 0
 
@@ -116,6 +118,7 @@ mesh = SubResource("PlaneMesh_1bvp3")
 
 [node name="Floor2" type="StaticBody3D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 2
 collision_mask = 0
 
@@ -148,6 +151,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7095289, 7.396944, 3.336105
 
 [node name="TestTerrain1" type="StaticBody3D" parent="."]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, -2.6463375, 2.0018559)
+visible = false
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestTerrain1"]
@@ -174,6 +178,7 @@ omni_range = 7.0
 
 [node name="Ramps" type="Node3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 19.61765)
+visible = false
 
 [node name="HalfRampTwo" type="Node3D" parent="Ramps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.763515, 0, -1.347187)
@@ -223,7 +228,7 @@ collision_layer = 3
 
 [node name="StationaryCamera" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.77870345, 0.62739223, 0, -0.62739223, 0.77870345, -0.2277112, 13.81254, 19.619263)
+transform = Transform3D(1, 0, 0, 0, 0.77870345, 0.62739223, 0, -0.62739223, 0.77870345, -0.2277112, 20.321375, 23.043184)
 current = true
 fov = 50.0
 
@@ -239,3 +244,6 @@ spot_angle = 42.1
 [node name="Spawner" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 script = ExtResource("8_5vw27")
+
+[node name="Valtestscene" parent="." instance=ExtResource("12_dg77c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
