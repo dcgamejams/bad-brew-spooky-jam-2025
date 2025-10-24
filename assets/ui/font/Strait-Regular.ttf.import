@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cavi21r3pi24u"
-path="res://.godot/imported/Strait-Regular.ttf-c736f5684fe8e5ebbf39dc88b708ca9f.fontdata"
+path="res://.godot/imported/Strait-Regular.ttf-6d50f9a377b3d3f86243b01920ba61e1.fontdata"
 
 [deps]
 
-source_file="res://assets/font/Strait-Regular.ttf"
-dest_files=["res://.godot/imported/Strait-Regular.ttf-c736f5684fe8e5ebbf39dc88b708ca9f.fontdata"]
+source_file="res://assets/ui/font/Strait-Regular.ttf"
+dest_files=["res://.godot/imported/Strait-Regular.ttf-6d50f9a377b3d3f86243b01920ba61e1.fontdata"]
 
 [params]
 
