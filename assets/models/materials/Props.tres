@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dcvwnovf00vot"]
+
+[ext_resource type="Shader" uid="uid://bt04vwmf1h6hu" path="res://assets/shaders/Outlines_Only.gdshader" id="1_olekf"]
+[ext_resource type="Shader" uid="uid://dcpc43bpjtxnr" path="res://assets/shaders/toonshading.gdshader" id="2_oyso2"]
+[ext_resource type="Texture2D" uid="uid://ctlu7pfha4id7" path="res://assets/models/PlayerBunny_Bunny.png" id="3_7j4de"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6m40f"]
+render_priority = 0
+shader = ExtResource("1_olekf")
+shader_parameter/color = Color(0.12156863, 0.023529412, 0.4392157, 1)
+shader_parameter/thickness = 0.01999999955296
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_6m40f")
+shader = ExtResource("2_oyso2")
+shader_parameter/ToonRampOffset = 0.03600000171
+shader_parameter/ToonRampSmoothness = 0.2610000123975
+shader_parameter/ToonRampTinting = Color(0.7075343, 0.7361813, 0.855387, 1)
+shader_parameter/RimPower = 1.0
+shader_parameter/RimCutOff = 0.5
+shader_parameter/RimSmoothness = 0.50000002375
+shader_parameter/RimLightBrightness = 20.9450009948875
+shader_parameter/SubSurfDistortion = 1.0
+shader_parameter/SubSurfTint = Color(0, 0, 0, 1)
+shader_parameter/SubSurfBrightness = 3.0
+shader_parameter/SubSurfCutoff = 0.5
+shader_parameter/SubSurfSmoothness = 0.05
+shader_parameter/Texture = ExtResource("3_7j4de")
