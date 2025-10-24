@@ -75,11 +75,10 @@ func check_if_floor():
 			cR.velocity.x = 0.0
 			cR.velocity.z = 0.0
 		
-func move(delta : float):
+func move(_delta : float):
 	cR.move_dir = Input.get_vector(cR.moveLeftAction, cR.moveRightAction, cR.moveForwardAction, cR.moveBackwardAction).rotated(-cR.cam_holder.global_rotation.y)
 		
 	# AD NOTE: Cut this to preserve momentum when swapping back from ragdoll while in air.
-	
 	#if cR.move_dir and !cR.is_on_floor():
 		#var in_air_move_speed_val : float
 		#var in_air_accel_val : float

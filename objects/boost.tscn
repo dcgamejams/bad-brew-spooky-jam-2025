@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://bisc68om00mfq"]
+
+[ext_resource type="Script" uid="uid://bqtd1hidne553" path="res://objects/boost.gd" id="1_st5xs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_st5xs"]
+size = Vector3(4, 1.2, 9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_st5xs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hppvs"]
+material = SubResource("StandardMaterial3D_st5xs")
+size = Vector3(4, 0.2, 9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hppvs"]
+albedo_color = Color(0.92868114, 0.6847319, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p4m2f"]
+material = SubResource("StandardMaterial3D_hppvs")
+size = Vector3(4, 0.2, 0.9)
+
+[sub_resource type="PrismMesh" id="PrismMesh_st5xs"]
+size = Vector3(7, 3, 0.2)
+
+[node name="Boost" type="Area3D"]
+script = ExtResource("1_st5xs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6387563, 0)
+shape = SubResource("BoxShape3D_st5xs")
+
+[node name="White" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hppvs")
+
+[node name="Group" type="Node3D" parent="."]
+
+[node name="Yellow" type="MeshInstance3D" parent="Group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02405572, 0)
+mesh = SubResource("BoxMesh_p4m2f")
+skeleton = NodePath("../..")
+
+[node name="Yellow2" type="MeshInstance3D" parent="Group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02405572, -2.0836153)
+mesh = SubResource("BoxMesh_p4m2f")
+skeleton = NodePath("../..")
+
+[node name="Yellow4" type="MeshInstance3D" parent="Group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02405572, -4.0321774)
+mesh = SubResource("BoxMesh_p4m2f")
+skeleton = NodePath("../..")
+
+[node name="Yellow5" type="MeshInstance3D" parent="Group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02405572, 4.2268996)
+mesh = SubResource("BoxMesh_p4m2f")
+skeleton = NodePath("../..")
+
+[node name="Yellow3" type="MeshInstance3D" parent="Group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02405572, 1.9960682)
+mesh = SubResource("BoxMesh_p4m2f")
+skeleton = NodePath("../..")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="White4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.99965996, 0.026072148, -1.1396466e-09, -2.2150428e-16, -4.3711385e-08, -0.99999976, -0.026072256, -0.9996601, 4.369653e-08, -0.0147771835, 0, -5.6892033)
+mesh = SubResource("PrismMesh_st5xs")

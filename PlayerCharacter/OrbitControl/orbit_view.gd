@@ -1,6 +1,6 @@
 extends SpringArm3D
 
-var active : bool = true : set = set_active
+@export var active : bool = true : set = set_active
 
 @export_group("Camera variables")
 @export_range(0.0, 0.1, 0.0001) var mouse_sens : float
@@ -27,7 +27,8 @@ var aim_cam_pos_side : bool = true #false = left, true = right
 @export var cam_zoom_out_action : String = ""
 
 #references variables
-@onready var cam : Camera3D = %Camera3D
+#@onready var cam : Camera3D = %Camera3D
+@onready var cam : Camera3D = get_tree().current_scene.get_node("StationaryCamera")
 
 func _ready():
 	#capture mouse cursor, and enable camera

@@ -87,6 +87,11 @@ var coyote_jump_on : bool = false
 @onready var jump_particles = preload("res://PlayerCharacter/Vfx/jump_particles.tscn")
 @onready var land_particles = preload("res://PlayerCharacter/Vfx/land_particles.tscn")
 
+
+# ADDED:
+@onready var slam_scene = preload("res://PlayerCharacter/Vfx/slam_effect.tscn")
+@onready var world = get_tree().current_scene
+
 var immobile := false
 
 func _enter_tree() -> void:
@@ -173,3 +178,21 @@ func squash_and_strech(value : float, timing : float):
 	sasTween.tween_property(godot_plush_skin, "squash_and_stretch", value, timing)
 	sasTween.tween_property(godot_plush_skin, "squash_and_stretch", 1.0, timing * 1.8)
 	
+func slam_down():
+	squash_and_strech(-0.6, 0.15)
+	particles_manager.display_particles(jump_particles, self)
+	var new_slam = slam_scene.instantiate()
+	new_slam.position = floor_check.get_collision_point()
+	world.add_child(new_slam, true)
+
+var items: int = 0
+signal signal_item_picked_up
+
+func add_item():
+	signal_item_picked_up.emit()
+	items += 1
+	%LabelItemCount.text = str(items)
+
+func boost(dir):
+	var center: PhysicalBone3D = godot_plush_skin.center_body
+	center.apply_central_impulse(dir)
