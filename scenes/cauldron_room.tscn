@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqv0k3x6tk268"]
+
+[ext_resource type="PackedScene" uid="uid://onl57s5pracq" path="res://assets/models/CauldronRoom.glb" id="1_kevub"]
+[ext_resource type="Material" uid="uid://dij51xkrli1uu" path="res://assets/models/materials/CauldronTestRoom.tres" id="2_o35y7"]
+[ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="3_frtn0"]
+[ext_resource type="Material" uid="uid://b66abwf8o722t" path="res://assets/models/materials/Bunny.tres" id="4_l2vmp"]
+[ext_resource type="PackedScene" uid="uid://cugwjlmkrupvg" path="res://assets/models/PlayerBubble.glb" id="5_p7xuu"]
+[ext_resource type="Material" uid="uid://du1iiixuiunis" path="res://assets/models/materials/Bubble.tres" id="6_b7ayb"]
+
+[node name="CauldronRoom" instance=ExtResource("1_kevub")]
+
+[node name="Room" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04920578, 0.06435871, -0.06630921)
+surface_material_override/0 = ExtResource("2_o35y7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
+transform = Transform3D(0.9795753, -0.044548504, -0.196081, 0, -0.97514933, 0.22154847, -0.20107792, -0.2170234, -0.9552322, 0, 0, 0)
+light_energy = 0.17
+sky_mode = 1
+
+[node name="PlayerBunny" parent="." index="3" instance=ExtResource("3_frtn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.4079666, 0)
+
+[node name="PlayerBunnyMesh_001" parent="PlayerBunny/Rig/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("4_l2vmp")
+
+[node name="PlayerBubble" parent="PlayerBunny" index="2" instance=ExtResource("5_p7xuu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2183514, 0)
+
+[node name="Playerbubble" parent="PlayerBunny/PlayerBubble" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011202335, 0.01781416, 0.028764248)
+surface_material_override/0 = ExtResource("6_b7ayb")
+
+[editable path="PlayerBunny"]
+[editable path="PlayerBunny/PlayerBubble"]

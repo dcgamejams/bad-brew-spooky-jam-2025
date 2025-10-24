@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://8oald4y0be2e"]
+
+[ext_resource type="PackedScene" uid="uid://cqv0k3x6tk268" path="res://scenes/cauldron_room.tscn" id="1_yok06"]
+
+[node name="Valtestscene" type="Node3D"]
+
+[node name="CauldronRoom" parent="." instance=ExtResource("1_yok06")]
