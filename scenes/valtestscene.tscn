@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://8oald4y0be2e"]
+[gd_scene load_steps=18 format=3 uid="uid://8oald4y0be2e"]
 
 [ext_resource type="PackedScene" uid="uid://cqv0k3x6tk268" path="res://scenes/cauldron_room.tscn" id="1_yok06"]
 [ext_resource type="PackedScene" uid="uid://c2vmchgrxq51p" path="res://assets/models/Prop_EyeballFlower.glb" id="2_ormkd"]
@@ -9,6 +9,34 @@
 [ext_resource type="PackedScene" uid="uid://bnuvvjvqhysc0" path="res://assets/models/Prop_Star.glb" id="7_1ang1"]
 [ext_resource type="PackedScene" uid="uid://bdem6qe8d8gm6" path="res://assets/models/Prop_FireJar.glb" id="8_jppc4"]
 [ext_resource type="Material" uid="uid://bulihoaxuh7d4" path="res://assets/models/materials/Jar.tres" id="9_an363"]
+[ext_resource type="Material" uid="uid://dberifl2g7mun" path="res://assets/models/materials/CauldronBubbleParticles.tres" id="10_sfkmy"]
+
+[sub_resource type="Curve" id="Curve_74sie"]
+_data = [Vector2(0.016055048, 0.8533644), 0.0, 0.0, 0, 0, Vector2(0.41284403, 0.898872), -0.12621695, -0.12621695, 0, 0, Vector2(0.83944964, 1), -0.2733691, -0.2733691, 0, 0, Vector2(1, 0), -12.1709, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gnuei"]
+curve = SubResource("Curve_74sie")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1uwq8"]
+lifetime_randomness = 0.34
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 35.526
+gravity = Vector3(0, 0.7, 0)
+scale_min = 0.39999998
+scale_curve = SubResource("CurveTexture_gnuei")
+
+[sub_resource type="SphereMesh" id="SphereMesh_1ang1"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_jppc4"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_an363"]
+radial_velocity_min = 5.9999776
+radial_velocity_max = 8.999977
+radial_velocity_curve = SubResource("CurveTexture_jppc4")
+
+[sub_resource type="SphereMesh" id="SphereMesh_n0w4l"]
 
 [node name="Valtestscene" type="Node3D"]
 
@@ -51,6 +79,21 @@ material_override = ExtResource("9_an363")
 
 [node name="JarLid" parent="Prop_FireJar" index="2"]
 material_override = ExtResource("3_sfkmy")
+
+[node name="CauldronBubbles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249695, 3.6816604, 0.61000586)
+visible = false
+material_override = ExtResource("10_sfkmy")
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_1uwq8")
+draw_pass_1 = SubResource("SphereMesh_1ang1")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.314318, 0)
+trail_enabled = true
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_an363")
+draw_pass_1 = SubResource("SphereMesh_n0w4l")
 
 [editable path="Prop_EyeballFlower2"]
 [editable path="Prop_Bone2"]

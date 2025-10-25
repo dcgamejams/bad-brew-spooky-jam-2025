@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dberifl2g7mun"]
+
+[resource]
+transparency = 1
+cull_mode = 1
+diffuse_mode = 3
+albedo_color = Color(1, 0.43646207, 0.7475601, 0.7372549)
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.9486174, 0.22197583, 0.99999994, 1)
+emission_energy_multiplier = 0.69
+rim_enabled = true
+rim_tint = 0.0
+backlight = Color(0.3817033, 0.38170323, 0.38170335, 1)
