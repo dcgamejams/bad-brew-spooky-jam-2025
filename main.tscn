@@ -1,13 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=11 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://jka650tksndx" path="res://objects/spawner.gd" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://8oald4y0be2e" path="res://scenes/valtestscene.tscn" id="12_dg77c"]
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1bvp3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+diffuse_mode = 3
+albedo_color = Color(0.4328088, 0.4308693, 0.7979405, 1)
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7mycd"]
+material = SubResource("StandardMaterial3D_lquwl")
+size = Vector2(50, 50)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
+radius = 6.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+size = Vector3(4, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
+size = Vector3(4, 5, 1)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ig7tw")
-stationary_cam = true
 
 [node name="Player" parent="." instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21349669, 9.458907, 9.529594)
@@ -15,6 +34,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21349669, 9.458907, 9.52959
 [node name="Valtestscene" parent="." instance=ExtResource("12_dg77c")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Spawner" type="Marker3D" parent="."]
+[node name="Game" type="Node3D" parent="."]
+
+[node name="Spawner" type="Marker3D" parent="Game"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 script = ExtResource("8_5vw27")
+
+[node name="Floor" type="StaticBody3D" parent="Game"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2135668, 0)
+collision_layer = 147
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21869469, 0)
+shape = SubResource("WorldBoundaryShape3D_1bvp3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Game/Floor"]
+mesh = SubResource("PlaneMesh_7mycd")
+
+[node name="CauldronArea" type="Area3D" parent="Game"]
+unique_name_in_owner = true
+collision_layer = 129
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game/CauldronArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6503677, 0)
+shape = SubResource("SphereShape3D_1bvp3")
+
+[node name="Door" type="Area3D" parent="Game"]
+unique_name_in_owner = true
+transform = Transform3D(0.069512725, 0, 0.99758106, 0, 1, 0, -0.99758106, 0, 0.069512725, 20.0083, 4.755803, 0)
+collision_layer = 129
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game/Door"]
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Game/Door"]
+mesh = SubResource("BoxMesh_lquwl")
+
+[node name="Door2" type="Area3D" parent="Game"]
+unique_name_in_owner = true
+transform = Transform3D(0.069512725, 0, 0.99758106, 0, 1, 0, -0.99758106, 0, 0.069512725, -19.752018, 4.755803, 0)
+collision_layer = 129
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game/Door2"]
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Game/Door2"]
+mesh = SubResource("BoxMesh_lquwl")

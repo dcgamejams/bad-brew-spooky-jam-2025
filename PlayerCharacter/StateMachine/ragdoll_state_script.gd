@@ -18,7 +18,7 @@ var RAGDOLL_ACCEL := 0.3
 var RAGDOLL_DECCEL := 0.02
 
 func _ready():
-	ragdoll_jump_cooldown.wait_time = 1.0
+	ragdoll_jump_cooldown.wait_time = 0.5
 	ragdoll_jump_cooldown.one_shot = true
 	add_child(ragdoll_jump_cooldown)
 	ragdoll_jump_cooldown.start()

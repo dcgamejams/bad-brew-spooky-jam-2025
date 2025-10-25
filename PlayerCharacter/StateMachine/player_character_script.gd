@@ -179,7 +179,7 @@ func squash_and_strech(value : float, timing : float):
 	sasTween.tween_property(godot_plush_skin, "squash_and_stretch", 1.0, timing * 1.8)
 	
 func slam_down():
-	squash_and_strech(-0.6, 0.15)
+	squash_and_strech(-0.1, 0.1)
 	particles_manager.display_particles(jump_particles, self)
 	var new_slam = slam_scene.instantiate()
 	new_slam.position = floor_check.get_collision_point()
