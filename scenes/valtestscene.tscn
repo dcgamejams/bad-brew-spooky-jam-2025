@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8oald4y0be2e"]
+[gd_scene load_steps=22 format=3 uid="uid://8oald4y0be2e"]
 
 [ext_resource type="PackedScene" uid="uid://cqv0k3x6tk268" path="res://scenes/cauldron_room.tscn" id="1_yok06"]
 [ext_resource type="PackedScene" uid="uid://c2vmchgrxq51p" path="res://assets/models/Prop_EyeballFlower.glb" id="2_ormkd"]
@@ -12,14 +12,26 @@
 [ext_resource type="PackedScene" uid="uid://bm5dduiyqaect" path="res://assets/FX/cauldron_bubbles.tscn" id="10_74sie"]
 [ext_resource type="PackedScene" uid="uid://fgxdqxxe88j0" path="res://assets/FX/cauldron_splash.tscn" id="11_gnuei"]
 [ext_resource type="PackedScene" uid="uid://cg1rn5ji4jmdy" path="res://assets/models/Cauldron.glb" id="12_jppc4"]
-[ext_resource type="Material" uid="uid://dij51xkrli1uu" path="res://assets/models/materials/CauldronTestRoom.tres" id="13_an363"]
+[ext_resource type="PackedScene" uid="uid://d3yisi5if0bgo" path="res://assets/models/Walls.glb" id="12_n0w4l"]
+[ext_resource type="Material" uid="uid://g6frycihmei6" path="res://assets/models/materials/Walls.tres" id="13_m7uk2"]
+[ext_resource type="PackedScene" uid="uid://bfnxgfasogdgq" path="res://assets/models/SlopedFloor.glb" id="13_shbqf"]
+[ext_resource type="Material" uid="uid://cu1j7cujabk23" path="res://assets/models/materials/Floor.tres" id="14_m7uk2"]
 [ext_resource type="PackedScene" uid="uid://du02llh70eqm8" path="res://assets/models/CauldronGoop.glb" id="14_n0w4l"]
 [ext_resource type="Material" uid="uid://bffuw6cedja2o" path="res://assets/models/materials/CauldronGoop.tres" id="15_shbqf"]
+[ext_resource type="PackedScene" uid="uid://c8qm1l8ul21ft" path="res://assets/models/PortalDoor.glb" id="19_m7uk2"]
+[ext_resource type="PackedScene" uid="uid://cppcgmseshcl0" path="res://assets/models/Prop_Skull.glb" id="20_fthj3"]
+[ext_resource type="Material" uid="uid://dqhj27ioawek2" path="res://assets/models/materials/Skull.tres" id="21_8bd1j"]
 
 [node name="Valtestscene" type="Node3D"]
 
 [node name="CauldronRoom" parent="." instance=ExtResource("1_yok06")]
-visible = false
+
+[node name="Room" parent="CauldronRoom" index="1"]
+surface_material_override/0 = null
+
+[node name="DirectionalLight3D" parent="CauldronRoom" index="2"]
+light_energy = 0.421
+light_indirect_energy = 1.378
 
 [node name="Prop_EyeballFlower2" parent="." instance=ExtResource("2_ormkd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.954534, 2.1265845, -0.21755695)
@@ -69,23 +81,117 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249695, 3.6816604, 0.610005
 
 [node name="CauldronSplash" parent="." instance=ExtResource("11_gnuei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9350247, 0)
+visible = false
 
 [node name="Watertest" type="Node3D" parent="."]
+visible = false
 
-[node name="FlatterCauldron" parent="." instance=ExtResource("12_jppc4")]
+[node name="GameScene" type="Node3D" parent="."]
 
-[node name="Cauldron" parent="FlatterCauldron" index="0"]
-material_override = ExtResource("13_an363")
+[node name="SlopedFloor2" parent="GameScene" instance=ExtResource("13_shbqf")]
 
-[node name="CauldronGoop2" parent="FlatterCauldron" instance=ExtResource("14_n0w4l")]
+[node name="SlopedFloor" parent="GameScene/SlopedFloor2" index="0"]
+material_override = ExtResource("14_m7uk2")
 
-[node name="CauldronGoop" parent="FlatterCauldron/CauldronGoop2" index="0"]
+[node name="StaticBody3D" parent="GameScene/SlopedFloor2/SlopedFloor" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="GameScene/SlopedFloor2/SlopedFloor/StaticBody3D" index="0"]
+visible = false
+
+[node name="FlatterCauldron" parent="GameScene" instance=ExtResource("12_jppc4")]
+
+[node name="Cauldron" parent="GameScene/FlatterCauldron" index="0"]
+material_override = ExtResource("14_m7uk2")
+
+[node name="CauldronGoop2" parent="GameScene/FlatterCauldron" instance=ExtResource("14_n0w4l")]
+
+[node name="CauldronGoop" parent="GameScene/FlatterCauldron/CauldronGoop2" index="0"]
 surface_material_override/0 = ExtResource("15_shbqf")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/FlatterCauldron"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8000665, 0)
+light_color = Color(0.9972885, 0.4935978, 0.9247728, 1)
+light_energy = 4.653
+light_indirect_energy = 5.221
+light_volumetric_fog_energy = 5.88
+omni_range = 5.89
+omni_attenuation = 1.115
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="GameScene"]
+transform = Transform3D(-0.9747612, 0, -0.22325021, 0, 1, 0, 0.22325021, 0, -0.9747612, 0, 0, 0)
+light_color = Color(1, 0.9529412, 1, 1)
+light_energy = 0.811
+light_indirect_energy = 1.07
+light_angular_distance = 2.6
+sky_mode = 1
+
+[node name="Walls2" parent="GameScene" instance=ExtResource("12_n0w4l")]
+
+[node name="Walls_033" parent="GameScene/Walls2" index="0"]
+material_override = ExtResource("13_m7uk2")
+
+[node name="PortalDoor" parent="GameScene" instance=ExtResource("19_m7uk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.779158, -9.559731)
+
+[node name="DoorFrame_West" parent="GameScene/PortalDoor" index="0"]
+material_override = ExtResource("13_m7uk2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/PortalDoor/DoorFrame_West/Portal_West" index="0"]
+transform = Transform3D(1, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 1, -8.926221, 5.173151, -3.5818666e-06)
+light_color = Color(0.92799884, 0.046179123, 0.82544637, 1)
+light_energy = 1.315
+light_indirect_energy = 3.142
+
+[node name="PortalDoor2" parent="GameScene" instance=ExtResource("19_m7uk2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.551867, 4.779158, -0.014988899)
+
+[node name="DoorFrame_West" parent="GameScene/PortalDoor2" index="0"]
+material_override = ExtResource("13_m7uk2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/PortalDoor2/DoorFrame_West/Portal_West" index="0"]
+transform = Transform3D(1, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 1, -8.926221, 5.173151, -3.5818666e-06)
+light_color = Color(0.92799884, 0.046179123, 0.82544637, 1)
+light_energy = 1.315
+light_indirect_energy = 3.142
+
+[node name="PortalDoor3" parent="GameScene" instance=ExtResource("19_m7uk2")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.5103245, 4.779158, -0.014988899)
+
+[node name="DoorFrame_West" parent="GameScene/PortalDoor3" index="0"]
+material_override = ExtResource("13_m7uk2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/PortalDoor3/DoorFrame_West/Portal_West" index="0"]
+transform = Transform3D(1, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 1, -8.926221, 5.173151, -3.5818666e-06)
+light_color = Color(0.92799884, 0.046179123, 0.82544637, 1)
+light_energy = 1.315
+light_indirect_energy = 3.142
+
+[node name="Skull" type="Node3D" parent="GameScene"]
+
+[node name="Prop_Skull" parent="GameScene/Skull" instance=ExtResource("20_fthj3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4536517, 0)
+
+[node name="Skull" parent="GameScene/Skull/Prop_Skull" index="0"]
+material_override = ExtResource("21_8bd1j")
+
+[node name="StaticBody3D" parent="GameScene/Skull/Prop_Skull/Skull" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="GameScene/Skull/Prop_Skull/Skull/StaticBody3D" index="0"]
+visible = false
+
+[editable path="CauldronRoom"]
 [editable path="Prop_EyeballFlower2"]
 [editable path="Prop_Bone2"]
 [editable path="Prop_Mushroom2"]
 [editable path="Prop_Star2"]
 [editable path="Prop_FireJar"]
-[editable path="FlatterCauldron"]
-[editable path="FlatterCauldron/CauldronGoop2"]
+[editable path="GameScene/SlopedFloor2"]
+[editable path="GameScene/FlatterCauldron"]
+[editable path="GameScene/FlatterCauldron/CauldronGoop2"]
+[editable path="GameScene/Walls2"]
+[editable path="GameScene/PortalDoor"]
+[editable path="GameScene/PortalDoor2"]
+[editable path="GameScene/PortalDoor3"]
+[editable path="GameScene/Skull/Prop_Skull"]

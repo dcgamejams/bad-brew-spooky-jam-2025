@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bmel0i161v1pv"]
+
+[ext_resource type="Texture2D" uid="uid://dnpef1gp11p8q" path="res://assets/models/CauldronRoom_CauldronPalette.png" id="1_kh0dq"]
+
+[resource]
+resource_name = "CauldronRoom"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_kh0dq")

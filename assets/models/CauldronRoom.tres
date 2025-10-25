@@ -1,9 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://lhukqpem0ret"]
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://lhukqpem0ret"]
 
 [ext_resource type="Texture2D" uid="uid://5kchl5h1xen4" path="res://assets/models/textures/CauldronPalette.png" id="1_apnm4"]
+[ext_resource type="Shader" uid="uid://cad34a8rncfxy" path="res://assets/shaders/Outlines_Old.gdshader" id="2_8geof"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34um1"]
+render_priority = 0
+shader = ExtResource("2_8geof")
+shader_parameter/outline_threshold = 0.2
+shader_parameter/outline_color = Color(0.13262478, 0.00015563078, 0.37366933, 1)
 
 [resource]
 resource_name = "CauldronRoom"
+next_pass = SubResource("ShaderMaterial_34um1")
 cull_mode = 2
 shading_mode = 0
 albedo_texture = ExtResource("1_apnm4")

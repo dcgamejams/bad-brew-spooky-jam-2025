@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cu1j7cujabk23"]
+
+[ext_resource type="Shader" uid="uid://cad34a8rncfxy" path="res://assets/shaders/Outlines_Old.gdshader" id="1_iskjw"]
+[ext_resource type="Shader" uid="uid://dcpc43bpjtxnr" path="res://assets/shaders/toonshading.gdshader" id="2_bwb2n"]
+[ext_resource type="Texture2D" uid="uid://qg711bl5ob2m" path="res://assets/models/CauldronPalette.png" id="3_iskjw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6m40f"]
+render_priority = 0
+shader = ExtResource("1_iskjw")
+shader_parameter/outline_threshold = 0.4
+shader_parameter/outline_color = Color(0.05490196, 0, 0.08627451, 1)
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_6m40f")
+shader = ExtResource("2_bwb2n")
+shader_parameter/ToonRampOffset = 0.3270000155325
+shader_parameter/ToonRampSmoothness = 0.6010000285475
+shader_parameter/ToonRampTinting = Color(0.64403296, 0.5042295, 0.65296954, 1)
+shader_parameter/RimPower = 0.0
+shader_parameter/RimCutOff = 0.2050000097375
+shader_parameter/RimSmoothness = 0.0
+shader_parameter/RimLightBrightness = 0.0
+shader_parameter/SubSurfDistortion = 0.62400002964
+shader_parameter/SubSurfTint = Color(0, 0, 0, 1)
+shader_parameter/SubSurfBrightness = 2.8670001361825
+shader_parameter/SubSurfCutoff = 0.5
+shader_parameter/SubSurfSmoothness = 0.05
+shader_parameter/Texture = ExtResource("3_iskjw")
