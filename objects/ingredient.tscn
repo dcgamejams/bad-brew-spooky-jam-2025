@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdi52w8dyaums"]
+
+[ext_resource type="Script" uid="uid://dskwrjoh4ajs5" path="res://objects/ingredient.gd" id="1_ru0ln"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ru0ln"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru0ln"]
+transparency = 1
+diffuse_mode = 3
+albedo_color = Color(0, 0.80784315, 0.7176471, 0.41960785)
+emission_enabled = true
+emission = Color(0, 0.5428046, 0.5418817, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g6kyu"]
+material = SubResource("StandardMaterial3D_ru0ln")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fmuvs"]
+radius = 0.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ru0ln"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_ru0ln"]
+outer_radius = 0.7
+
+[node name="Ingredient" type="RigidBody3D"]
+script = ExtResource("1_ru0ln")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ru0ln")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_g6kyu")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_fmuvs")
+
+[node name="ShapeCastFloor" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_ru0ln")
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 16
+
+[node name="RayCastDown" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, -50, 0)
+collision_mask = 16
+
+[node name="TorusIndicator" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("TorusMesh_ru0ln")

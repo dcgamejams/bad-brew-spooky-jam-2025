@@ -17,14 +17,7 @@ signal footstep(intensity : float)
 
 func _ready():
 	set_ragdoll(ragdoll)
-	if is_multiplayer_authority():
-		#apply_new_weights()
-		apply_no_weights()
-		set_process(false)
-
-	#else:
-		##apply_no_weights()
-		#set_process(true)
+	apply_no_weights()
 
 func apply_new_weights():
 	for child in %PhysicalBoneSimulator3D.get_children():
@@ -38,9 +31,10 @@ func apply_no_weights():
 		var bone: PhysicalBone3D = child
 		bone.mass = 0.005
 		bone.friction  = 0.01
+		bone.get_node('CollisionShape3D').disabled = true
 
-	center_body.mass = 0.1
-	center_body.friction = 1.0
+	center_body.mass = 0.08
+	center_body.friction = 0.8
 	center_body.get_node('CollisionShape3D').disabled = false
 	
 		#bone.gravity_scale = 0.01
@@ -54,6 +48,8 @@ func apply_no_weights():
 func set_ragdoll(value : bool) -> void:
 	#manage the ragdoll appliements to the model, to call when wanting to go in/out ragdoll mode
 	ragdoll = value
+	%EarBubbles.visible = value
+	%Bubble.visible = value
 	if !is_inside_tree(): return
 	physical_bone_simulator_3d.active = ragdoll
 	animation_tree.active = !ragdoll
@@ -63,22 +59,22 @@ func set_ragdoll(value : bool) -> void:
 	else: 
 		physical_bone_simulator_3d.physical_bones_stop_simulation()
 
-	if is_multiplayer_authority():
-		sync_set_ragdoll.rpc(value)
+	#if is_multiplayer_authority():
+		#sync_set_ragdoll.rpc(value)
 
-@rpc('call_remote', 'authority')
-func sync_set_ragdoll(value):
-	#ragdoll = value
-	if !is_inside_tree(): return
-	physical_bone_simulator_3d.active = value
-	animation_tree.active = !value
-
-	if value: 
-		physical_bone_simulator_3d.physical_bones_start_simulation()
-		cR.set_physics_process(true)
-	else: 
-		physical_bone_simulator_3d.physical_bones_stop_simulation()
-		cR.set_physics_process(false)
+#@rpc('call_remote', 'authority')
+#func sync_set_ragdoll(value):
+	##ragdoll = value
+	#if !is_inside_tree(): return
+	#physical_bone_simulator_3d.active = value
+	#animation_tree.active = !value
+#
+	#if value: 
+		#physical_bone_simulator_3d.physical_bones_start_simulation()
+		#cR.set_physics_process(true)
+	#else: 
+		#physical_bone_simulator_3d.physical_bones_stop_simulation()
+		#cR.set_physics_process(false)
 
 # This is a cool trick.
 # Calling an RPC to other machines but only effecting my puppet.
