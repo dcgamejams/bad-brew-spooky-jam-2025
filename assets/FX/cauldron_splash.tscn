@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://fgxdqxxe88j0"]
+
+[ext_resource type="Material" uid="uid://cxbko3vg8rvly" path="res://assets/models/materials/CauldronSplashParticles.tres" id="1_2wgts"]
+[ext_resource type="Material" uid="uid://dberifl2g7mun" path="res://assets/models/materials/CauldronBubbleParticles.tres" id="2_867xj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_n0w4l"]
+material = ExtResource("2_867xj")
+
+[node name="CauldronSplash" type="GPUParticles3D"]
+emitting = false
+amount = 14
+amount_ratio = 0.907
+lifetime = 0.74
+one_shot = true
+explosiveness = 0.16
+trail_lifetime = 2.15
+process_material = ExtResource("1_2wgts")
+draw_pass_1 = SubResource("SphereMesh_n0w4l")

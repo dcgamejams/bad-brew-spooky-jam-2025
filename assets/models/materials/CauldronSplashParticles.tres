@@ -1,0 +1,37 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=7 format=3 uid="uid://cxbko3vg8rvly"]
+
+[sub_resource type="Curve" id="Curve_nntmu"]
+_data = [Vector2(0.011299435, 0.9867549), 0.0, 0.3259553, 0, 0, Vector2(0.8121468, 0.016556263), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_kqh0x"]
+curve_y = SubResource("Curve_nntmu")
+
+[sub_resource type="Curve" id="Curve_xcbde"]
+_data = [Vector2(0.0056497194, 0.69536424), 0.0, 0.0, 0, 0, Vector2(0.29802257, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2091167, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u4eja"]
+curve = SubResource("Curve_xcbde")
+
+[sub_resource type="Curve" id="Curve_a7j7u"]
+_data = [Vector2(0.0014124289, 0.6754967), 0.0, 0.0, 0, 0, Vector2(0.30225986, 0.93708605), 0.0, 0.0, 0, 0, Vector2(0.7231639, 0), -2.518024, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0i0nh"]
+curve = SubResource("Curve_a7j7u")
+
+[resource]
+emission_shape = 1
+emission_sphere_radius = 0.72
+directional_velocity_min = 0.4999839
+directional_velocity_max = 0.9999839
+directional_velocity_curve = SubResource("CurveXYZTexture_kqh0x")
+radial_velocity_min = 2.9999776
+radial_velocity_max = 5.9999776
+radial_velocity_curve = SubResource("CurveTexture_u4eja")
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 4.5599976
+scale_min = 0.39999998
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_0i0nh")
