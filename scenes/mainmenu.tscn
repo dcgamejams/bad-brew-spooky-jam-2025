@@ -1,0 +1,147 @@
+[gd_scene load_steps=15 format=3 uid="uid://bi8vsxyc18w01"]
+
+[ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="1_r3g3c"]
+[ext_resource type="PackedScene" uid="uid://cugwjlmkrupvg" path="res://assets/models/PlayerBubble.glb" id="2_3vvtq"]
+[ext_resource type="Material" uid="uid://du1iiixuiunis" path="res://assets/models/materials/Bubble.tres" id="3_s5g8n"]
+
+[sub_resource type="Environment" id="Environment_7yvfd"]
+background_mode = 1
+background_color = Color(7.821247e-08, 0, 0.12764716, 1)
+ambient_light_color = Color(0.53895146, 0.772882, 0.90685284, 1)
+
+[sub_resource type="Animation" id="Animation_r3g3c"]
+resource_name = "BubbleLoop"
+length = 15.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15, 15.0002),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.2831855, 6.2831855, 6.2831855), Vector3(6.2831855, 6.2831855, 6.2831855)]
+}
+
+[sub_resource type="Animation" id="Animation_3vvtq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s5g8n"]
+_data = {
+&"BubbleLoop": SubResource("Animation_r3g3c"),
+&"RESET": SubResource("Animation_3vvtq")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7yvfd"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3vvtq"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_s5g8n"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7yvfd"]
+graph_offset = Vector2(-446, 173.5)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3vvtq")
+nodes/Animation/position = Vector2(-80, 160)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_s5g8n")
+nodes/TimeScale/position = Vector2(100, 200)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_7yvfd")
+"nodes/Animation 2/position" = Vector2(-60, 420)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfy5j"]
+animation = &"BubbleLoop"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_85riq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wf3n4"]
+graph_offset = Vector2(-298, 64)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_dfy5j")
+nodes/Animation/position = Vector2(-7.272727, 210)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_85riq")
+nodes/TimeScale/position = Vector2(538.63635, 265.9091)
+node_connections = [&"output", 0, &"Animation"]
+
+[node name="Mainmenu" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7yvfd")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+
+[node name="PlayerBubble" parent="Node3D" instance=ExtResource("2_3vvtq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3012754, 0)
+
+[node name="Playerbubble" parent="Node3D/PlayerBubble" index="0"]
+material_override = ExtResource("3_s5g8n")
+
+[node name="PlayerBunny" parent="Node3D/PlayerBubble" instance=ExtResource("1_r3g3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3012754, 0)
+
+[node name="Skeleton3D" parent="Node3D/PlayerBubble/PlayerBunny/Rig" index="0"]
+bones/0/position = Vector3(-2.1175824e-22, 0.7960062, 2.0401803e-15)
+bones/0/rotation = Quaternion(0.997419, -0.0011897994, -0.017014945, -0.0697464)
+bones/1/position = Vector3(-2.9653557e-09, 5.9604645e-08, 2.1963569e-15)
+bones/1/rotation = Quaternion(1, -6.350815e-10, -2.6019372e-08, -1.5561286e-10)
+bones/2/rotation = Quaternion(0.08850339, -0.2010149, 0.50913763, -0.8321894)
+bones/3/rotation = Quaternion(0.13903072, -0.097698525, 0.012898784, 0.9853726)
+bones/5/rotation = Quaternion(0.0890326, 0.116877094, 0.52280533, 0.83969486)
+bones/6/rotation = Quaternion(0.21629283, -0.08384374, 0.019545628, 0.9725255)
+bones/8/rotation = Quaternion(0.020368984, 0.002576968, 0.04054824, 0.9989667)
+bones/9/position = Vector3(-6.998177e-08, 0.15368368, -4.5088708e-08)
+bones/9/rotation = Quaternion(0.26570335, -0.20820211, 0.058867496, 0.93946165)
+bones/10/position = Vector3(2.5586017e-08, 0.2075474, 2.5617073e-09)
+bones/10/rotation = Quaternion(-0.45825052, -5.0531373e-05, 8.52457e-05, 0.8888231)
+bones/11/position = Vector3(-2.4242517e-08, 0.25123602, -3.4368462e-08)
+bones/11/rotation = Quaternion(-0.0001062468, 0.93242776, -0.3613565, 4.7652356e-05)
+bones/12/rotation = Quaternion(-0.51678014, 0.014219826, 0.21405542, 0.8288042)
+bones/13/position = Vector3(-3.4806785e-08, 0.15368384, -1.3933543e-09)
+bones/13/rotation = Quaternion(0.35445872, 0.20173417, -0.0786259, 0.90965945)
+bones/14/position = Vector3(2.1086592e-08, 0.2075475, -5.01766e-08)
+bones/14/rotation = Quaternion(-0.45825055, 0.00016561303, -2.59422e-05, 0.88882303)
+bones/15/position = Vector3(1.690012e-08, 0.25123593, -4.6594806e-08)
+bones/15/rotation = Quaternion(-1.849563e-05, 0.93242764, -0.36135644, 0.00027428215)
+
+[node name="AnimationPlayer" parent="Node3D/PlayerBubble/PlayerBunny" index="1"]
+speed_scale = 0.212
+
+[node name="BubbleAnimationPlayer" type="AnimationPlayer" parent="Node3D/PlayerBubble"]
+libraries = {
+&"": SubResource("AnimationLibrary_s5g8n")
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.259, 5.362)
+fov = 61.8
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Node3D/PlayerBubble/PlayerBunny")
+tree_root = SubResource("AnimationNodeBlendTree_7yvfd")
+anim_player = NodePath("../Node3D/PlayerBubble/PlayerBunny/AnimationPlayer")
+parameters/TimeScale/scale = 0.4399999999999977
+
+[node name="BallAnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Node3D/PlayerBubble")
+tree_root = SubResource("AnimationNodeBlendTree_wf3n4")
+anim_player = NodePath("../Node3D/PlayerBubble/BubbleAnimationPlayer")
+parameters/TimeScale/scale = 1.0
+
+[editable path="Node3D/PlayerBubble"]
+[editable path="Node3D/PlayerBubble/PlayerBunny"]
