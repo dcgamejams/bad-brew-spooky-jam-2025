@@ -95,6 +95,8 @@ func set_squash_and_stretch(value : float) -> void:
 	squash_and_stretch = value
 	var negative = 1.0 + (1.0 - squash_and_stretch)
 	godot_plush_mesh.scale = Vector3(negative, squash_and_stretch, negative)
+	%Bubble.scale = Vector3(negative, squash_and_stretch, negative)
+	%EarBubbles.scale = Vector3(negative, squash_and_stretch, negative)
 
 func emit_footstep(intensity : float = 1.0) -> void:
 	#call foostep signal in charge of emitting the footstep audio effects

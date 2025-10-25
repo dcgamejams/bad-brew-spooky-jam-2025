@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://cqv0k3x6tk268"]
+[gd_scene load_steps=11 format=4 uid="uid://cqv0k3x6tk268"]
 
 [ext_resource type="PackedScene" uid="uid://onl57s5pracq" path="res://assets/models/CauldronRoom.glb" id="1_kevub"]
 [ext_resource type="Texture2D" uid="uid://dnpef1gp11p8q" path="res://assets/models/CauldronRoom_CauldronPalette.png" id="2_s303k"]
 [ext_resource type="PhysicsMaterial" uid="uid://ds6a2u6s65bxf" path="res://assets/wall_physics_material.tres" id="3_e0hqo"]
+[ext_resource type="Material" uid="uid://dij51xkrli1uu" path="res://assets/models/materials/CauldronTestRoom.tres" id="3_lgcwj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2rd6"]
 resource_name = "CauldronRoom"
@@ -65,6 +66,7 @@ layers = 2
 sorting_offset = -1.0
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_e0hqo")
+surface_material_override/0 = ExtResource("3_lgcwj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
 transform = Transform3D(0.9795753, -0.044548504, -0.196081, 0, -0.97514933, 0.22154847, -0.20107792, -0.2170234, -0.9552322, 0, 0, 0)

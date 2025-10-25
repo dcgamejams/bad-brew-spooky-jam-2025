@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://qg711bl5ob2m" path="res://assets/models/CauldronPalette.png" id="3_decmc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2as4"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("1_eg7om")
 shader_parameter/outline_threshold = 0.45
 shader_parameter/outline_color = Color(0.026505452, 0.004492449, 0.16716516, 1)
