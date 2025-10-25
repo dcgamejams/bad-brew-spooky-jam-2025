@@ -151,6 +151,7 @@ follow_cam_pos_when_aimed = true
 
 [node name="VisualRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
 unique_name_in_owner = true

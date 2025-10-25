@@ -41,8 +41,12 @@ enabled=PackedStringArray("res://addons/ambientcg/plugin.cfg", "res://addons/ver
 [file_customization]
 
 folder_colors={
+"res://PlayerCharacter/": "pink",
 "res://assets/": "green",
-"res://player/": "red"
+"res://enemy/": "yellow",
+"res://objects/": "purple",
+"res://player/": "red",
+"res://scenes/": "blue"
 }
 
 [input]

@@ -10,7 +10,7 @@ script = ExtResource("1_ig7tw")
 stationary_cam = true
 
 [node name="Player" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7095289, 7.396944, 3.3361053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21349669, 9.458907, 9.529594)
 
 [node name="Valtestscene" parent="." instance=ExtResource("12_dg77c")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
