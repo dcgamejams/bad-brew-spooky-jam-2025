@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://8oald4y0be2e"]
+[gd_scene load_steps=16 format=3 uid="uid://8oald4y0be2e"]
 
 [ext_resource type="PackedScene" uid="uid://cqv0k3x6tk268" path="res://scenes/cauldron_room.tscn" id="1_yok06"]
 [ext_resource type="PackedScene" uid="uid://c2vmchgrxq51p" path="res://assets/models/Prop_EyeballFlower.glb" id="2_ormkd"]
@@ -11,10 +11,15 @@
 [ext_resource type="Material" uid="uid://bulihoaxuh7d4" path="res://assets/models/materials/Jar.tres" id="9_an363"]
 [ext_resource type="PackedScene" uid="uid://bm5dduiyqaect" path="res://assets/FX/cauldron_bubbles.tscn" id="10_74sie"]
 [ext_resource type="PackedScene" uid="uid://fgxdqxxe88j0" path="res://assets/FX/cauldron_splash.tscn" id="11_gnuei"]
+[ext_resource type="PackedScene" uid="uid://cg1rn5ji4jmdy" path="res://assets/models/Cauldron.glb" id="12_jppc4"]
+[ext_resource type="Material" uid="uid://dij51xkrli1uu" path="res://assets/models/materials/CauldronTestRoom.tres" id="13_an363"]
+[ext_resource type="PackedScene" uid="uid://du02llh70eqm8" path="res://assets/models/CauldronGoop.glb" id="14_n0w4l"]
+[ext_resource type="Material" uid="uid://bffuw6cedja2o" path="res://assets/models/materials/CauldronGoop.tres" id="15_shbqf"]
 
 [node name="Valtestscene" type="Node3D"]
 
 [node name="CauldronRoom" parent="." instance=ExtResource("1_yok06")]
+visible = false
 
 [node name="Prop_EyeballFlower2" parent="." instance=ExtResource("2_ormkd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.954534, 2.1265845, -0.21755695)
@@ -65,8 +70,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249695, 3.6816604, 0.610005
 [node name="CauldronSplash" parent="." instance=ExtResource("11_gnuei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9350247, 0)
 
+[node name="Watertest" type="Node3D" parent="."]
+
+[node name="FlatterCauldron" parent="." instance=ExtResource("12_jppc4")]
+
+[node name="Cauldron" parent="FlatterCauldron" index="0"]
+material_override = ExtResource("13_an363")
+
+[node name="CauldronGoop2" parent="FlatterCauldron" instance=ExtResource("14_n0w4l")]
+
+[node name="CauldronGoop" parent="FlatterCauldron/CauldronGoop2" index="0"]
+surface_material_override/0 = ExtResource("15_shbqf")
+
 [editable path="Prop_EyeballFlower2"]
 [editable path="Prop_Bone2"]
 [editable path="Prop_Mushroom2"]
 [editable path="Prop_Star2"]
 [editable path="Prop_FireJar"]
+[editable path="FlatterCauldron"]
+[editable path="FlatterCauldron/CauldronGoop2"]

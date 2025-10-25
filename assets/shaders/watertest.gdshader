@@ -27,7 +27,8 @@ void fragment() {
 		water,
 		vec2(
 			(sample_choord.x + sin(TIME * wobble_speed) * wobble_intensity + TIME * slide_speed) * texture_scale,
-			(sample_choord.y + cos(TIME * wobble_speed * 0.5) * wobble_intensity) * texture_scale * 2.0
+			(sample_choord.y + cos(TIME * wobble_speed * 0.5) * wobble_intensity) * texture_scale
+		
 		 // AWOOGA the texture I used was 2:1 AR, so put "* 2.0" if you're gonna use it
 		)
 	).rgb;
