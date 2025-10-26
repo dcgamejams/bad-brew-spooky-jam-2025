@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8ayqi0ot360b"]
+[gd_scene load_steps=19 format=3 uid="uid://c8ayqi0ot360b"]
 
 [ext_resource type="PackedScene" uid="uid://bfnxgfasogdgq" path="res://assets/models/SlopedFloor.glb" id="1_6pl24"]
 [ext_resource type="Material" uid="uid://cu1j7cujabk23" path="res://assets/models/materials/Floor.tres" id="2_w22tq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://g6frycihmei6" path="res://assets/models/materials/Walls.tres" id="10_a5tct"]
 [ext_resource type="PackedScene" uid="uid://c8qm1l8ul21ft" path="res://assets/models/PortalDoor.glb" id="11_1npfk"]
 [ext_resource type="AudioStream" uid="uid://e382qlml8k0v" path="res://sound/Bad_Brew.wav" id="12_6nmf6"]
+[ext_resource type="Material" uid="uid://dcbb0ytvcuw6u" path="res://scenes/Portal_Intake.tres" id="12_w22tq"]
 
 [sub_resource type="Curve" id="Curve_74sie"]
 _data = [Vector2(0.016055048, 0.8533644), 0.0, 0.0, 0, 0, Vector2(0.41284403, 0.898872), -0.12621695, -0.12621695, 0, 0, Vector2(0.83944964, 1), -0.2733691, -0.2733691, 0, 0, Vector2(1, 0), -12.1709, 0.0, 0, 0]
@@ -29,6 +30,16 @@ gravity = Vector3(0, 0.96, 0)
 scale_min = 0.39999998
 scale_max = 0.75
 scale_curve = SubResource("CurveTexture_gnuei")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8rlm"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qitmq"]
+material = SubResource("StandardMaterial3D_e8rlm")
+radius = 0.325
+height = 0.435
+radial_segments = 25
 
 [node name="GameScene" type="Node3D"]
 
@@ -96,9 +107,15 @@ material_override = ExtResource("10_a5tct")
 [node name="PortalDoor-N" parent="." instance=ExtResource("11_1npfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.779158, -9.559731)
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="PortalDoor-N/DoorFrame" index="2"]
+transform = Transform3D(0.4692155, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.78369)
+visibility_aabb = AABB(-4, -4, -4, 7, 8, 8)
+process_material = ExtResource("12_w22tq")
+draw_pass_1 = SubResource("SphereMesh_qitmq")
+
 [node name="Doorlight" type="OmniLight3D" parent="PortalDoor-N"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
-light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_color = Color(0, 1, 0.6833334, 1)
 light_energy = 4.084
 light_indirect_energy = 11.462
 light_volumetric_fog_energy = 1.035
@@ -110,7 +127,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.0
 
 [node name="Doorlight" type="OmniLight3D" parent="PortalDoor-E"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
-light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_color = Color(0, 1, 0.6833334, 1)
 light_energy = 4.084
 light_indirect_energy = 11.462
 light_volumetric_fog_energy = 1.035
@@ -122,7 +139,7 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.
 
 [node name="Doorlight" type="OmniLight3D" parent="PortalDoor-W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
-light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_color = Color(0, 1, 0.6833334, 1)
 light_energy = 4.084
 light_indirect_energy = 11.462
 light_volumetric_fog_energy = 1.035
