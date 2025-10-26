@@ -44,7 +44,7 @@ func _ready() -> void:
 
 	var BLAST = randf_range(8, 15)
 	apply_central_force(rand_v * BLAST)
-	apply_torque(initial_angle * randf_range(1.0, 2.0))
+	apply_torque_impulse(initial_angle * randf_range(4.0, 8.0))
 
 	torque_timer.wait_time = randf_range(3, 5.0)
 	death_timer.wait_time = randf_range(15, 20)
@@ -94,16 +94,17 @@ func check_collision():
 
 	if shape_cast_floor.is_colliding():
 		var center = Vector3(0.0, 3.2, 0.0)
-		if death_timer.is_stopped() and position.distance_to(center) < 9.0:
-			apply_central_force((position.direction_to(center)) * 10.0)
-			return		
+	
+		#if death_timer.is_stopped() and position.distance_to(center) < 9.0:
+			#apply_central_force((position.direction_to(center)) * 10.0)
+			#return		
 
 		#var dist_factor = position.distance_to(center) / 20
 		#apply_central_force((position.direction_to(center + initial_angle)) * dist_factor)
 		# spin
-		if not torque_timer.is_stopped():
-			apply_torque(initial_angle * con_torque)
-			
+		#if not torque_timer.is_stopped():
+			#apply_torque(initial_angle * con_torque)
+			#
 
 func get_random_point_in_square(pos: Vector2, size: Vector2) -> Vector2:
 	# Generate a random X coordinate within the square's horizontal bounds

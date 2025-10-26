@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx8g2xtkrao8v"
 path.s3tc="res://.godot/imported/Cauldron_CauldronPalette.png-472d0e4c62cd837578f960f271c0fe48.s3tc.ctex"
+path.etc2="res://.godot/imported/Cauldron_CauldronPalette.png-472d0e4c62cd837578f960f271c0fe48.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/Cauldron_CauldronPalette.png"
-dest_files=["res://.godot/imported/Cauldron_CauldronPalette.png-472d0e4c62cd837578f960f271c0fe48.s3tc.ctex"]
+dest_files=["res://.godot/imported/Cauldron_CauldronPalette.png-472d0e4c62cd837578f960f271c0fe48.s3tc.ctex", "res://.godot/imported/Cauldron_CauldronPalette.png-472d0e4c62cd837578f960f271c0fe48.etc2.ctex"]
 
 [params]
 

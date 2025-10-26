@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8hlyvta7fbnp"
 path.s3tc="res://.godot/imported/Prop_Berry_PlayerBunny_Bunny.png-866ce538f856fa276a0fdcda5b1814ef.s3tc.ctex"
+path.etc2="res://.godot/imported/Prop_Berry_PlayerBunny_Bunny.png-866ce538f856fa276a0fdcda5b1814ef.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/Prop_Berry_PlayerBunny_Bunny.png"
-dest_files=["res://.godot/imported/Prop_Berry_PlayerBunny_Bunny.png-866ce538f856fa276a0fdcda5b1814ef.s3tc.ctex"]
+dest_files=["res://.godot/imported/Prop_Berry_PlayerBunny_Bunny.png-866ce538f856fa276a0fdcda5b1814ef.s3tc.ctex", "res://.godot/imported/Prop_Berry_PlayerBunny_Bunny.png-866ce538f856fa276a0fdcda5b1814ef.etc2.ctex"]
 
 [params]
 

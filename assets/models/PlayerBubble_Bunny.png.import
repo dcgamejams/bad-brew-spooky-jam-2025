@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnjic6j1x7rjp"
 path.s3tc="res://.godot/imported/PlayerBubble_Bunny.png-c9e04939fe5733da9656cfd65efe939d.s3tc.ctex"
+path.etc2="res://.godot/imported/PlayerBubble_Bunny.png-c9e04939fe5733da9656cfd65efe939d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/PlayerBubble_Bunny.png"
-dest_files=["res://.godot/imported/PlayerBubble_Bunny.png-c9e04939fe5733da9656cfd65efe939d.s3tc.ctex"]
+dest_files=["res://.godot/imported/PlayerBubble_Bunny.png-c9e04939fe5733da9656cfd65efe939d.s3tc.ctex", "res://.godot/imported/PlayerBubble_Bunny.png-c9e04939fe5733da9656cfd65efe939d.etc2.ctex"]
 
 [params]
 

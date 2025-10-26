@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dex62373e5i6p"
 path.s3tc="res://.godot/imported/Tiles084_2K-JPG_Roughness.jpg-789dc81b591ebe80ebf1fe0d9cc2dab3.s3tc.ctex"
+path.etc2="res://.godot/imported/Tiles084_2K-JPG_Roughness.jpg-789dc81b591ebe80ebf1fe0d9cc2dab3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://AmbientCG/Downloads/Tiles0842K-JPG/Tiles084_2K-JPG_Roughness.jpg"
-dest_files=["res://.godot/imported/Tiles084_2K-JPG_Roughness.jpg-789dc81b591ebe80ebf1fe0d9cc2dab3.s3tc.ctex"]
+dest_files=["res://.godot/imported/Tiles084_2K-JPG_Roughness.jpg-789dc81b591ebe80ebf1fe0d9cc2dab3.s3tc.ctex", "res://.godot/imported/Tiles084_2K-JPG_Roughness.jpg-789dc81b591ebe80ebf1fe0d9cc2dab3.etc2.ctex"]
 
 [params]
 

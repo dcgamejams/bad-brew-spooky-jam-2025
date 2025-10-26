@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://5kchl5h1xen4"
 path.s3tc="res://.godot/imported/CauldronPalette.png-65050e0cf210c1247fab6eeb8bc2f443.s3tc.ctex"
+path.etc2="res://.godot/imported/CauldronPalette.png-65050e0cf210c1247fab6eeb8bc2f443.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/textures/CauldronPalette.png"
-dest_files=["res://.godot/imported/CauldronPalette.png-65050e0cf210c1247fab6eeb8bc2f443.s3tc.ctex"]
+dest_files=["res://.godot/imported/CauldronPalette.png-65050e0cf210c1247fab6eeb8bc2f443.s3tc.ctex", "res://.godot/imported/CauldronPalette.png-65050e0cf210c1247fab6eeb8bc2f443.etc2.ctex"]
 
 [params]
 

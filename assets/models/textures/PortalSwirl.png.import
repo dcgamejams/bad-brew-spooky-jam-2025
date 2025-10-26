@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://1gayo4lxuyom"
 path.bptc="res://.godot/imported/PortalSwirl.png-ea7bab739f796fe53b5a1d17971c53d8.bptc.ctex"
+path.astc="res://.godot/imported/PortalSwirl.png-ea7bab739f796fe53b5a1d17971c53d8.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/textures/PortalSwirl.png"
-dest_files=["res://.godot/imported/PortalSwirl.png-ea7bab739f796fe53b5a1d17971c53d8.bptc.ctex"]
+dest_files=["res://.godot/imported/PortalSwirl.png-ea7bab739f796fe53b5a1d17971c53d8.bptc.ctex", "res://.godot/imported/PortalSwirl.png-ea7bab739f796fe53b5a1d17971c53d8.astc.ctex"]
 
 [params]
 

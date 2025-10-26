@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://4m1jncp37rdy"
 path.s3tc="res://.godot/imported/Prop_Bone_Bunny.png-de3b83685eb4ccdbb0e782f5844c6570.s3tc.ctex"
+path.etc2="res://.godot/imported/Prop_Bone_Bunny.png-de3b83685eb4ccdbb0e782f5844c6570.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/Prop_Bone_Bunny.png"
-dest_files=["res://.godot/imported/Prop_Bone_Bunny.png-de3b83685eb4ccdbb0e782f5844c6570.s3tc.ctex"]
+dest_files=["res://.godot/imported/Prop_Bone_Bunny.png-de3b83685eb4ccdbb0e782f5844c6570.s3tc.ctex", "res://.godot/imported/Prop_Bone_Bunny.png-de3b83685eb4ccdbb0e782f5844c6570.etc2.ctex"]
 
 [params]
 

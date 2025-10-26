@@ -252,17 +252,11 @@ func kick_object(body):
 		if not item.torque_timer.is_stopped():
 			item.torque_timer.stop()
 			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
-		var dist_factor = Vector3.ZERO.distance_to(get_mouse(result).position)
-		if dist_factor < 10.0:
-			item.apply_central_impulse(mouse_dir * 8.0) #apply 
-		else:
-			item.apply_central_impulse(mouse_dir * 15.0) #apply 
-		
-signal hit
 
+		item.apply_central_impulse(mouse_dir * 15.0) #apply 
+		
 func stop(body):
 	if body.is_in_group("Ingredients"):
-		hit.emit()
 		$Hit.play()
 		var item: Ingredient = body
 		if not item.torque_timer.is_stopped():
