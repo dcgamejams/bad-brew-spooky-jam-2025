@@ -148,7 +148,7 @@ func spawn_ingredient():
 	if get_tree().get_nodes_in_group("Balls").size() > MAX:
 		return
 	
-	for i in randi_range(4, 7):
+	for i in randi_range(4, 6):
 		await get_tree().create_timer(randf_range(0.1, 0.3)).timeout
 		var new_ingredient: Ingredient = ingredient.instantiate()
 		var random_radians = randi_range(0, 360)

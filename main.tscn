@@ -282,6 +282,26 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "❤️"
 
+[node name="Label10" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "❤️"
+
+[node name="Label11" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "❤️"
+
+[node name="Label12" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "❤️"
+
+[node name="Label13" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "❤️"
+
 [node name="Center" type="MarginContainer" parent="PlayerUI"]
 anchors_preset = 8
 anchor_left = 0.5

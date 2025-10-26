@@ -48,6 +48,7 @@ func _ready() -> void:
 
 	torque_timer.wait_time = randf_range(3, 5.0)
 	death_timer.wait_time = randf_range(10, 15)
+	
 
 func set_type(value: TYPE):
 	type = value
@@ -62,6 +63,7 @@ func set_type(value: TYPE):
 		TYPE.SKULL:
 			$Mesh.hide()
 			%Skull.show()
+			con_torque += 1.0
 
 func set_mesh_color(new_color: Color):
 	color = new_color
