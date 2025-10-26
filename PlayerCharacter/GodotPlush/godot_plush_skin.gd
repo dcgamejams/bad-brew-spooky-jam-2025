@@ -10,6 +10,7 @@ extends Node3D
 
 @onready var cR: CharacterBody3D = get_parent().get_parent()
 @onready var torus: MeshInstance3D = %TorusIndicator
+@onready var slam_area: Area3D = %SlamArea
 
 var ragdoll : bool = false : set = set_ragdoll
 var squash_and_stretch = 1.0 : set = set_squash_and_stretch
@@ -20,6 +21,13 @@ func _ready():
 	set_ragdoll(ragdoll)
 	apply_no_weights()
 	%TorusIndicator.top_level = true
+	%SlamArea.top_level = true
+	slam_area.body_entered.connect(destroy_skulls)
+	
+func destroy_skulls(body):
+	if body.is_in_group('Ingredients'):
+		if body.type == Ingredient.TYPE.SKULL:
+			body.queue_free()
 
 func apply_new_weights():
 	for child in %PhysicalBoneSimulator3D.get_children():
@@ -154,6 +162,7 @@ func _process(_delta):
 	if ray_cast_down.is_colliding:
 		line(global_position, ray_cast_down.get_collision_point())
 		%TorusIndicator.position = ray_cast_down.get_collision_point()
+		slam_area.position = ray_cast_down.get_collision_point()
 
 #func set_name_tag(username_text: String):
 	#%NametagPlush.text = username_text

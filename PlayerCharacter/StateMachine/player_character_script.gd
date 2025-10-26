@@ -184,6 +184,10 @@ func slam_down():
 	var new_slam = slam_scene.instantiate()
 	new_slam.position = floor_check.get_collision_point()
 	world.add_child(new_slam, true)
+	godot_plush_skin.slam_area.get_node('CollisionShape3D').disabled = false
+	await get_tree().create_timer(0.2).timeout 
+	godot_plush_skin.slam_area.get_node('CollisionShape3D').disabled = true
+	
 
 var items: int = 0
 signal signal_item_picked_up
