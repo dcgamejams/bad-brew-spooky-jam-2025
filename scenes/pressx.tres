@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b6jhyi8t6xv4a"]
+
+[ext_resource type="Texture2D" uid="uid://cajb577yausk2" path="res://assets/models/textures/badbrew_title.png" id="1_8rjsx"]
+
+[resource]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_8rjsx")

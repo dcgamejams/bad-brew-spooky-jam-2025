@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi8vsxyc18w01"]
+[gd_scene load_steps=23 format=3 uid="uid://bi8vsxyc18w01"]
 
 [ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="1_r3g3c"]
 [ext_resource type="PackedScene" uid="uid://cugwjlmkrupvg" path="res://assets/models/PlayerBubble.glb" id="2_3vvtq"]
 [ext_resource type="Material" uid="uid://du1iiixuiunis" path="res://assets/models/materials/Bubble.tres" id="3_s5g8n"]
 [ext_resource type="AudioStream" uid="uid://d0e5w04eaihhm" path="res://sound/Menu Music.wav" id="4_3vvtq"]
+[ext_resource type="Material" uid="uid://c68mnks3yaxxc" path="res://assets/models/materials/menuBG.tres" id="5_85riq"]
+[ext_resource type="Texture2D" uid="uid://cajb577yausk2" path="res://assets/models/textures/badbrew_title.png" id="6_wf3n4"]
+[ext_resource type="Material" uid="uid://cqngnjxdym3jh" path="res://scenes/badbrewtitle.tres" id="7_h73c4"]
+[ext_resource type="Material" uid="uid://b6jhyi8t6xv4a" path="res://scenes/pressx.tres" id="8_uui5l"]
 
 [sub_resource type="Environment" id="Environment_7yvfd"]
 background_mode = 1
@@ -79,51 +83,60 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_85riq")
 nodes/TimeScale/position = Vector2(538.63635, 265.9091)
 node_connections = [&"output", 0, &"Animation"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_4hago"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gjjcl"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("6_wf3n4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kait0"]
+
 [node name="Mainmenu" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7yvfd")
 
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+[node name="BunnyBubble" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608, 0)
 
-[node name="PlayerBubble" parent="Node3D" instance=ExtResource("2_3vvtq")]
+[node name="PlayerBubble" parent="BunnyBubble" instance=ExtResource("2_3vvtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3012754, 0)
 
-[node name="Playerbubble" parent="Node3D/PlayerBubble" index="0"]
+[node name="Playerbubble" parent="BunnyBubble/PlayerBubble" index="0"]
 material_override = ExtResource("3_s5g8n")
 
-[node name="PlayerBunny" parent="Node3D/PlayerBubble" instance=ExtResource("1_r3g3c")]
+[node name="PlayerBunny" parent="BunnyBubble/PlayerBubble" instance=ExtResource("1_r3g3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3012754, 0)
 
-[node name="Skeleton3D" parent="Node3D/PlayerBubble/PlayerBunny/Rig" index="0"]
+[node name="Skeleton3D" parent="BunnyBubble/PlayerBubble/PlayerBunny/Rig" index="0"]
 bones/0/position = Vector3(-2.1175824e-22, 0.7960062, 2.0401803e-15)
-bones/0/rotation = Quaternion(0.9963566, -0.0034310862, -0.04906687, -0.06967212)
+bones/0/rotation = Quaternion(0.99572426, 0.004234605, 0.06055772, -0.0696279)
 bones/1/position = Vector3(-2.9653557e-09, 5.9604645e-08, 2.1963569e-15)
-bones/1/rotation = Quaternion(1, -5.7088234e-10, -2.5988896e-08, 2.0737423e-10)
-bones/2/rotation = Quaternion(0.058684226, -0.14859189, 0.50994605, -0.8452407)
-bones/3/rotation = Quaternion(0.18428715, -0.06660616, 0.011204964, 0.98054904)
-bones/5/rotation = Quaternion(0.059856, 0.06366354, 0.51907206, 0.8502519)
-bones/6/rotation = Quaternion(0.17211357, -0.053998396, 0.0107592, 0.9835372)
-bones/8/rotation = Quaternion(-0.07509865, -0.0003976035, -0.003842199, 0.9971687)
+bones/1/rotation = Quaternion(1, -8.8068375e-10, -2.6135947e-08, -1.5442676e-09)
+bones/2/rotation = Quaternion(-0.038870554, 0.025592413, 0.5162835, -0.85515225)
+bones/3/rotation = Quaternion(0.15013185, 0.032478273, -0.006031285, 0.98811406)
+bones/5/rotation = Quaternion(-0.037351295, -0.11088888, 0.51041514, 0.85193014)
+bones/6/rotation = Quaternion(0.20651297, 0.04475566, -0.008348067, 0.9773841)
+bones/8/rotation = Quaternion(-0.37473816, -0.009881472, -0.14553167, 0.9155841)
 bones/9/position = Vector3(-6.998177e-08, 0.15368368, -4.5088708e-08)
-bones/9/rotation = Quaternion(0.17978466, -0.21266715, 0.039826382, 0.9596166)
+bones/9/rotation = Quaternion(0.46329573, -0.19045937, 0.10265796, 0.85938555)
 bones/10/position = Vector3(2.5586017e-08, 0.2075474, 2.5617073e-09)
 bones/10/rotation = Quaternion(-0.45825052, -5.0531373e-05, 8.52457e-05, 0.8888231)
 bones/11/position = Vector3(-2.4242517e-08, 0.25123602, -3.4368462e-08)
 bones/11/rotation = Quaternion(-0.0001062468, 0.93242776, -0.3613565, 4.7652356e-05)
-bones/12/rotation = Quaternion(-0.43552795, 0.011574097, 0.17466575, 0.8829912)
+bones/12/rotation = Quaternion(-0.14252388, 0.002231634, 0.035396114, 0.98915577)
 bones/13/position = Vector3(-3.4806785e-08, 0.15368384, -1.3933543e-09)
-bones/13/rotation = Quaternion(0.43515256, 0.19381014, -0.0965212, 0.87393564)
+bones/13/rotation = Quaternion(0.14854857, 0.2139914, -0.032961007, 0.9649117)
 bones/14/position = Vector3(2.1086592e-08, 0.2075475, -5.01766e-08)
 bones/14/rotation = Quaternion(-0.45825055, 0.00016561303, -2.59422e-05, 0.88882303)
 bones/15/position = Vector3(1.690012e-08, 0.25123593, -4.6594806e-08)
 bones/15/rotation = Quaternion(-1.849563e-05, 0.93242764, -0.36135644, 0.00027428215)
 
-[node name="AnimationPlayer" parent="Node3D/PlayerBubble/PlayerBunny" index="1"]
+[node name="AnimationPlayer" parent="BunnyBubble/PlayerBubble/PlayerBunny" index="1"]
 speed_scale = 0.212
 
-[node name="BubbleAnimationPlayer" type="AnimationPlayer" parent="Node3D/PlayerBubble"]
+[node name="BubbleAnimationPlayer" type="AnimationPlayer" parent="BunnyBubble/PlayerBubble"]
 libraries = {
 &"": SubResource("AnimationLibrary_s5g8n")
 }
@@ -133,20 +146,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.259, 5.362)
 fov = 61.8
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Node3D/PlayerBubble/PlayerBunny")
+root_node = NodePath("../BunnyBubble/PlayerBubble/PlayerBunny")
 tree_root = SubResource("AnimationNodeBlendTree_7yvfd")
-anim_player = NodePath("../Node3D/PlayerBubble/PlayerBunny/AnimationPlayer")
+anim_player = NodePath("../BunnyBubble/PlayerBubble/PlayerBunny/AnimationPlayer")
 parameters/TimeScale/scale = 0.4399999999999977
 
 [node name="BallAnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Node3D/PlayerBubble")
+root_node = NodePath("../BunnyBubble/PlayerBubble")
 tree_root = SubResource("AnimationNodeBlendTree_wf3n4")
-anim_player = NodePath("../Node3D/PlayerBubble/BubbleAnimationPlayer")
+anim_player = NodePath("../BunnyBubble/PlayerBubble/BubbleAnimationPlayer")
 parameters/TimeScale/scale = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3vvtq")
 autoplay = true
 
-[editable path="Node3D/PlayerBubble"]
-[editable path="Node3D/PlayerBubble/PlayerBunny"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.78814524, 0.5239396, -0.3229773, -0.5571612, 0.38435978, -0.7360971, -0.26153088, 0.76010185, 0.5948501, -3.5976481, 2.9275882, 0)
+light_color = Color(0.9077715, 0.95439476, 0.8532765, 1)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+material_override = ExtResource("5_85riq")
+mesh = SubResource("QuadMesh_4hago")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.324, 0, 0, 0, 0.58, 0, 0, 0, 0.58, 0, -0.428, 0)
+material_override = SubResource("StandardMaterial3D_gjjcl")
+mesh = SubResource("QuadMesh_kait0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.083, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, -0.975, 0)
+material_override = ExtResource("7_h73c4")
+mesh = SubResource("QuadMesh_kait0")
+surface_material_override/0 = ExtResource("8_uui5l")
+
+[editable path="BunnyBubble/PlayerBubble"]
+[editable path="BunnyBubble/PlayerBubble/PlayerBunny"]
