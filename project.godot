@@ -17,7 +17,7 @@ environment_file_directory="res://AmbientCG/Environments"
 [application]
 
 config/name="RVA Spooky Jam 2025"
-run/main_scene="uid://bnhbasot1u7g4"
+run/main_scene="uid://bi8vsxyc18w01"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://dd6o76q37t0hv"
 

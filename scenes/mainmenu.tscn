@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bi8vsxyc18w01"]
+[gd_scene load_steps=24 format=3 uid="uid://bi8vsxyc18w01"]
 
 [ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="1_r3g3c"]
+[ext_resource type="Script" uid="uid://tepg32r2c1m6" path="res://scenes/mainmenu.gd" id="1_wf3n4"]
 [ext_resource type="PackedScene" uid="uid://cugwjlmkrupvg" path="res://assets/models/PlayerBubble.glb" id="2_3vvtq"]
 [ext_resource type="Material" uid="uid://du1iiixuiunis" path="res://assets/models/materials/Bubble.tres" id="3_s5g8n"]
 [ext_resource type="AudioStream" uid="uid://d0e5w04eaihhm" path="res://sound/Menu Music.wav" id="4_3vvtq"]
@@ -93,6 +94,7 @@ albedo_texture = ExtResource("6_wf3n4")
 [sub_resource type="QuadMesh" id="QuadMesh_kait0"]
 
 [node name="Mainmenu" type="Node3D"]
+script = ExtResource("1_wf3n4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7yvfd")
@@ -111,23 +113,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3012754, 0)
 
 [node name="Skeleton3D" parent="BunnyBubble/PlayerBubble/PlayerBunny/Rig" index="0"]
 bones/0/position = Vector3(-2.1175824e-22, 0.7960062, 2.0401803e-15)
-bones/0/rotation = Quaternion(0.9972052, 0.001870878, 0.026754819, -0.06973144)
+bones/0/rotation = Quaternion(0.9969721, 0.0024028257, 0.034362026, -0.06971514)
 bones/1/position = Vector3(-2.9653557e-09, 5.9604645e-08, 2.1963569e-15)
-bones/1/rotation = Quaternion(1, -9.589791e-10, -2.6173112e-08, -1.9869562e-09)
-bones/2/rotation = Quaternion(-0.08609862, 0.11149891, 0.5223057, -0.84104216)
-bones/3/rotation = Quaternion(0.20605078, 0.08094492, -0.017967308, 0.9750222)
-bones/5/rotation = Quaternion(-0.08548281, -0.1957314, 0.5090961, 0.83378845)
-bones/6/rotation = Quaternion(0.14949034, 0.09441462, -0.013488663, 0.9841528)
-bones/8/rotation = Quaternion(-0.5087031, -0.014207865, -0.21025968, 0.8347516)
+bones/1/rotation = Quaternion(1, -9.448742e-10, -2.6166415e-08, -1.9072055e-09)
+bones/2/rotation = Quaternion(-0.07978631, 0.0999486, 0.52132595, -0.84372026)
+bones/3/rotation = Quaternion(0.19604787, 0.074465506, -0.015836705, 0.9776346)
+bones/5/rotation = Quaternion(-0.079001136, -0.18437307, 0.50910133, 0.8370074)
+bones/6/rotation = Quaternion(0.15977614, 0.08758687, -0.013335593, 0.9831695)
+bones/8/rotation = Quaternion(-0.49133778, -0.013643305, -0.20180927, 0.84715647)
 bones/9/position = Vector3(-6.998177e-08, 0.15368368, -4.5088708e-08)
-bones/9/rotation = Quaternion(0.37933242, -0.19937173, 0.08404987, 0.89960736)
+bones/9/rotation = Quaternion(0.39854583, -0.19752257, 0.08830799, 0.8912619)
 bones/10/position = Vector3(2.5586017e-08, 0.2075474, 2.5617073e-09)
 bones/10/rotation = Quaternion(-0.45825052, -5.0531373e-05, 8.52457e-05, 0.8888231)
 bones/11/position = Vector3(-2.4242517e-08, 0.25123602, -3.4368462e-08)
 bones/11/rotation = Quaternion(-0.0001062468, 0.93242776, -0.3613565, 4.7652356e-05)
-bones/12/rotation = Quaternion(0.01066007, -0.0025518192, -0.036004696, 0.9992916)
+bones/12/rotation = Quaternion(-0.010160312, -0.00190541, -0.026352454, 0.99959934)
 bones/13/position = Vector3(-3.4806785e-08, 0.15368384, -1.3933543e-09)
-bones/13/rotation = Quaternion(0.23978136, 0.20987885, -0.053193856, 0.94637525)
+bones/13/rotation = Quaternion(0.21942201, 0.2109718, -0.04867876, 0.9513019)
 bones/14/position = Vector3(2.1086592e-08, 0.2075475, -5.01766e-08)
 bones/14/rotation = Quaternion(-0.45825055, 0.00016561303, -2.59422e-05, 0.88882303)
 bones/15/position = Vector3(1.690012e-08, 0.25123593, -4.6594806e-08)
@@ -177,7 +179,8 @@ transform = Transform3D(2.324, 0, 0, 0, 0.58, 0, 0, 0, 0.58, 0, -0.428, 0)
 material_override = SubResource("StandardMaterial3D_gjjcl")
 mesh = SubResource("QuadMesh_kait0")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="StartText" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(3.083, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, -0.975, 0)
 material_override = ExtResource("7_h73c4")
 mesh = SubResource("QuadMesh_kait0")
