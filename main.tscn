@@ -107,15 +107,15 @@ collision_mask = 129
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Game/Kill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6147194, -1.5231075, -3.1486342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3896637, -1.5231075, -3.1486342)
 shape = SubResource("BoxShape3D_efxa6")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Game/Kill"]
-transform = Transform3D(0.013264104, 0, -0.999912, 0, 1, 0, 0.999912, 0, 0.013264104, 17.479046, -0.9781904, -22.70271)
+transform = Transform3D(0.013264104, 0, -0.999912, 0, 1, 0, 0.999912, 0, 0.013264104, 17.479046, -0.9781904, -22.449223)
 shape = SubResource("BoxShape3D_efxa6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Game/Kill"]
-transform = Transform3D(-0.99900824, 0, -0.04452607, 0, 1, 0, 0.04452607, 0, -0.99900824, 36.579056, -1.2457075, -3.6270971)
+transform = Transform3D(-0.99900824, 0, -0.04452607, 0, 1, 0, 0.04452607, 0, -0.99900824, 36.159378, -1.2457075, -3.6270971)
 shape = SubResource("BoxShape3D_efxa6")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
