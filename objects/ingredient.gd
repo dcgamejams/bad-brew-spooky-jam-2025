@@ -48,6 +48,13 @@ func _ready() -> void:
 func set_type(value: TYPE):
 	type = value
 	set_mesh_color(COLORS[value])
+	match value: 
+		TYPE.SKULL:
+			%Skull.show()
+			$Mesh.hide()
+		TYPE.MUSHROOM:
+			%Mushroom.show()
+	
 
 func set_mesh_color(new_color: Color):
 	color = new_color
@@ -64,6 +71,7 @@ func set_mesh_color(new_color: Color):
 func _process(_delta: float) -> void:
 	move_ray_casts()
 	check_collision()
+	%Icons.position = global_position
 
 func move_ray_casts():
 	ray_cast_down.position = position + Vector3(0.0, 40.0, 0.0)
