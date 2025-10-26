@@ -1,0 +1,35 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://dth3qqcsnu28j"]
+
+[sub_resource type="Curve" id="Curve_kd1ry"]
+_data = [Vector2(0.026315786, 0.8352175), 0.0, 0.0, 0, 0, Vector2(0.49392712, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.7906817), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ytqci"]
+curve = SubResource("Curve_kd1ry")
+
+[sub_resource type="Curve" id="Curve_ytqci"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.58097166, 1.8910586), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_y4h2s"]
+curve = SubResource("Curve_ytqci")
+
+[resource]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angle_min = 7.600011
+angle_max = 367.6
+spread = 94.465
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 0.19999775
+scale_min = 0.59999996
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_ytqci")
+scale_over_velocity_curve = SubResource("CurveTexture_y4h2s")
+turbulence_enabled = true
+turbulence_noise_strength = 1.07
+turbulence_noise_scale = 2.472
+turbulence_noise_speed_random = 0.17
