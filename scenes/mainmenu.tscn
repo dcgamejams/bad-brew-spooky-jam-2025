@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi8vsxyc18w01"]
+[gd_scene load_steps=16 format=3 uid="uid://bi8vsxyc18w01"]
 
 [ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="1_r3g3c"]
 [ext_resource type="PackedScene" uid="uid://cugwjlmkrupvg" path="res://assets/models/PlayerBubble.glb" id="2_3vvtq"]
 [ext_resource type="Material" uid="uid://du1iiixuiunis" path="res://assets/models/materials/Bubble.tres" id="3_s5g8n"]
+[ext_resource type="AudioStream" uid="uid://d0e5w04eaihhm" path="res://sound/Menu Music.wav" id="4_3vvtq"]
 
 [sub_resource type="Environment" id="Environment_7yvfd"]
 background_mode = 1
@@ -97,23 +98,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3012754, 0)
 
 [node name="Skeleton3D" parent="Node3D/PlayerBubble/PlayerBunny/Rig" index="0"]
 bones/0/position = Vector3(-2.1175824e-22, 0.7960062, 2.0401803e-15)
-bones/0/rotation = Quaternion(0.997419, -0.0011897994, -0.017014945, -0.0697464)
+bones/0/rotation = Quaternion(0.9963566, -0.0034310862, -0.04906687, -0.06967212)
 bones/1/position = Vector3(-2.9653557e-09, 5.9604645e-08, 2.1963569e-15)
-bones/1/rotation = Quaternion(1, -6.350815e-10, -2.6019372e-08, -1.5561286e-10)
-bones/2/rotation = Quaternion(0.08850339, -0.2010149, 0.50913763, -0.8321894)
-bones/3/rotation = Quaternion(0.13903072, -0.097698525, 0.012898784, 0.9853726)
-bones/5/rotation = Quaternion(0.0890326, 0.116877094, 0.52280533, 0.83969486)
-bones/6/rotation = Quaternion(0.21629283, -0.08384374, 0.019545628, 0.9725255)
-bones/8/rotation = Quaternion(0.020368984, 0.002576968, 0.04054824, 0.9989667)
+bones/1/rotation = Quaternion(1, -5.7088234e-10, -2.5988896e-08, 2.0737423e-10)
+bones/2/rotation = Quaternion(0.058684226, -0.14859189, 0.50994605, -0.8452407)
+bones/3/rotation = Quaternion(0.18428715, -0.06660616, 0.011204964, 0.98054904)
+bones/5/rotation = Quaternion(0.059856, 0.06366354, 0.51907206, 0.8502519)
+bones/6/rotation = Quaternion(0.17211357, -0.053998396, 0.0107592, 0.9835372)
+bones/8/rotation = Quaternion(-0.07509865, -0.0003976035, -0.003842199, 0.9971687)
 bones/9/position = Vector3(-6.998177e-08, 0.15368368, -4.5088708e-08)
-bones/9/rotation = Quaternion(0.26570335, -0.20820211, 0.058867496, 0.93946165)
+bones/9/rotation = Quaternion(0.17978466, -0.21266715, 0.039826382, 0.9596166)
 bones/10/position = Vector3(2.5586017e-08, 0.2075474, 2.5617073e-09)
 bones/10/rotation = Quaternion(-0.45825052, -5.0531373e-05, 8.52457e-05, 0.8888231)
 bones/11/position = Vector3(-2.4242517e-08, 0.25123602, -3.4368462e-08)
 bones/11/rotation = Quaternion(-0.0001062468, 0.93242776, -0.3613565, 4.7652356e-05)
-bones/12/rotation = Quaternion(-0.51678014, 0.014219826, 0.21405542, 0.8288042)
+bones/12/rotation = Quaternion(-0.43552795, 0.011574097, 0.17466575, 0.8829912)
 bones/13/position = Vector3(-3.4806785e-08, 0.15368384, -1.3933543e-09)
-bones/13/rotation = Quaternion(0.35445872, 0.20173417, -0.0786259, 0.90965945)
+bones/13/rotation = Quaternion(0.43515256, 0.19381014, -0.0965212, 0.87393564)
 bones/14/position = Vector3(2.1086592e-08, 0.2075475, -5.01766e-08)
 bones/14/rotation = Quaternion(-0.45825055, 0.00016561303, -2.59422e-05, 0.88882303)
 bones/15/position = Vector3(1.690012e-08, 0.25123593, -4.6594806e-08)
@@ -142,6 +143,10 @@ root_node = NodePath("../Node3D/PlayerBubble")
 tree_root = SubResource("AnimationNodeBlendTree_wf3n4")
 anim_player = NodePath("../Node3D/PlayerBubble/BubbleAnimationPlayer")
 parameters/TimeScale/scale = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3vvtq")
+autoplay = true
 
 [editable path="Node3D/PlayerBubble"]
 [editable path="Node3D/PlayerBubble/PlayerBunny"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://8oald4y0be2e"]
+[gd_scene load_steps=25 format=3 uid="uid://8oald4y0be2e"]
 
 [ext_resource type="PackedScene" uid="uid://cqv0k3x6tk268" path="res://scenes/cauldron_room.tscn" id="1_yok06"]
 [ext_resource type="PackedScene" uid="uid://c2vmchgrxq51p" path="res://assets/models/Prop_EyeballFlower.glb" id="2_ormkd"]
@@ -18,9 +18,26 @@
 [ext_resource type="Material" uid="uid://cu1j7cujabk23" path="res://assets/models/materials/Floor.tres" id="14_m7uk2"]
 [ext_resource type="PackedScene" uid="uid://du02llh70eqm8" path="res://assets/models/CauldronGoop.glb" id="14_n0w4l"]
 [ext_resource type="Material" uid="uid://bffuw6cedja2o" path="res://assets/models/materials/CauldronGoop.tres" id="15_shbqf"]
+[ext_resource type="AudioStream" uid="uid://bcsaxoonttk50" path="res://sound/cauldron bubbling 2.wav" id="17_mgcfa"]
 [ext_resource type="PackedScene" uid="uid://c8qm1l8ul21ft" path="res://assets/models/PortalDoor.glb" id="19_m7uk2"]
-[ext_resource type="PackedScene" uid="uid://cppcgmseshcl0" path="res://assets/models/Prop_Skull.glb" id="20_fthj3"]
-[ext_resource type="Material" uid="uid://dqhj27ioawek2" path="res://assets/models/materials/Skull.tres" id="21_8bd1j"]
+[ext_resource type="AudioStream" uid="uid://e382qlml8k0v" path="res://sound/Bad_Brew.wav" id="23_mgcfa"]
+
+[sub_resource type="Curve" id="Curve_74sie"]
+_data = [Vector2(0.016055048, 0.8533644), 0.0, 0.0, 0, 0, Vector2(0.41284403, 0.898872), -0.12621695, -0.12621695, 0, 0, Vector2(0.83944964, 1), -0.2733691, -0.2733691, 0, 0, Vector2(1, 0), -12.1709, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gnuei"]
+curve = SubResource("Curve_74sie")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mgcfa"]
+lifetime_randomness = 0.34
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 35.526
+gravity = Vector3(0, 0.96, 0)
+scale_min = 0.39999998
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_gnuei")
 
 [node name="Valtestscene" type="Node3D"]
 
@@ -76,13 +93,6 @@ material_override = ExtResource("9_an363")
 [node name="JarLid" parent="Prop_FireJar" index="2"]
 material_override = ExtResource("3_sfkmy")
 
-[node name="CauldronBubbles" parent="." instance=ExtResource("10_74sie")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249695, 3.6816604, 0.61000586)
-
-[node name="CauldronSplash" parent="." instance=ExtResource("11_gnuei")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9350247, 0)
-visible = false
-
 [node name="Watertest" type="Node3D" parent="."]
 visible = false
 
@@ -109,77 +119,92 @@ material_override = ExtResource("14_m7uk2")
 [node name="CauldronGoop" parent="GameScene/FlatterCauldron/CauldronGoop2" index="0"]
 surface_material_override/0 = ExtResource("15_shbqf")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/FlatterCauldron"]
+[node name="Cauldronlight" type="OmniLight3D" parent="GameScene/FlatterCauldron"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8000665, 0)
-light_color = Color(0.9972885, 0.4935978, 0.9247728, 1)
-light_energy = 4.653
+light_color = Color(0.9411765, 0.043137256, 0.91764706, 1)
+light_energy = 5.274
 light_indirect_energy = 5.221
 light_volumetric_fog_energy = 5.88
 omni_range = 5.89
 omni_attenuation = 1.115
 
+[node name="CauldronBubbles" parent="GameScene/FlatterCauldron" instance=ExtResource("10_74sie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24326408, 1.2862034, 0.36005402)
+visible = true
+speed_scale = 1.32
+process_material = SubResource("ParticleProcessMaterial_mgcfa")
+
+[node name="CauldronSplash" parent="GameScene/FlatterCauldron" instance=ExtResource("11_gnuei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9350247, 0)
+visible = false
+
+[node name="BubbleNoise" type="AudioStreamPlayer3D" parent="GameScene/FlatterCauldron"]
+stream = ExtResource("17_mgcfa")
+volume_db = -9.753
+max_db = 0.453
+pitch_scale = 0.89
+autoplay = true
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="GameScene"]
 transform = Transform3D(-0.9747612, 0, -0.22325021, 0, 1, 0, 0.22325021, 0, -0.9747612, 0, 0, 0)
 light_color = Color(1, 0.9529412, 1, 1)
-light_energy = 0.811
-light_indirect_energy = 1.07
-light_angular_distance = 2.6
+light_energy = 1.137
+light_indirect_energy = 4.245
+light_angular_distance = 24.44
+light_specular = 4.573
 sky_mode = 1
 
 [node name="Walls2" parent="GameScene" instance=ExtResource("12_n0w4l")]
 
-[node name="Walls_033" parent="GameScene/Walls2" index="0"]
+[node name="Walls_037" parent="GameScene/Walls2" index="0"]
 material_override = ExtResource("13_m7uk2")
 
-[node name="PortalDoor" parent="GameScene" instance=ExtResource("19_m7uk2")]
+[node name="PortalDoor-N" parent="GameScene" instance=ExtResource("19_m7uk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.779158, -9.559731)
 
-[node name="DoorFrame_West" parent="GameScene/PortalDoor" index="0"]
-material_override = ExtResource("13_m7uk2")
+[node name="Doorlight" type="OmniLight3D" parent="GameScene/PortalDoor-N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
+light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_energy = 4.084
+light_indirect_energy = 11.462
+light_volumetric_fog_energy = 1.035
+omni_range = 6.371
+omni_attenuation = 1.582
 
-[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/PortalDoor/DoorFrame_West/Portal_West" index="0"]
-transform = Transform3D(1, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 1, -8.926221, 5.173151, -3.5818666e-06)
-light_color = Color(0.92799884, 0.046179123, 0.82544637, 1)
-light_energy = 1.315
-light_indirect_energy = 3.142
+[node name="PortalDoor-E" parent="GameScene" instance=ExtResource("19_m7uk2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.00791, 4.779158, 0.3142538)
 
-[node name="PortalDoor2" parent="GameScene" instance=ExtResource("19_m7uk2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.551867, 4.779158, -0.014988899)
+[node name="Doorlight" type="OmniLight3D" parent="GameScene/PortalDoor-E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
+light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_energy = 4.084
+light_indirect_energy = 11.462
+light_volumetric_fog_energy = 1.035
+omni_range = 6.371
+omni_attenuation = 1.582
 
-[node name="DoorFrame_West" parent="GameScene/PortalDoor2" index="0"]
-material_override = ExtResource("13_m7uk2")
+[node name="PortalDoor-W" parent="GameScene" instance=ExtResource("19_m7uk2")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.16025, 4.779158, 0.3142538)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/PortalDoor2/DoorFrame_West/Portal_West" index="0"]
-transform = Transform3D(1, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 1, -8.926221, 5.173151, -3.5818666e-06)
-light_color = Color(0.92799884, 0.046179123, 0.82544637, 1)
-light_energy = 1.315
-light_indirect_energy = 3.142
+[node name="Doorlight" type="OmniLight3D" parent="GameScene/PortalDoor-W"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
+light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_energy = 4.084
+light_indirect_energy = 11.462
+light_volumetric_fog_energy = 1.035
+omni_range = 6.371
+omni_attenuation = 1.582
 
-[node name="PortalDoor3" parent="GameScene" instance=ExtResource("19_m7uk2")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.5103245, 4.779158, -0.014988899)
+[node name="Camera" type="Camera3D" parent="GameScene"]
+transform = Transform3D(1.0049386, 0, 0, 0, 0.78098404, 0.6324284, 0, -0.6324284, 0.78098404, 0, 16.644, 18.752)
+current = true
+fov = 35.0
+near = 0.1
+far = 100.0
 
-[node name="DoorFrame_West" parent="GameScene/PortalDoor3" index="0"]
-material_override = ExtResource("13_m7uk2")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="GameScene/PortalDoor3/DoorFrame_West/Portal_West" index="0"]
-transform = Transform3D(1, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 1, -8.926221, 5.173151, -3.5818666e-06)
-light_color = Color(0.92799884, 0.046179123, 0.82544637, 1)
-light_energy = 1.315
-light_indirect_energy = 3.142
-
-[node name="Skull" type="Node3D" parent="GameScene"]
-
-[node name="Prop_Skull" parent="GameScene/Skull" instance=ExtResource("20_fthj3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4536517, 0)
-
-[node name="Skull" parent="GameScene/Skull/Prop_Skull" index="0"]
-material_override = ExtResource("21_8bd1j")
-
-[node name="StaticBody3D" parent="GameScene/Skull/Prop_Skull/Skull" index="0"]
-visible = false
-
-[node name="CollisionShape3D" parent="GameScene/Skull/Prop_Skull/Skull/StaticBody3D" index="0"]
-visible = false
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("23_mgcfa")
+autoplay = true
 
 [editable path="CauldronRoom"]
 [editable path="Prop_EyeballFlower2"]
@@ -190,8 +215,8 @@ visible = false
 [editable path="GameScene/SlopedFloor2"]
 [editable path="GameScene/FlatterCauldron"]
 [editable path="GameScene/FlatterCauldron/CauldronGoop2"]
+[editable path="GameScene/FlatterCauldron/CauldronBubbles"]
 [editable path="GameScene/Walls2"]
-[editable path="GameScene/PortalDoor"]
-[editable path="GameScene/PortalDoor2"]
-[editable path="GameScene/PortalDoor3"]
-[editable path="GameScene/Skull/Prop_Skull"]
+[editable path="GameScene/PortalDoor-N"]
+[editable path="GameScene/PortalDoor-E"]
+[editable path="GameScene/PortalDoor-W"]
