@@ -44,8 +44,8 @@ func apply_no_weights():
 		bone.friction  = 0.01
 		bone.get_node('CollisionShape3D').disabled = true
 
-	center_body.mass = 0.15
-	center_body.friction = 0.8
+	center_body.mass = 0.2
+	center_body.friction = 1.0
 	center_body.get_node('CollisionShape3D').disabled = false
 	
 		#bone.gravity_scale = 0.01

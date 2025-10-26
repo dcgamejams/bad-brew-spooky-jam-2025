@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c8hlyvta7fbnp" path="res://assets/models/Prop_Berry_PlayerBunny_Bunny.png" id="5_yghpy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru0ln"]
+radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru0ln"]
 transparency = 1
@@ -17,9 +18,11 @@ emission = Color(0, 0.5428046, 0.5418817, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_g6kyu"]
 material = SubResource("StandardMaterial3D_ru0ln")
+radius = 1.0
+height = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fmuvs"]
-radius = 0.8
+radius = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ru0ln"]
 
@@ -188,7 +191,7 @@ top_level = true
 
 [node name="Star" type="Node3D" parent="Icons"]
 unique_name_in_owner = true
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+transform = Transform3D(0.41951668, 0.75432056, 0.5049814, -0.48178023, 0.65650636, -0.5804201, -0.7693464, 0.00020581484, 0.63883215, 0, 0, 0)
 visible = false
 
 [node name="Prop_Star" type="MeshInstance3D" parent="Icons/Star"]
@@ -197,7 +200,7 @@ skeleton = NodePath("")
 
 [node name="Skull" type="Node3D" parent="Icons"]
 unique_name_in_owner = true
-transform = Transform3D(0.7, 0, 0, 0, 0.6433706, 0.2758155, 0, -0.2758155, 0.6433706, 0, 0.0937323, 0)
+transform = Transform3D(1, 0, 0, 0, 0.91910094, 0.39402214, 0, -0.39402214, 0.91910094, 0, 0.0937323, 0)
 visible = false
 
 [node name="Skull" type="MeshInstance3D" parent="Icons/Skull"]
@@ -206,7 +209,7 @@ skeleton = NodePath("")
 
 [node name="Mushroom" type="Node3D" parent="Icons"]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.09279376, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14601234, 0)
 visible = false
 
 [node name="Prop_Mushroom" type="MeshInstance3D" parent="Icons/Mushroom"]
@@ -215,7 +218,7 @@ skeleton = NodePath("")
 
 [node name="Berry" type="Node3D" parent="Icons"]
 unique_name_in_owner = true
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.16258556, 0)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.16258556, 0)
 visible = false
 
 [node name="Berry_001" type="MeshInstance3D" parent="Icons/Berry"]

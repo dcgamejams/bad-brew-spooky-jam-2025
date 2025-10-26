@@ -14,7 +14,7 @@ var SLAM_IN_PROGRESS := false
 var RAGDOLL_JUMP_FORCE := 120.0 # 120
 var RAGDOLL_SPRINT_FORCE := 1.0
 
-var RAGDOLL_ACCEL := 0.4
+var RAGDOLL_ACCEL := 0.35
 var RAGDOLL_DECCEL := 0.03
 
 func _ready():
@@ -43,10 +43,14 @@ func apply_ragdoll():
 	cR.set_physics_process(false)
 
 	cR.godot_plush_skin.ragdoll = true
-	center.linear_velocity = cR.velocity
 	# Add a little angle if we start in the air
 	if cR.floor_check.is_colliding() == false:
-		center.angular_velocity = Vector3(0.0, cR.move_dir.x, 0.0) * 100
+		center.angular_velocity = Vector3(cR.move_dir.y, 0.0, cR.move_dir.x) * 10
+		center.linear_velocity = cR.velocity * 1.0
+	else:
+		# add forward if we are on the ground
+		center.linear_velocity = cR.velocity * 2.0
+
 
 func update(_delta : float):
 	check_if_ragdoll()

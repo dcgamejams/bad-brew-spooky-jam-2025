@@ -42,7 +42,7 @@ func _ready() -> void:
 
 	var BLAST = randf_range(8, 15)
 	apply_central_force(rand_v * BLAST)
-	apply_torque(initial_angle * 3.0)
+	apply_torque(initial_angle * 2.0)
 
 	torque_timer.wait_time = randf_range(3, 5.5)
 	death_timer.wait_time = randf_range(10, 15)
@@ -99,7 +99,7 @@ func check_collision():
 		#apply_central_force((position.direction_to(center + initial_angle)) * dist_factor)
 		# spin
 		if not torque_timer.is_stopped():
-			apply_torque(initial_angle * 5.0)
+			apply_torque(initial_angle * 3.0)
 			
 
 func get_random_point_in_square(pos: Vector2, size: Vector2) -> Vector2:
