@@ -112,7 +112,7 @@ func on_round_timer_end():
 	else:
 		round_item.complete = false
 
-	print("INFO: ROUND COMPLETED, with: ", round_item.complete)
+	print("INFO: ROUND COMPLETED, with: ", round_item.complete, ' LIST: ', current_ingredients)
 
 	if current_round < levels[current_level].size() - 1:
 		current_round += 1
@@ -131,9 +131,7 @@ func on_round_timer_end():
 		# Max is 14 (15)
 		game_over()
 
-	print(current_ingredients)
 	current_ingredients.clear()
-	print(current_ingredients)
 
 
 func game_over():
