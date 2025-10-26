@@ -1,0 +1,150 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8ayqi0ot360b"]
+
+[ext_resource type="PackedScene" uid="uid://bfnxgfasogdgq" path="res://assets/models/SlopedFloor.glb" id="1_6pl24"]
+[ext_resource type="Material" uid="uid://cu1j7cujabk23" path="res://assets/models/materials/Floor.tres" id="2_w22tq"]
+[ext_resource type="PackedScene" uid="uid://cg1rn5ji4jmdy" path="res://assets/models/Cauldron.glb" id="3_e8rlm"]
+[ext_resource type="PackedScene" uid="uid://du02llh70eqm8" path="res://assets/models/CauldronGoop.glb" id="4_qitmq"]
+[ext_resource type="Material" uid="uid://bffuw6cedja2o" path="res://assets/models/materials/CauldronGoop.tres" id="5_kxqg4"]
+[ext_resource type="PackedScene" uid="uid://bm5dduiyqaect" path="res://assets/FX/cauldron_bubbles.tscn" id="6_21xg8"]
+[ext_resource type="PackedScene" uid="uid://fgxdqxxe88j0" path="res://assets/FX/cauldron_splash.tscn" id="7_icif4"]
+[ext_resource type="AudioStream" uid="uid://bcsaxoonttk50" path="res://sound/cauldron bubbling 2.wav" id="8_iaegw"]
+[ext_resource type="PackedScene" uid="uid://d3yisi5if0bgo" path="res://assets/models/Walls.glb" id="9_2gh7q"]
+[ext_resource type="Material" uid="uid://g6frycihmei6" path="res://assets/models/materials/Walls.tres" id="10_a5tct"]
+[ext_resource type="PackedScene" uid="uid://c8qm1l8ul21ft" path="res://assets/models/PortalDoor.glb" id="11_1npfk"]
+[ext_resource type="AudioStream" uid="uid://e382qlml8k0v" path="res://sound/Bad_Brew.wav" id="12_6nmf6"]
+
+[sub_resource type="Curve" id="Curve_74sie"]
+_data = [Vector2(0.016055048, 0.8533644), 0.0, 0.0, 0, 0, Vector2(0.41284403, 0.898872), -0.12621695, -0.12621695, 0, 0, Vector2(0.83944964, 1), -0.2733691, -0.2733691, 0, 0, Vector2(1, 0), -12.1709, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gnuei"]
+curve = SubResource("Curve_74sie")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mgcfa"]
+lifetime_randomness = 0.34
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 35.526
+gravity = Vector3(0, 0.96, 0)
+scale_min = 0.39999998
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_gnuei")
+
+[node name="GameScene" type="Node3D"]
+
+[node name="SlopedFloor2" parent="." instance=ExtResource("1_6pl24")]
+
+[node name="SlopedFloor" parent="SlopedFloor2" index="0"]
+material_override = ExtResource("2_w22tq")
+
+[node name="StaticBody3D" parent="SlopedFloor2/SlopedFloor" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="SlopedFloor2/SlopedFloor/StaticBody3D" index="0"]
+visible = false
+
+[node name="FlatterCauldron" parent="." instance=ExtResource("3_e8rlm")]
+
+[node name="Cauldron" parent="FlatterCauldron" index="0"]
+material_override = ExtResource("2_w22tq")
+
+[node name="CauldronGoop2" parent="FlatterCauldron" instance=ExtResource("4_qitmq")]
+
+[node name="CauldronGoop" parent="FlatterCauldron/CauldronGoop2" index="0"]
+surface_material_override/0 = ExtResource("5_kxqg4")
+
+[node name="Cauldronlight" type="OmniLight3D" parent="FlatterCauldron"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8000665, 0)
+light_color = Color(0.9411765, 0.043137256, 0.91764706, 1)
+light_energy = 5.274
+light_indirect_energy = 5.221
+light_volumetric_fog_energy = 5.88
+omni_range = 5.89
+omni_attenuation = 1.115
+
+[node name="CauldronBubbles" parent="FlatterCauldron" instance=ExtResource("6_21xg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24326408, 1.2862034, 0.36005402)
+visible = true
+speed_scale = 1.32
+process_material = SubResource("ParticleProcessMaterial_mgcfa")
+
+[node name="CauldronSplash" parent="FlatterCauldron" instance=ExtResource("7_icif4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9350247, 0)
+visible = false
+
+[node name="BubbleNoise" type="AudioStreamPlayer3D" parent="FlatterCauldron"]
+stream = ExtResource("8_iaegw")
+volume_db = -9.753
+max_db = 0.453
+pitch_scale = 0.89
+autoplay = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.9747612, 0, -0.22325021, 0, 1, 0, 0.22325021, 0, -0.9747612, 0, 0, 0)
+light_color = Color(1, 0.9529412, 1, 1)
+light_energy = 1.137
+light_indirect_energy = 4.245
+light_angular_distance = 24.44
+light_specular = 4.573
+sky_mode = 1
+
+[node name="Walls2" parent="." instance=ExtResource("9_2gh7q")]
+
+[node name="Walls_037" parent="Walls2" index="0"]
+material_override = ExtResource("10_a5tct")
+
+[node name="PortalDoor-N" parent="." instance=ExtResource("11_1npfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.779158, -9.559731)
+
+[node name="Doorlight" type="OmniLight3D" parent="PortalDoor-N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
+light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_energy = 4.084
+light_indirect_energy = 11.462
+light_volumetric_fog_energy = 1.035
+omni_range = 6.371
+omni_attenuation = 1.582
+
+[node name="PortalDoor-E" parent="." instance=ExtResource("11_1npfk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.00791, 4.779158, 0.3142538)
+
+[node name="Doorlight" type="OmniLight3D" parent="PortalDoor-E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
+light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_energy = 4.084
+light_indirect_energy = 11.462
+light_volumetric_fog_energy = 1.035
+omni_range = 6.371
+omni_attenuation = 1.582
+
+[node name="PortalDoor-W" parent="." instance=ExtResource("11_1npfk")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.16025, 4.779158, 0.3142538)
+
+[node name="Doorlight" type="OmniLight3D" parent="PortalDoor-W"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
+light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
+light_energy = 4.084
+light_indirect_energy = 11.462
+light_volumetric_fog_energy = 1.035
+omni_range = 6.371
+omni_attenuation = 1.582
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1.0049386, 0, 0, 0, 0.78098404, 0.6324284, 0, -0.6324284, 0.78098404, 0, 16.644, 18.752)
+current = true
+fov = 35.0
+near = 0.1
+far = 100.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_6nmf6")
+autoplay = true
+
+[editable path="SlopedFloor2"]
+[editable path="FlatterCauldron"]
+[editable path="FlatterCauldron/CauldronGoop2"]
+[editable path="FlatterCauldron/CauldronBubbles"]
+[editable path="Walls2"]
+[editable path="PortalDoor-N"]
+[editable path="PortalDoor-E"]
+[editable path="PortalDoor-W"]
