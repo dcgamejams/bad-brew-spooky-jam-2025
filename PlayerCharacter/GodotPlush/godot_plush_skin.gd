@@ -67,8 +67,10 @@ func set_ragdoll(value : bool) -> void:
 	
 	if ragdoll:
 		physical_bone_simulator_3d.physical_bones_start_simulation()
+		%TorusIndicator.show()
 	else: 
 		physical_bone_simulator_3d.physical_bones_stop_simulation()
+		%TorusIndicator.hide()
 
 	#if is_multiplayer_authority():
 		#sync_set_ragdoll.rpc(value)
@@ -168,11 +170,13 @@ func final_cleanup(mesh_instance: MeshInstance3D, persist_ms: float):
 @onready var ray_cast_down = %RayCast3D
 		
 func _process(_delta):
-	if ray_cast_down.is_colliding:
+	if ray_cast_down.is_colliding and ragdoll:
 		if not cR.floor_check.is_colliding():
 			line(global_position + Vector3(0.0, -2.0, 0.0), ray_cast_down.get_collision_point())
 		%TorusIndicator.position = ray_cast_down.get_collision_point()
 		slam_area.position = ray_cast_down.get_collision_point()
-
+	elif %TorusIndicator.visible:
+		%TorusIndicator.hide()
+	
 #func set_name_tag(username_text: String):
 	#%NametagPlush.text = username_text

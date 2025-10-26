@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=21 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
 [ext_resource type="FontFile" uid="uid://dewgtcm8moxxi" path="res://assets/ui/font/Ticketing.ttf" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cvpobf7odjnjk" path="res://assets/ui/keyboard-&-mouse_sheet_default.png" id="6_272bh"]
+[ext_resource type="AudioStream" uid="uid://bnbwolfl6ca7u" path="res://sound/bloop7.wav" id="7_4c57u"]
 [ext_resource type="Script" uid="uid://jka650tksndx" path="res://objects/spawner.gd" id="8_5vw27"]
+[ext_resource type="AudioStream" uid="uid://bo3rywu8id0en" path="res://sound/bloop2.wav" id="8_efxa6"]
+[ext_resource type="AudioStream" uid="uid://btqnwxt36ml0m" path="res://sound/splash5.wav" id="9_dg77c"]
+[ext_resource type="AudioStream" uid="uid://b7q0irdqxr08e" path="res://sound/splash6.wav" id="10_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://8oald4y0be2e" path="res://scenes/valtestscene.tscn" id="12_dg77c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
@@ -192,7 +196,7 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key5"]
 layout_mode = 2
-text = "Slam (when in bubble)"
+text = "Slam Skull (when in bubble)"
 
 [node name="Top" type="MarginContainer" parent="PlayerUI/Control"]
 layout_mode = 1
@@ -308,16 +312,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "❤️"
 
-[node name="Label12" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
-
-[node name="Label13" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
-
 [node name="Center" type="MarginContainer" parent="PlayerUI"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -373,3 +367,19 @@ RANK:
 11+ SILVER
 8+ BRONZE
 	"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4c57u")
+max_polyphony = 5
+
+[node name="Good" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_efxa6")
+max_polyphony = 5
+
+[node name="Splash1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_dg77c")
+max_polyphony = 5
+
+[node name="Splash2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ycdy4")
+max_polyphony = 5

@@ -47,7 +47,7 @@ func _ready():
 	print("INFO: ROUND STARTED")
 	await get_tree().create_timer(3).timeout
 	%LabelStart.hide()
-	%RoundTimer.wait_time = 30.0
+	%RoundTimer.wait_time = 40.0
 	%RoundTimer.timeout.connect(on_round_timer_end)
 	%RoundTimer.start()
 	
@@ -88,13 +88,41 @@ func on_collect(body):
 		var collected: Ingredient = body
 		current_ingredients.append(collected.type)
 		if collected.type == Ingredient.TYPE.SKULL and not %RoundTimer.is_stopped():
+			splash_hurt()
 			if %Hearts.get_child_count() == 1:
 				game_over()
 				%Hearts.get_child(0).queue_free()
 			else:
 				print('ouch: ', %Hearts.get_child_count())
 				%Hearts.get_child(0).queue_free()
+			collected.queue_free()
+			return
+			
+		var round_item: RequiredItem = %RequiredList.get_child(current_round)
+		var desired: bool = collected.type == round_item.ingredient_desired
+		splash(desired)
+	
 		collected.queue_free()
+
+func splash(desired):
+	var rand = randi_range(0, 1)
+	if rand == 0:
+		$Splash1.play()
+	else:
+		$Splash2.play()
+	if desired == true:
+		await get_tree().create_timer(0.5).timeout
+		$Good.play()		
+
+func splash_hurt():
+	var rand = randi_range(0, 1)
+	if rand == 0:
+		$Splash1.play()
+	else:
+		$Splash2.play()
+	await get_tree().create_timer(0.5).timeout
+	$Hurt.play()		
+
 
 var total_complete = 0
 

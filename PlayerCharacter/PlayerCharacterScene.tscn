@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=39 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" uid="uid://de2sqbhiahmo6" path="res://PlayerCharacter/StateMachine/player_character_script.gd" id="1_ms4x1"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://PlayerCharacter/GodotPlush/godot_plush_skin.tscn" id="2_mtsks"]
@@ -18,6 +18,7 @@
 [ext_resource type="LabelSettings" uid="uid://sescerp70o6b" path="res://assets/ui/font/LabelFontSettings.tres" id="17_c1i0s"]
 [ext_resource type="Script" uid="uid://d2tif6xsjkwnw" path="res://PlayerCharacter/StateMachine/ragdoll_state_script.gd" id="17_pdxi8"]
 [ext_resource type="Script" uid="uid://chnbi4s1tf7pa" path="res://PlayerCharacter/Debug/DebugHUDScript.gd" id="17_qmq2g"]
+[ext_resource type="AudioStream" uid="uid://d056tp4uwi78r" path="res://sound/bloop.wav" id="19_n0ydc"]
 
 [sub_resource type="Curve" id="Curve_l1d2p"]
 _limits = [0.0, 10.0, 0.0, 1.0]
@@ -106,6 +107,19 @@ properties/3/replication_mode = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ih5rl"]
 radius = 1.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0ydc"]
+transparency = 1
+diffuse_mode = 3
+albedo_color = Color(0.2784093, 0.543951, 0.47657922, 0.749)
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.56940794, 0.88857853, 0.88857853, 1)
+emission_energy_multiplier = 0.4
+
+[sub_resource type="TorusMesh" id="TorusMesh_0teac"]
+material = SubResource("StandardMaterial3D_n0ydc")
+inner_radius = 0.7
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 2
@@ -354,3 +368,14 @@ collision_mask = 128
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stop"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63137543, 0)
 shape = SubResource("SphereShape3D_ih5rl")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_n0ydc")
+volume_db = -5.0
+max_polyphony = 5
+
+[node name="TorusIndicator" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15467715, 0)
+visible = false
+mesh = SubResource("TorusMesh_0teac")

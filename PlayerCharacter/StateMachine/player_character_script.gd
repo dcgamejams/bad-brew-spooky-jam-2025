@@ -226,10 +226,18 @@ func kick_object(body):
 		var item: Ingredient = body
 		item.apply_central_impulse(%VisualRoot.global_transform.basis.z * 8.0) #apply 
 
+signal hit
+
 func stop(body):
 	if body.is_in_group("Ingredients"):
+		hit.emit()
+		$Hit.play()
 		var item: Ingredient = body
-		if not item.torque_timer.is_stopped() and item.type != Ingredient.TYPE.SKULL:
+		if not item.torque_timer.is_stopped():
 			item.torque_timer.stop()
-			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.2)
+			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
 		#item.apply_central_impulse(item.global_position.direction_to(Vector3.ZERO) * 1.0) #apply 
+		%TorusIndicator.show()
+		await get_tree().create_timer(0.2).timeout		
+		%TorusIndicator.hide()
+		
