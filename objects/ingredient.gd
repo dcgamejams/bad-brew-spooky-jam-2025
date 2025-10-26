@@ -90,7 +90,7 @@ func check_collision():
 		line(global_position + Vector3(0.0, -0.5, 0.0), ray_cast_down.get_collision_point(), color)
 
 	if shape_cast_floor.is_colliding():
-		var center = Vector3(0.0, 2.0, 0.0)
+		var center = Vector3(0.0, 3.2, 0.0)
 		if death_timer.is_stopped() and position.distance_to(center) < 12.0:
 			apply_central_force((position.direction_to(center)) * 5.0)
 			return		
@@ -99,7 +99,7 @@ func check_collision():
 		#apply_central_force((position.direction_to(center + initial_angle)) * dist_factor)
 		# spin
 		if not torque_timer.is_stopped():
-			apply_torque(initial_angle * 3.0)
+			apply_torque(initial_angle * 2.0)
 			
 
 func get_random_point_in_square(pos: Vector2, size: Vector2) -> Vector2:

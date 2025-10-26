@@ -49,7 +49,7 @@ func apply_ragdoll():
 		center.linear_velocity = cR.velocity * 1.0
 	else:
 		# add forward if we are on the ground
-		center.linear_velocity = cR.velocity * 2.0
+		center.linear_velocity = cR.velocity * 1.5
 
 
 func update(_delta : float):

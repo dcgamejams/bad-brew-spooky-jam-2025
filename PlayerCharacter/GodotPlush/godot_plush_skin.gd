@@ -169,7 +169,8 @@ func final_cleanup(mesh_instance: MeshInstance3D, persist_ms: float):
 		
 func _process(_delta):
 	if ray_cast_down.is_colliding:
-		line(global_position, ray_cast_down.get_collision_point())
+		if not cR.floor_check.is_colliding():
+			line(global_position + Vector3(0.0, -1.0, 0.0), ray_cast_down.get_collision_point())
 		%TorusIndicator.position = ray_cast_down.get_collision_point()
 		slam_area.position = ray_cast_down.get_collision_point()
 
