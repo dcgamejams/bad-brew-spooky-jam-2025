@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cosovd3m4h7sr"]
+
+[ext_resource type="PackedScene" uid="uid://6ts8wtgea8m3" path="res://assets/models/Prop_Berry.glb" id="1_mddol"]
+[ext_resource type="Material" uid="uid://dcvwnovf00vot" path="res://assets/models/materials/Props.tres" id="2_6hoqj"]
+
+[node name="Berry" type="Node3D"]
+
+[node name="Prop_Berry" parent="." instance=ExtResource("1_mddol")]
+
+[node name="Berry_001" parent="Prop_Berry" index="0"]
+material_override = ExtResource("2_6hoqj")
+
+[editable path="Prop_Berry"]
