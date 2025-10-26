@@ -405,3 +405,7 @@ mesh = SubResource("TorusMesh_0teac")
 
 [node name="Kick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_4283i")
+
+[node name="KickTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

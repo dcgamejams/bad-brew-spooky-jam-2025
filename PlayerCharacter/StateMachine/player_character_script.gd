@@ -231,13 +231,13 @@ func boost(dir):
 	center.apply_central_impulse(dir)
 
 func kick():
-	if Input.is_action_just_pressed('kick'):
+	if Input.is_action_just_pressed('kick') and $KickTimer.is_stopped():
 		$Kick.play()
 		kick_and_stretch(0.05, 0.05)
 		%KickArea.get_node("CollisionShape3D").disabled = false
 		await get_tree().create_timer(0.1).timeout 
 		%KickArea.get_node("CollisionShape3D").disabled = true
-
+		$KickTimer.start()
 
 func kick_object(body):
 	if body.is_in_group("Ingredients"):
