@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=23 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
@@ -17,6 +17,9 @@ radius = 3.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7mycd"]
 plane = Plane(0, 0, -1, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_efxa6"]
+size = Vector3(1, 6.464966, 4)
 
 [sub_resource type="Theme" id="Theme_0teac"]
 default_font = ExtResource("5_7mycd")
@@ -95,6 +98,25 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Game/FrontWall"]
 shape = SubResource("WorldBoundaryShape3D_7mycd")
+
+[node name="Kill" type="Area3D" parent="Game"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.946651, 10.502853, 4.019165)
+collision_layer = 129
+collision_mask = 129
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game/Kill"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6147194, -1.5231075, -3.1486342)
+shape = SubResource("BoxShape3D_efxa6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Game/Kill"]
+transform = Transform3D(0.013264104, 0, -0.999912, 0, 1, 0, 0.999912, 0, 0.013264104, 17.479046, -0.9781904, -22.70271)
+shape = SubResource("BoxShape3D_efxa6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Game/Kill"]
+transform = Transform3D(-0.99900824, 0, -0.04452607, 0, 1, 0, 0.04452607, 0, -0.99900824, 36.579056, -1.2457075, -3.6270971)
+shape = SubResource("BoxShape3D_efxa6")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 

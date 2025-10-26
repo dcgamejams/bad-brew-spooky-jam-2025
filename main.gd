@@ -32,6 +32,7 @@ var current_ingredients: = []
 func _ready():
 	%CauldronArea.set_collision_mask_value(8, true)
 	%CauldronArea.body_entered.connect(on_collect)
+	%Kill.body_entered.connect(on_collect_kill)
 
 	await get_tree().create_timer(3).timeout
 	%LabelStart.text = "GET READY"
@@ -82,6 +83,11 @@ func seed_potions_requirements():
 
 func _process(_delta):
 	%LabelTimeRemaining.text = str("%.1f" % %RoundTimer.time_left)	
+
+func on_collect_kill(body):
+	if body.is_in_group("Ingredients"):
+		var collected: Ingredient = body
+		collected.queue_free()
 
 func on_collect(body):
 	if body.is_in_group("Ingredients"):
