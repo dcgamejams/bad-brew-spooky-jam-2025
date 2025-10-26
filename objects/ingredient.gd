@@ -13,12 +13,11 @@ enum TYPE {
 
 var COLORS: Array[Color] = [Color.AQUA, Color.CRIMSON, Color.CORNFLOWER_BLUE, Color.DARK_GOLDENROD]
 
-var is_serving := false	
-
-# Flavor? 
-var type: TYPE = TYPE.MUSHROOM
-var color: Color = Color.AQUA
+# TODO: Rename to "Flavor"
+var type : TYPE = TYPE.MUSHROOM : set = set_type
+var color: Color
 var initial_angle := Vector3.ZERO
+var is_showing_line := false
 
 func _ready() -> void:
 	add_to_group("Ingredients")
@@ -41,21 +40,9 @@ func _ready() -> void:
 	apply_central_force(rand_v * BLAST)
 	apply_torque(initial_angle * 5.0)
 
-	var rand = randi_range(0, 15)
-	if rand < 2:
-		type = TYPE.SKULL
-		set_mesh_color(COLORS[TYPE.SKULL])
-	#elif rand < 5:
-		#type = INGREDIENT.SAD
-		#set_mesh_color(Color.CORNFLOWER_BLUE)
-	#elif rand < 9:
-		#type = INGREDIENT.HUNGRY
-		#set_mesh_color(Color.DARK_GOLDENROD)
-	else:
-		type = TYPE.MUSHROOM
-		set_mesh_color(COLORS[TYPE.MUSHROOM])
+func set_type(value: TYPE):
+	set_mesh_color(COLORS[value])
 
-var is_showing_line := false
 func set_mesh_color(new_color: Color):
 	color = new_color
 	var mesh_material: StandardMaterial3D = $MeshInstance3D.get_active_material(0)
@@ -66,7 +53,6 @@ func set_mesh_color(new_color: Color):
 	var sasTween : Tween = create_tween()
 	sasTween.set_ease(Tween.EASE_IN)
 	sasTween.tween_property($MeshInstance3D, "transparency", 0.7, 4.0)
-	await get_tree().create_timer(0.4).timeout
 	is_showing_line = true
 	
 func _process(_delta: float) -> void:
@@ -96,6 +82,8 @@ func get_random_point_in_square(pos: Vector2, size: Vector2) -> Vector2:
 	var random_y = randf_range(pos.y, pos.y + size.y)
 	return Vector2(random_x, random_y)	
 
+
+	
 
 func line(pos1: Vector3, pos2: Vector3, line_color = Color.AQUA, persist_ms = 1):
 	var mesh_instance := MeshInstance3D.new()

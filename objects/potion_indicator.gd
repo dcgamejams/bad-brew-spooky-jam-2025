@@ -1,6 +1,7 @@
 extends Control
 
 var active : bool = false : set = set_active
+var complete : bool = false : set = set_complete
 var ingredient_desired: Ingredient.TYPE
 
 var COLORS: Array[Color] = [Color.AQUA, Color.CRIMSON, Color.CORNFLOWER_BLUE, Color.DARK_GOLDENROD]
@@ -10,6 +11,12 @@ func _ready() -> void:
 		
 func	 set_active(value):
 	%Control.visible = value
+
+func set_complete(value):
+	print(value)
+	pass
+	# make small
+	# judget it
 
 func set_required(type: Ingredient.TYPE):
 	if type == 1:
