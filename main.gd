@@ -32,12 +32,16 @@ var current_ingredients: = []
 func _ready():
 	%CauldronArea.set_collision_mask_value(8, true)
 	%CauldronArea.body_entered.connect(on_collect)
-	
+
+	await get_tree().create_timer(3).timeout
+	%LabelStart.text = "GET READY"
+	%LabelStart.show()
 	print("INFO: GAME LOADED")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
+	%LabelStart.text = "START"
 	%LabelStart.show()
 	print("INFO: START! (this should be a label / message)" )
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(3).timeout
 	seed_potions_requirements()
 
 	print("INFO: ROUND STARTED")

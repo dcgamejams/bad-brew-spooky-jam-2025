@@ -340,7 +340,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_7mycd")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 72
 text = "START"
 horizontal_alignment = 1
 
