@@ -106,7 +106,7 @@ func set_squash_and_stretch(value : float) -> void:
 	squash_and_stretch = value
 	var negative = 1.0 + (1.0 - squash_and_stretch)
 	godot_plush_mesh.scale = Vector3(negative, squash_and_stretch, negative)
-	%Bubble.scale = Vector3(negative, squash_and_stretch, negative)
+	%Bubble.scale = Vector3(negative, squash_and_stretch, negative) * Vector3(1.3, 1.3, 1.3)
 	%EarBubbles.scale = Vector3(negative, squash_and_stretch, negative)
 
 func set_kick(value : float) -> void:
@@ -170,7 +170,7 @@ func final_cleanup(mesh_instance: MeshInstance3D, persist_ms: float):
 func _process(_delta):
 	if ray_cast_down.is_colliding:
 		if not cR.floor_check.is_colliding():
-			line(global_position + Vector3(0.0, -1.0, 0.0), ray_cast_down.get_collision_point())
+			line(global_position + Vector3(0.0, -2.0, 0.0), ray_cast_down.get_collision_point())
 		%TorusIndicator.position = ray_cast_down.get_collision_point()
 		slam_area.position = ray_cast_down.get_collision_point()
 

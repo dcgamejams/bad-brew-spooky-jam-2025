@@ -12,7 +12,7 @@ var last_input_dir : Vector2
 var last_frame_position : Vector3
 var last_frame_velocity : Vector3
 var was_on_floor : bool = false
-var walk_or_run : String = "WalkState" #keep in memory if play char was walking or running before being in the air
+var walk_or_run : String = "RunState" #keep in memory if play char was walking or running before being in the air
 
 # default walk_deccel: 7.5
 # default walk_deccel: 6.5
@@ -224,7 +224,7 @@ func kick():
 func kick_object(body):
 	if body.is_in_group("Ingredients"):
 		var item: Ingredient = body
-		item.apply_central_impulse(%VisualRoot.global_transform.basis.z * 15.0) #apply 
+		item.apply_central_impulse(%VisualRoot.global_transform.basis.z * 8.0) #apply 
 
 func stop(body):
 	if body.is_in_group("Ingredients"):

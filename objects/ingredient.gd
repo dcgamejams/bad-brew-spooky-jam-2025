@@ -47,8 +47,7 @@ func _ready() -> void:
 	apply_torque(initial_angle * randf_range(1.0, 2.0))
 
 	torque_timer.wait_time = randf_range(3, 5.0)
-	death_timer.wait_time = randf_range(10, 15)
-	
+	death_timer.wait_time = randf_range(15, 20)
 
 func set_type(value: TYPE):
 	type = value
@@ -95,8 +94,8 @@ func check_collision():
 
 	if shape_cast_floor.is_colliding():
 		var center = Vector3(0.0, 3.2, 0.0)
-		if death_timer.is_stopped() and position.distance_to(center) < 12.0:
-			apply_central_force((position.direction_to(center)) * 12.0)
+		if death_timer.is_stopped() and position.distance_to(center) < 9.0:
+			apply_central_force((position.direction_to(center)) * 10.0)
 			return		
 
 		#var dist_factor = position.distance_to(center) / 20

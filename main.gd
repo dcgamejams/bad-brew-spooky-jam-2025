@@ -148,8 +148,8 @@ func spawn_ingredient():
 	if get_tree().get_nodes_in_group("Balls").size() > MAX:
 		return
 	
-	for i in randi_range(4, 6):
-		await get_tree().create_timer(randf_range(0.1, 0.3)).timeout
+	for i in randi_range(3, 5 + current_level):
+		await get_tree().create_timer(randf_range(0.2, 0.5)).timeout
 		var new_ingredient: Ingredient = ingredient.instantiate()
 		var random_radians = randi_range(0, 360)
 		new_ingredient.position = get_point_on_circumference(Vector2.ZERO, 18.0, random_radians)
@@ -157,7 +157,7 @@ func spawn_ingredient():
 		new_ingredient.type = get_ingredient_chance(levels[current_level][current_round])
 		add_child(new_ingredient, true)
 	
-	spawn_timer.start(randi_range(9, 16))
+	spawn_timer.start(randi_range(8, 13 - current_level))
 
 # TODO: Secret sauce: adjust ratio of incoming ingredients based on current round
 func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 12) -> Ingredient.TYPE:

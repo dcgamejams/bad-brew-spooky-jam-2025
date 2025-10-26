@@ -176,7 +176,23 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key3"]
 layout_mode = 2
-text = "Jump / Slam "
+text = "Jump"
+
+[node name="Key5" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="KeyImage" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key5"]
+texture_filter = 3
+custom_minimum_size = Vector2(120, 37)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_4c57u")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key5"]
+layout_mode = 2
+text = "Slam (when in bubble)"
 
 [node name="Top" type="MarginContainer" parent="PlayerUI/Control"]
 layout_mode = 1

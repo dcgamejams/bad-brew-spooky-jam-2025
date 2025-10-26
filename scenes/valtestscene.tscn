@@ -194,6 +194,7 @@ collision_layer = 3
 
 [node name="Walls_037" type="MeshInstance3D" parent="GameScene/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035245877, 0)
+sorting_offset = -20.0
 material_override = ExtResource("9_gnuei")
 mesh = SubResource("ArrayMesh_n18c7")
 skeleton = NodePath("")
