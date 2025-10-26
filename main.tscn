@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=22 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
 [ext_resource type="FontFile" uid="uid://dewgtcm8moxxi" path="res://assets/ui/font/Ticketing.ttf" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cvpobf7odjnjk" path="res://assets/ui/keyboard-&-mouse_sheet_default.png" id="6_272bh"]
 [ext_resource type="AudioStream" uid="uid://bnbwolfl6ca7u" path="res://sound/bloop7.wav" id="7_4c57u"]
+[ext_resource type="Texture2D" uid="uid://gx8481t1lcgk" path="res://assets/models/textures/heartcontainer.png" id="7_efxa6"]
 [ext_resource type="Script" uid="uid://jka650tksndx" path="res://objects/spawner.gd" id="8_5vw27"]
 [ext_resource type="AudioStream" uid="uid://bo3rywu8id0en" path="res://sound/bloop2.wav" id="8_efxa6"]
 [ext_resource type="AudioStream" uid="uid://btqnwxt36ml0m" path="res://sound/splash5.wav" id="9_dg77c"]
@@ -245,9 +246,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_left = 40.0
+offset_top = -180.0
+offset_right = 376.0
+offset_bottom = 156.0
 grow_vertical = 0
+scale = Vector2(0.4, 0.4)
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
@@ -256,61 +260,47 @@ theme_override_constants/margin_bottom = 40
 [node name="Hearts" type="HBoxContainer" parent="PlayerUI/Control/BottomLeft"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
-[node name="Label2" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect2" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
-[node name="Label3" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect3" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
-[node name="Label4" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect4" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
-[node name="Label5" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect5" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
-[node name="Label6" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect6" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
-[node name="Label7" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect7" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
-[node name="Label8" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+[node name="TextureRect8" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
-
-[node name="Label9" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
-
-[node name="Label10" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
-
-[node name="Label11" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "❤️"
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
 
 [node name="Center" type="MarginContainer" parent="PlayerUI"]
 anchors_preset = 8
