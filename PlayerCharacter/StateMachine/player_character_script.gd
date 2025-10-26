@@ -114,6 +114,7 @@ func _ready():
 	coyote_jump_cooldown_ref = coyote_jump_cooldown
 	
 	%KickArea.body_entered.connect(kick_object)
+	%Stop.body_entered.connect(stop)
 	
 	#set char model audios effects
 	godot_plush_skin.footstep.connect(func(intensity : float = 1.0):
@@ -224,3 +225,11 @@ func kick_object(body):
 	if body.is_in_group("Ingredients"):
 		var item: Ingredient = body
 		item.apply_central_impulse(%VisualRoot.global_transform.basis.z * 15.0) #apply 
+
+func stop(body):
+	if body.is_in_group("Ingredients"):
+		var item: Ingredient = body
+		if not item.torque_timer.is_stopped() and item.type != Ingredient.TYPE.SKULL:
+			item.torque_timer.stop()
+			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.2)
+		#item.apply_central_impulse(item.global_position.direction_to(Vector3.ZERO) * 1.0) #apply 

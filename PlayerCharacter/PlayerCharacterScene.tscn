@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=36 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" uid="uid://de2sqbhiahmo6" path="res://PlayerCharacter/StateMachine/player_character_script.gd" id="1_ms4x1"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://PlayerCharacter/GodotPlush/godot_plush_skin.tscn" id="2_mtsks"]
@@ -103,6 +103,9 @@ properties/2/replication_mode = 0
 properties/3/path = NodePath("VisualRoot/GodotPlushSkin/GodotPlushModel/Rig/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone DEF-hips:linear_velocity")
 properties/3/spawn = false
 properties/3/replication_mode = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ih5rl"]
+radius = 1.1
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 2
@@ -341,3 +344,12 @@ label_settings = ExtResource("17_c1i0s")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_mx8g3")
+
+[node name="Stop" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63137543, 0)
+shape = SubResource("SphereShape3D_ih5rl")
