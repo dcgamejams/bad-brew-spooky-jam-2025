@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=4 uid="uid://8oald4y0be2e"]
+[gd_scene load_steps=25 format=4 uid="uid://8oald4y0be2e"]
 
 [ext_resource type="Texture2D" uid="uid://bx8g2xtkrao8v" path="res://assets/models/Cauldron_CauldronPalette.png" id="3_gnuei"]
+[ext_resource type="Material" uid="uid://g6frycihmei6" path="res://assets/models/materials/Walls.tres" id="9_gnuei"]
 [ext_resource type="PackedScene" uid="uid://bm5dduiyqaect" path="res://assets/FX/cauldron_bubbles.tscn" id="10_74sie"]
 [ext_resource type="Texture2D" uid="uid://bvvmgji44ak3k" path="res://assets/models/Walls_CauldronPalette.png" id="10_gnuei"]
 [ext_resource type="PackedScene" uid="uid://fgxdqxxe88j0" path="res://assets/FX/cauldron_splash.tscn" id="11_gnuei"]
@@ -192,6 +193,7 @@ collision_layer = 3
 
 [node name="Walls_037" type="MeshInstance3D" parent="GameScene/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035245877, 0)
+material_override = ExtResource("9_gnuei")
 mesh = SubResource("ArrayMesh_n18c7")
 skeleton = NodePath("")
 
