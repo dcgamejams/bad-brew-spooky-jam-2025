@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 class_name Player
 
+
 #movement variables
 var move_speed : float
 var move_accel : float
@@ -82,6 +83,9 @@ var coyote_jump_on : bool = false
 @onready var collision_shape_3d = %CollisionShape3D
 @onready var floor_check : RayCast3D = %FloorRaycast
 
+@onready var mouse_mesh: MeshInstance3D = %Mouse
+
+
 #particles variables
 @onready var movement_dust = %MovementDust
 @onready var jump_particles = preload("res://PlayerCharacter/Vfx/jump_particles.tscn")
@@ -99,10 +103,13 @@ func _enter_tree() -> void:
 
 func _ready():
 	add_to_group('Players')
-
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+			
 	if not is_multiplayer_authority():
 		set_process(false)
 		set_physics_process(false)
+
+
 	
 	#set move variables, and value references
 	move_speed = walk_speed
@@ -122,6 +129,13 @@ func _ready():
 		foot_step_audio.play()
 		)
 
+func display_mouse():
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(50, 0.0, 100))
+	var result = space_state.intersect_ray(query)
+	if result: 
+		%Mouse.position = get_mouse(result).position
+
 func _process(delta: float):
 	modify_model_orientation(delta)
 	display_properties()
@@ -130,6 +144,7 @@ func _physics_process(_delta : float):
 	kick()
 	modify_physics_properties()
 	move_and_slide()
+	display_mouse()
 	
 func display_properties():
 	#display play char properties
@@ -198,6 +213,7 @@ func slam_down():
 	new_slam.position = floor_check.get_collision_point()
 	world.add_child(new_slam, true)
 	godot_plush_skin.slam_area.get_node('CollisionShape3D').disabled = false
+	$Slam.play()
 	await get_tree().create_timer(0.2).timeout 
 	godot_plush_skin.slam_area.get_node('CollisionShape3D').disabled = true
 	
@@ -216,16 +232,28 @@ func boost(dir):
 
 func kick():
 	if Input.is_action_just_pressed('kick'):
+		$Kick.play()
 		kick_and_stretch(0.05, 0.05)
 		%KickArea.get_node("CollisionShape3D").disabled = false
 		await get_tree().create_timer(0.1).timeout 
 		%KickArea.get_node("CollisionShape3D").disabled = true
 
+
 func kick_object(body):
 	if body.is_in_group("Ingredients"):
 		var item: Ingredient = body
-		item.apply_central_impulse(%VisualRoot.global_transform.basis.z * 8.0) #apply 
-
+		
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(50, 0.0, 100))
+		var result = space_state.intersect_ray(query)
+		
+		#var player_dir = %VisualRoot.global_transform.basis.z
+		var mouse_dir = item.position.direction_to(get_mouse(result).position)
+		if not item.torque_timer.is_stopped():
+			item.torque_timer.stop()
+			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
+		item.apply_central_impulse(mouse_dir * 15.0) #apply 
+		
 signal hit
 
 func stop(body):
@@ -241,3 +269,17 @@ func stop(body):
 		await get_tree().create_timer(0.2).timeout		
 		%TorusIndicator.hide()
 		
+func get_mouse(_rid_wall):
+	var space_state = get_world_3d().direct_space_state
+	var cam = get_viewport().get_camera_3d()
+	var mousepos = get_viewport().get_mouse_position()
+
+	var origin = cam.project_ray_origin(mousepos)
+	var RAY_LENGTH = 1000.0
+	var end = origin + cam.project_ray_normal(mousepos) * RAY_LENGTH
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.collide_with_areas = true
+
+	query.exclude = [self]
+		
+	return space_state.intersect_ray(query)

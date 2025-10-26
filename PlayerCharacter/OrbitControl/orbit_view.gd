@@ -43,11 +43,8 @@ func set_active(state : bool):
 
 func _input(event):
 	#free/capture mouse cursor
-	if event.is_action_pressed(mouse_mode_action):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: 
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: 
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: 
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 	#if mouse cursor is free, can't rotate cam
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return

@@ -41,6 +41,7 @@ func apply_ragdoll():
 	#set model to ragdoll mode
 	cR.set_process(false)
 	cR.set_physics_process(false)
+	cR.mouse_mesh.hide()
 
 	cR.godot_plush_skin.ragdoll = true
 	# Add a little angle if we start in the air
@@ -80,6 +81,7 @@ func input_management(delta):
 	if cR.immobile: return
 
 	if Input.is_action_just_pressed("ragdoll"):
+
 		#if ragdoll is set to be only enable on floor
 		if cR.ragdoll_on_floor_only and cR.is_on_floor():
 			cR.godot_plush_skin.ragdoll = false

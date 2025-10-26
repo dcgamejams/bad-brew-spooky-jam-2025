@@ -65,12 +65,14 @@ func set_ragdoll(value : bool) -> void:
 	physical_bone_simulator_3d.active = ragdoll
 	animation_tree.active = !ragdoll
 	
+	
 	if ragdoll:
 		physical_bone_simulator_3d.physical_bones_start_simulation()
 		%TorusIndicator.show()
 	else: 
 		physical_bone_simulator_3d.physical_bones_stop_simulation()
 		%TorusIndicator.hide()
+
 
 	#if is_multiplayer_authority():
 		#sync_set_ragdoll.rpc(value)

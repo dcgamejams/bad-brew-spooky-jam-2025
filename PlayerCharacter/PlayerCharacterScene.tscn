@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=42 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" uid="uid://de2sqbhiahmo6" path="res://PlayerCharacter/StateMachine/player_character_script.gd" id="1_ms4x1"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://PlayerCharacter/GodotPlush/godot_plush_skin.tscn" id="2_mtsks"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://d2tif6xsjkwnw" path="res://PlayerCharacter/StateMachine/ragdoll_state_script.gd" id="17_pdxi8"]
 [ext_resource type="Script" uid="uid://chnbi4s1tf7pa" path="res://PlayerCharacter/Debug/DebugHUDScript.gd" id="17_qmq2g"]
 [ext_resource type="AudioStream" uid="uid://d056tp4uwi78r" path="res://sound/bloop.wav" id="19_n0ydc"]
+[ext_resource type="AudioStream" uid="uid://b0pbgmxoe40wv" path="res://sound/Slam Womp.wav" id="20_0teac"]
 
 [sub_resource type="Curve" id="Curve_l1d2p"]
 _limits = [0.0, 10.0, 0.0, 1.0]
@@ -39,6 +40,18 @@ point_count = 3
 _limits = [0.0, 10.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0teac"]
+diffuse_mode = 3
+albedo_color = Color(1, 0.44313726, 1, 1)
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.90588236, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0teac"]
+material = SubResource("StandardMaterial3D_0teac")
+radius = 0.4
+height = 0.8
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ih5rl"]
 size = Vector3(2, 2.2, 4)
@@ -151,6 +164,12 @@ jumpAction = "jump"
 model_rot_speed = 6.5
 ragdoll_gravity = 24.0
 follow_cam_pos_when_aimed = true
+
+[node name="Mouse" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15467715, 0)
+top_level = true
+mesh = SubResource("SphereMesh_0teac")
 
 [node name="VisualRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -374,8 +393,15 @@ stream = ExtResource("19_n0ydc")
 volume_db = -5.0
 max_polyphony = 5
 
+[node name="Slam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_0teac")
+max_polyphony = 3
+
 [node name="TorusIndicator" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15467715, 0)
 visible = false
 mesh = SubResource("TorusMesh_0teac")
+
+[node name="Kick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4283i")

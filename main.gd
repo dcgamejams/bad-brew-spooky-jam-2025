@@ -47,7 +47,7 @@ func _ready():
 	print("INFO: ROUND STARTED")
 	await get_tree().create_timer(3).timeout
 	%LabelStart.hide()
-	%RoundTimer.wait_time = 40.0
+	%RoundTimer.wait_time = 30.0
 	%RoundTimer.timeout.connect(on_round_timer_end)
 	%RoundTimer.start()
 	
@@ -98,8 +98,7 @@ func on_collect(body):
 			collected.queue_free()
 			return
 			
-		var round_item: RequiredItem = %RequiredList.get_child(current_round)
-		var desired: bool = collected.type == round_item.ingredient_desired
+		var desired: bool = collected.type == get_current_primary()
 		splash(desired)
 	
 		collected.queue_free()
@@ -130,7 +129,7 @@ var total_complete = 0
 func on_round_timer_end():
 	var round_item: RequiredItem = %RequiredList.get_child(current_round)
 	var desired_count = current_ingredients.count(round_item.ingredient_desired)
-	if desired_count >= 5 + current_level:
+	if desired_count >= 4 + current_level:
 		# OK, now make sure we don't have a majority of the non-desired
 		var options = [Ingredient.TYPE.MUSHROOM, Ingredient.TYPE.STAR, Ingredient.TYPE.BERRY]
 		options.erase(round_item.ingredient_desired)
