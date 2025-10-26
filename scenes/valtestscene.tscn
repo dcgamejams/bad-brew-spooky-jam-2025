@@ -135,11 +135,12 @@ collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_gnuei")
 
 [node name="FlatterCauldron" type="StaticBody3D" parent="GameScene"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, -0.21727109, 0)
 collision_layer = 19
 collision_mask = 19
 
 [node name="Cauldron" type="MeshInstance3D" parent="GameScene/FlatterCauldron"]
-sorting_offset = -1.0
+sorting_offset = -20.0
 material_override = ExtResource("14_m7uk2")
 mesh = SubResource("ArrayMesh_pwrij")
 skeleton = NodePath("")
