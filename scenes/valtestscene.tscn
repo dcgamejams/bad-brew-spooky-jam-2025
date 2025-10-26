@@ -202,6 +202,9 @@ shape = SubResource("ConcavePolygonShape3D_74sie")
 [node name="PortalDoor-N" parent="GameScene" instance=ExtResource("19_m7uk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.779158, -9.559731)
 
+[node name="StaticBody3D" parent="GameScene/PortalDoor-N/DoorFrame" index="1"]
+collision_layer = 3
+
 [node name="Doorlight" type="OmniLight3D" parent="GameScene/PortalDoor-N"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
 light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
@@ -214,6 +217,9 @@ omni_attenuation = 1.582
 [node name="PortalDoor-E" parent="GameScene" instance=ExtResource("19_m7uk2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.00791, 4.779158, 0.3142538)
 
+[node name="DoorFrame" parent="GameScene/PortalDoor-E" index="0"]
+layers = 3
+
 [node name="Doorlight" type="OmniLight3D" parent="GameScene/PortalDoor-E"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)
 light_color = Color(0.86093843, 0.00038254322, 0.81476843, 1)
@@ -225,6 +231,9 @@ omni_attenuation = 1.582
 
 [node name="PortalDoor-W" parent="GameScene" instance=ExtResource("19_m7uk2")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.16025, 4.779158, 0.3142538)
+
+[node name="StaticBody3D" parent="GameScene/PortalDoor-W/DoorFrame" index="1"]
+collision_layer = 3
 
 [node name="Doorlight" type="OmniLight3D" parent="GameScene/PortalDoor-W"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6287675, 1.5336847)

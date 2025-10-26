@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=17 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
@@ -10,24 +10,40 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
 radius = 4.2
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7mycd"]
+plane = Plane(0, 0, -1, 0)
+
 [sub_resource type="Theme" id="Theme_0teac"]
 default_font = ExtResource("5_7mycd")
 default_font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("6_272bh")
+region = Rect2(449, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("6_272bh")
+region = Rect2(321, 896, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+atlas = ExtResource("6_272bh")
+region = Rect2(577, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
+atlas = ExtResource("6_272bh")
+region = Rect2(385, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
+atlas = ExtResource("6_272bh")
+region = Rect2(641, 640, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mebcp"]
 atlas = ExtResource("6_272bh")
 region = Rect2(321, 256, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0teac"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
 atlas = ExtResource("6_272bh")
 region = Rect2(321, 192, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qbu3"]
-atlas = ExtResource("6_272bh")
-region = Rect2(449, 64, 64, 64)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
-size = Vector3(3, 5, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ig7tw")
@@ -44,6 +60,14 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 script = ExtResource("8_5vw27")
 
+[node name="RoundTimer" type="Timer" parent="Game"]
+unique_name_in_owner = true
+
+[node name="JudgementTimer" type="Timer" parent="Game"]
+unique_name_in_owner = true
+wait_time = 120.0
+autostart = true
+
 [node name="CauldronArea" type="Area3D" parent="Game"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7259667, 0.32779503)
@@ -54,6 +78,14 @@ collision_mask = 129
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9556179, 0)
 shape = SubResource("SphereShape3D_1bvp3")
 debug_color = Color(0.99862474, 0, 0.14894018, 0.41960785)
+
+[node name="FrontWall" type="StaticBody3D" parent="Game"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.48674)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game/FrontWall"]
+shape = SubResource("WorldBoundaryShape3D_7mycd")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
@@ -77,19 +109,45 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Control/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LabelForItems" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Key4" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Items Collected: "
+theme_override_constants/separation = -13
 
-[node name="LabelItemCount" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
+[node name="KeyImage" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer/Key4"]
 layout_mode = 2
-text = "0"
+texture = SubResource("AtlasTexture_7mycd")
+
+[node name="KeyImage2" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer/Key4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_272bh")
+
+[node name="KeyImage3" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer/Key4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5vw27")
+
+[node name="KeyImage4" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer/Key4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_kek77")
+
+[node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Move"
+
+[node name="Key4" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="KeyImage" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_efxa6")
+
+[node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+text = "Kick"
 
 [node name="Key2" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -106,23 +164,17 @@ text = "Roll"
 layout_mode = 2
 
 [node name="KeyImage" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key3"]
+texture_filter = 3
+custom_minimum_size = Vector2(120, 37)
 layout_mode = 2
-texture = SubResource("AtlasTexture_0teac")
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_4c57u")
+expand_mode = 2
+stretch_mode = 6
 
 [node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key3"]
 layout_mode = 2
 text = "Jump / Slam "
-
-[node name="Key4" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="KeyImage" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_5qbu3")
-
-[node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
-layout_mode = 2
-text = "Aim / Hover??"
 
 [node name="Top" type="MarginContainer" parent="PlayerUI/Control"]
 layout_mode = 1
@@ -141,17 +193,92 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Control/Top"]
 layout_mode = 2
 
+[node name="LevelList" type="HBoxContainer" parent="PlayerUI/Control/Top/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="PlayerUI/Control/Top/VBoxContainer/LevelList"]
+layout_mode = 2
+text = "Level "
+
+[node name="LabelLevel" type="Label" parent="PlayerUI/Control/Top/VBoxContainer/LevelList"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+
 [node name="RequiredList" type="HBoxContainer" parent="PlayerUI/Control/Top/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label" type="Label" parent="PlayerUI/Control/Top/VBoxContainer"]
-layout_mode = 2
-
 [node name="LabelTimeRemaining" type="Label" parent="PlayerUI/Control/Top/VBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2)
 layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BottomLeft" type="MarginContainer" parent="PlayerUI/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Hearts" type="HBoxContainer" parent="PlayerUI/Control/BottomLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label2" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label3" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label4" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label5" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label6" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label7" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label8" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
+
+[node name="Label9" type="Label" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "❤️"
 
 [node name="Center" type="MarginContainer" parent="PlayerUI"]
 anchors_preset = 8
@@ -159,20 +286,52 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -93.5
+offset_top = -384.0
+offset_right = 93.5
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LabelStart" type="Label" parent="PlayerUI/Center"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Center"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LabelStart" type="Label" parent="PlayerUI/Center/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7mycd")
+theme_override_font_sizes/font_size = 32
+text = "START"
+horizontal_alignment = 1
+
+[node name="ScoreBoxTop" type="VBoxContainer" parent="PlayerUI/Center/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
-[node name="RoundTimer" type="Timer" parent="."]
-unique_name_in_owner = true
+[node name="ScoreBoxH" type="HBoxContainer" parent="PlayerUI/Center/VBoxContainer/ScoreBoxTop"]
+layout_mode = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.0047647017, 0, 0.9999887, 0, 1, 0, -0.9999887, 0, -0.0047647017, -19.937332, 8.155316, 0)
-mesh = SubResource("BoxMesh_7mycd")
+[node name="Label" type="Label" parent="PlayerUI/Center/VBoxContainer/ScoreBoxTop/ScoreBoxH"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "!!"
+
+[node name="LabelScore" type="Label" parent="PlayerUI/Center/VBoxContainer/ScoreBoxTop/ScoreBoxH"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="LabelGameOver" type="Label" parent="PlayerUI/Center/VBoxContainer/ScoreBoxTop"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7mycd")
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER
+
+RANK: 
+15 GOLD STAR!
+11+ SILVER
+8+ BRONZE
+	"

@@ -14,6 +14,7 @@ extends Node3D
 
 var ragdoll : bool = false : set = set_ragdoll
 var squash_and_stretch = 1.0 : set = set_squash_and_stretch
+var kick_value: float  = 1.0 : set = set_kick
 
 signal footstep(intensity : float)
 
@@ -107,6 +108,14 @@ func set_squash_and_stretch(value : float) -> void:
 	godot_plush_mesh.scale = Vector3(negative, squash_and_stretch, negative)
 	%Bubble.scale = Vector3(negative, squash_and_stretch, negative)
 	%EarBubbles.scale = Vector3(negative, squash_and_stretch, negative)
+
+func set_kick(value : float) -> void:
+	#squash and stretch the model
+	kick_value = value
+	var negative = 1.0 + (1.0 - kick_value)
+	godot_plush_mesh.scale = Vector3(kick_value, 1.0, negative)
+
+
 
 func emit_footstep(intensity : float = 1.0) -> void:
 	#call foostep signal in charge of emitting the footstep audio effects

@@ -39,19 +39,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"Prop_Berry_Berry": {
+"Prop_Berry_Berry_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/mesh_save_assets/Prop_Berry_Berry.res",
-"save_to_file/path": "uid://cfr0p174grxiw"
-}
-},
-"nodes": {
-"PATH:Berry": {
-"generate/physics": true
+"save_to_file/fallback_path": "res://assets/models/mesh_save_assets/Prop_Berry_Berry_001.res",
+"save_to_file/path": "uid://ddbwmdkbqnu1"
 }
 }
 }

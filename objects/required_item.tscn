@@ -1,0 +1,157 @@
+[gd_scene load_steps=14 format=3 uid="uid://coso1pwk8gq8y"]
+
+[ext_resource type="Script" uid="uid://b547fhvc0m2wq" path="res://objects/required_item.gd" id="1_lmmft"]
+[ext_resource type="FontFile" uid="uid://dewgtcm8moxxi" path="res://assets/ui/font/Ticketing.ttf" id="2_5sk75"]
+[ext_resource type="PackedScene" uid="uid://4ajgrawboep5" path="res://assets/models/Prop_Mushroom.glb" id="2_lmmft"]
+[ext_resource type="PackedScene" uid="uid://bnuvvjvqhysc0" path="res://assets/models/Prop_Star.glb" id="3_mxep2"]
+[ext_resource type="PackedScene" uid="uid://6ts8wtgea8m3" path="res://assets/models/Prop_Berry.glb" id="4_5sk75"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiq2n"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_5sk75"]
+offsets = PackedFloat32Array(0.5187266, 0.5262172)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q5a0n"]
+gradient = SubResource("Gradient_5sk75")
+fill = 1
+fill_from = Vector2(0.47435898, 0.49786323)
+
+[sub_resource type="Gradient" id="Gradient_lmmft"]
+offsets = PackedFloat32Array(0.5187266, 0.52657)
+colors = PackedColorArray(0, 0.92021066, 0.29543713, 1, 0, 0.92168134, 0.29337206, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b518t"]
+gradient = SubResource("Gradient_lmmft")
+fill = 1
+fill_from = Vector2(0.47435898, 0.49786323)
+
+[sub_resource type="Gradient" id="Gradient_s2nud"]
+offsets = PackedFloat32Array(0.5187266, 0.5280899)
+colors = PackedColorArray(1, 0, 0.34064347, 1, 1, 0, 0.34064347, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o4kqn"]
+gradient = SubResource("Gradient_s2nud")
+fill = 1
+fill_from = Vector2(0.47435898, 0.49786323)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oiq2n"]
+viewport_path = NodePath("Vis/SubViewport")
+
+[node name="RequiredItem" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oiq2n")
+script = ExtResource("1_lmmft")
+
+[node name="Question" type="TextureRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_q5a0n")
+
+[node name="Label" type="Label" parent="Question"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 22.0
+offset_right = 77.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5sk75")
+theme_override_font_sizes/font_size = 64
+text = "?"
+
+[node name="Success" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture2D_b518t")
+
+[node name="Label" type="Label" parent="Success"]
+visible = false
+layout_mode = 0
+offset_left = 27.0
+offset_top = 13.0
+offset_right = 76.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5sk75")
+theme_override_font_sizes/font_size = 64
+text = "✓"
+
+[node name="Failure" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("GradientTexture2D_o4kqn")
+
+[node name="Label" type="Label" parent="Failure"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 19.0
+offset_right = 74.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5sk75")
+theme_override_font_sizes/font_size = 64
+text = "X"
+
+[node name="Vis" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Mesh" type="TextureRect" parent="Vis"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_oiq2n")
+
+[node name="SubViewport" type="SubViewport" parent="Vis"]
+own_world_3d = true
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="Vis/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.9795893, 0.20100953, 0, -0.20100953, 0.9795893, 0, 0.50889254, 1.7603197)
+cull_mask = 1048574
+current = true
+
+[node name="Mushroom" parent="Vis/SubViewport" instance=ExtResource("2_lmmft")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Prop_Mushroom" parent="Vis/SubViewport/Mushroom" index="0"]
+layers = 3
+
+[node name="Star" parent="Vis/SubViewport" instance=ExtResource("3_mxep2")]
+unique_name_in_owner = true
+transform = Transform3D(0.9612191, 0.14299767, -0.23581716, 0.07605894, -0.9593645, -0.2717258, -0.26509076, 0.24325198, -0.9330357, 0, 0.2, 0)
+visible = false
+
+[node name="Prop_Star" parent="Vis/SubViewport/Star" index="0"]
+layers = 3
+
+[node name="Berry" parent="Vis/SubViewport" instance=ExtResource("4_5sk75")]
+unique_name_in_owner = true
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+visible = false
+
+[node name="Berry_001" parent="Vis/SubViewport/Berry" index="0"]
+layers = 3
+
+[editable path="Vis/SubViewport/Mushroom"]
+[editable path="Vis/SubViewport/Star"]
+[editable path="Vis/SubViewport/Berry"]

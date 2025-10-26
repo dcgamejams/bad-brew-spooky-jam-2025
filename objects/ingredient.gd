@@ -9,11 +9,13 @@ class_name Ingredient
 @onready var death_timer: Timer = $DeathTimer
 
 enum TYPE { 
-	MUSHROOM,
-	SKULL,
+	MUSHROOM, #0
+	STAR, # 1
+	BERRY, # 2 
+	SKULL,# 4+
 }
 
-var COLORS: Array[Color] = [Color.AQUA, Color.CRIMSON, Color.CORNFLOWER_BLUE, Color.DARK_GOLDENROD]
+var COLORS: Array[Color] = [Color.AQUA, Color.YELLOW, Color.BLUE, Color.CRIMSON]
 
 # TODO: Rename to "Flavor"
 var type : TYPE = TYPE.MUSHROOM : set = set_type
@@ -40,21 +42,24 @@ func _ready() -> void:
 
 	var BLAST = randf_range(8, 15)
 	apply_central_force(rand_v * BLAST)
-	apply_torque(initial_angle * .0)
+	apply_torque(initial_angle * 3.0)
 
-	torque_timer.wait_time = randf_range(3, 7)
+	torque_timer.wait_time = randf_range(3, 5.5)
 	death_timer.wait_time = randf_range(10, 15)
 
 func set_type(value: TYPE):
 	type = value
 	set_mesh_color(COLORS[value])
 	match value: 
-		TYPE.SKULL:
-			%Skull.show()
-			$Mesh.hide()
 		TYPE.MUSHROOM:
 			%Mushroom.show()
-	
+		TYPE.STAR:
+			%Star.show()
+		TYPE.BERRY:
+			%Berry.show()	
+		TYPE.SKULL:
+			$Mesh.hide()
+			%Skull.show()
 
 func set_mesh_color(new_color: Color):
 	color = new_color

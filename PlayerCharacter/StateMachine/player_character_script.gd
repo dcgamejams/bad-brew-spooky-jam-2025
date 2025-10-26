@@ -113,6 +113,8 @@ func _ready():
 	nb_jumps_in_air_allowed_ref = nb_jumps_in_air_allowed
 	coyote_jump_cooldown_ref = coyote_jump_cooldown
 	
+	%KickArea.body_entered.connect(kick_object)
+	
 	#set char model audios effects
 	godot_plush_skin.footstep.connect(func(intensity : float = 1.0):
 		foot_step_audio.volume_db = linear_to_db(intensity)
@@ -124,6 +126,7 @@ func _process(delta: float):
 	display_properties()
 	
 func _physics_process(_delta : float):
+	kick()
 	modify_physics_properties()
 	move_and_slide()
 	
@@ -178,6 +181,15 @@ func squash_and_strech(value : float, timing : float):
 	sasTween.tween_property(godot_plush_skin, "squash_and_stretch", value, timing)
 	sasTween.tween_property(godot_plush_skin, "squash_and_stretch", 1.0, timing * 1.8)
 	
+func kick_and_stretch(value : float, timing : float):
+	#create a tween that simulate a compression of the model (squash and strech ones)
+	#maily used to accentuate game feel/juice
+	#call the squash_and_strech function of the model (it's this function that actually squash and strech the model)
+	var kickTween : Tween = create_tween()
+	kickTween.set_ease(Tween.EASE_OUT)
+	kickTween.tween_property(godot_plush_skin, "kick_value", value, timing)
+	kickTween.tween_property(godot_plush_skin, "kick_value", 1.0, timing * 1.8)
+
 func slam_down():
 	squash_and_strech(-0.1, 0.1)
 	particles_manager.display_particles(jump_particles, self)
@@ -200,3 +212,15 @@ func add_item():
 func boost(dir):
 	var center: PhysicalBone3D = godot_plush_skin.center_body
 	center.apply_central_impulse(dir)
+
+func kick():
+	if Input.is_action_just_pressed('kick'):
+		kick_and_stretch(0.05, 0.05)
+		%KickArea.get_node("CollisionShape3D").disabled = false
+		await get_tree().create_timer(0.1).timeout 
+		%KickArea.get_node("CollisionShape3D").disabled = true
+
+func kick_object(body):
+	if body.is_in_group("Ingredients"):
+		var item: Ingredient = body
+		item.apply_central_impulse(%VisualRoot.global_transform.basis.z * 15.0) #apply 

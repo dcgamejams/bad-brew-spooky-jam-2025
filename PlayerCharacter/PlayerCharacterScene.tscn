@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=35 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" uid="uid://de2sqbhiahmo6" path="res://PlayerCharacter/StateMachine/player_character_script.gd" id="1_ms4x1"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://PlayerCharacter/GodotPlush/godot_plush_skin.tscn" id="2_mtsks"]
@@ -38,6 +38,9 @@ point_count = 3
 _limits = [0.0, 10.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ih5rl"]
+size = Vector3(2, 2.2, 4)
 
 [sub_resource type="Curve" id="Curve_wrw8f"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -107,11 +110,11 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_ms4x1")
-walk_speed = 5.0
-walk_accel = 8.0
+walk_speed = 7.0
+walk_accel = 9.0
 walk_deccel = 4.5
-run_speed = 9.0
-run_accel = 3.5
+run_speed = 12.0
+run_accel = 4.5
 run_deccel = 1.5
 jump_height = 3.0
 jump_time_to_peak = 0.35
@@ -133,6 +136,18 @@ follow_cam_pos_when_aimed = true
 
 [node name="VisualRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="KickArea" type="Area3D" parent="VisualRoot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.98532057)
+collision_layer = 128
+collision_mask = 128
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/KickArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26192784)
+shape = SubResource("BoxShape3D_ih5rl")
+disabled = true
 
 [node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
 unique_name_in_owner = true
