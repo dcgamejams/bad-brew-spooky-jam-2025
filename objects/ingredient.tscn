@@ -110,7 +110,7 @@ top_level = true
 
 [node name="Skull" type="Node3D" parent="Icons"]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.7, 0, 0, 0, 0.6433706, 0.2758155, 0, -0.2758155, 0.6433706, 0, 0.0937323, 0)
 visible = false
 
 [node name="Skull" type="MeshInstance3D" parent="Icons/Skull"]
@@ -119,8 +119,7 @@ skeleton = NodePath("")
 
 [node name="Mushroom" type="Node3D" parent="Icons"]
 unique_name_in_owner = true
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-visible = false
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.09279376, 0)
 
 [node name="Prop_Mushroom" type="MeshInstance3D" parent="Icons/Mushroom"]
 mesh = SubResource("ArrayMesh_utaq4")

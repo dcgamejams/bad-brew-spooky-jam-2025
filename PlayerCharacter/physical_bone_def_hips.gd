@@ -6,6 +6,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	if Input.is_action_pressed("secondary"):
-		state.linear_velocity = Vector3.ZERO
+#func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	#if Input.is_action_pressed("secondary"):
+		#state.linear_velocity = Vector3.ZERO
