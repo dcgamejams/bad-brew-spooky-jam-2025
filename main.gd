@@ -160,15 +160,15 @@ func spawn_ingredient():
 	spawn_timer.start(randi_range(9, 16))
 
 # TODO: Secret sauce: adjust ratio of incoming ingredients based on current round
-func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 12) -> Ingredient.TYPE:
+func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 14) -> Ingredient.TYPE:
 	# If good roll, return primary
 	var options = [Ingredient.TYPE.MUSHROOM, Ingredient.TYPE.STAR, Ingredient.TYPE.BERRY]
 	options.erase(primary)
 	
 	var roll = randi_range(0, upper_bound)
-	if roll <= 7:
+	if roll <= 8:
 		return primary
-	elif roll <= 10:
+	elif roll <= 11:
 		return options[randi_range(0, 1)]
 	else:
 		return Ingredient.TYPE.SKULL

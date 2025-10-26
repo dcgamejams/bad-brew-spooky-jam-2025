@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8oald4y0be2e" path="res://scenes/valtestscene.tscn" id="12_dg77c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
-radius = 2.5
+radius = 3.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7mycd"]
 plane = Plane(0, 0, -1, 0)
