@@ -169,42 +169,41 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="Icons" type="Node3D" parent="."]
-unique_name_in_owner = true
-top_level = true
-
-[node name="Star" type="Node3D" parent="Icons"]
+[node name="Star" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.41951668, 0.75432056, 0.5049814, -0.48178023, 0.65650636, -0.5804201, -0.7693464, 0.00020581484, 0.63883215, 0, 0, 0)
 visible = false
 
-[node name="Prop_Star" type="MeshInstance3D" parent="Icons/Star"]
+[node name="Prop_Star" type="MeshInstance3D" parent="Star"]
 mesh = SubResource("ArrayMesh_vt8cq")
 skeleton = NodePath("")
 
-[node name="Skull" type="Node3D" parent="Icons"]
+[node name="Skull" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.91910094, 0.39402214, 0, -0.39402214, 0.91910094, 0, 0.0937323, 0)
 visible = false
 
-[node name="Skull" type="MeshInstance3D" parent="Icons/Skull"]
+[node name="Skull" type="MeshInstance3D" parent="Skull"]
 mesh = ExtResource("2_g6kyu")
 skeleton = NodePath("")
 
-[node name="Mushroom" type="Node3D" parent="Icons"]
+[node name="Mushroom" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14601234, 0)
 visible = false
 
-[node name="Prop_Mushroom" type="MeshInstance3D" parent="Icons/Mushroom"]
+[node name="Prop_Mushroom" type="MeshInstance3D" parent="Mushroom"]
 mesh = SubResource("ArrayMesh_utaq4")
 skeleton = NodePath("")
 
-[node name="Berry" type="Node3D" parent="Icons"]
+[node name="Berry" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.16258556, 0)
 visible = false
 
-[node name="Berry_001" type="MeshInstance3D" parent="Icons/Berry"]
+[node name="Berry_001" type="MeshInstance3D" parent="Berry"]
 mesh = SubResource("ArrayMesh_kv405")
 skeleton = NodePath("")
+
+[node name="Icons" type="Node3D" parent="."]
+unique_name_in_owner = true

@@ -27,6 +27,8 @@ func destroy_skulls(body):
 	if body.is_in_group('Ingredients'):
 		if body.type == Ingredient.TYPE.SKULL:
 			body.queue_free()
+		else:
+			cR.kick_object(body)
 
 func apply_new_weights():
 	for child in %PhysicalBoneSimulator3D.get_children():
@@ -59,6 +61,7 @@ func set_ragdoll(value : bool) -> void:
 	ragdoll = value
 	#%EarBubbles.visible = value
 	%Bubble.visible = value
+	%Torus.visible = value
 	if !is_inside_tree(): return
 	physical_bone_simulator_3d.active = ragdoll
 	animation_tree.active = !ragdoll
@@ -173,12 +176,13 @@ func _physics_process(_delta: float) -> void:
 	if ray_cast_down.is_colliding and ragdoll:
 		slam_area.position = ray_cast_down.get_collision_point()
 
-	pass
-		#if not cR.floor_check.is_colliding():
+	if not cR.floor_check.is_colliding():
+		%Torus.show()
+		%Torus.position = ray_cast_down.get_collision_point()
+	elif %Torus.visible:
+		%Torus.hide()
+
 			#line(global_position + Vector3(0.0, -2.0, 0.0), ray_cast_down.get_collision_point())
-		#%TorusIndicator.position = ray_cast_down.get_collision_point()
-	#elif %TorusIndicator.visible:
-		#%TorusIndicator.hide()
 	
 #func set_name_tag(username_text: String):
 	#%NametagPlush.text = username_text

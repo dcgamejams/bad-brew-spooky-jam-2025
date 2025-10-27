@@ -212,11 +212,9 @@ func slam_down():
 	new_slam.position = floor_check.get_collision_point()
 	world.add_child(new_slam, true)
 	godot_plush_skin.slam_area.get_node('CollisionShape3D').disabled = false
-	%KickArea.get_node("CollisionShape3D").disabled = false
 	$Slam.play()
 	await get_tree().create_timer(0.2).timeout 
 	godot_plush_skin.slam_area.get_node('CollisionShape3D').disabled = true
-	%KickArea.get_node("CollisionShape3D").disabled = true
 
 var items: int = 0
 signal signal_item_picked_up
@@ -251,10 +249,9 @@ func kick_object(body):
 		var mouse_dir = item.position.direction_to(get_mouse(result).position)
 		if not item.torque_timer.is_stopped():
 			item.torque_timer.stop()
-			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
+			item.apply_torque_impulse(item.angular_velocity)
 		if get_mouse(result).position.distance_to(Vector3.ZERO) < 4.0:
-			print('tried')
-			item.apply_central_impulse(item.position.direction_to(Vector3(0.0, 0.5, 0.0)) * 12.0) #apply 
+			item.apply_central_impulse(item.position.direction_to(Vector3(0.0, -0.5, 0.0)) * 10.0) #apply 
 		else:
 			item.apply_central_impulse(mouse_dir * 15.0) #apply 
 		

@@ -23,7 +23,7 @@ var color: Color
 var initial_angle := Vector3.ZERO
 var is_showing_line := false
 
-var con_torque = randf_range(1.5, 1.9)
+var con_torque = randf_range(2.0, 1.9)
 
 func _ready() -> void:
 	add_to_group("Ingredients")
@@ -42,9 +42,9 @@ func _ready() -> void:
 	await get_tree().create_timer(0.2).timeout
 	var rand_v = randf_range(-4.0, 4.0) * Vector3(1.0, -0.5, 1.0)
 
-	var BLAST = randf_range(8, 15)
+	var BLAST = randf_range(5, 10)
 	apply_central_force(rand_v * BLAST)
-	apply_torque_impulse(initial_angle * randf_range(4.0, 8.0))
+	apply_torque_impulse(initial_angle * randf_range(3.0, 5.0))
 
 	torque_timer.wait_time = randf_range(3, 5.0)
 	death_timer.wait_time = randf_range(15, 20)
@@ -100,10 +100,9 @@ func check_collision():
 
 		#var dist_factor = position.distance_to(center) / 20
 		#apply_central_force((position.direction_to(center + initial_angle)) * dist_factor)
-		# spin
-		#if not torque_timer.is_stopped():
-			#apply_torque(initial_angle * con_torque)
-			#
+		if not torque_timer.is_stopped():
+			apply_torque(initial_angle * con_torque)
+			
 
 func get_random_point_in_square(pos: Vector2, size: Vector2) -> Vector2:
 	# Generate a random X coordinate within the square's horizontal bounds

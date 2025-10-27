@@ -7,6 +7,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6m40f"]
 render_priority = 0
 shader = ExtResource("1_iskjw")
+shader_parameter/outline_threshold = 0.2
+shader_parameter/outline_color = Color(0.043, 0.282, 0.467, 1)
 
 [resource]
 resource_local_to_scene = true
