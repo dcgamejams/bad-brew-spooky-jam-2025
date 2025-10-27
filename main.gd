@@ -144,7 +144,7 @@ var total_complete = 0
 func on_round_timer_end():
 	var round_item: RequiredItem = %RequiredList.get_child(current_round)
 	var desired_count = current_ingredients.count(round_item.ingredient_desired)
-	if desired_count >= 4 + current_level:
+	if desired_count >= 3 + current_level:
 		# OK, now make sure we don't have a majority of the non-desired
 		var options = [Ingredient.TYPE.MUSHROOM, Ingredient.TYPE.STAR, Ingredient.TYPE.BERRY]
 		options.erase(round_item.ingredient_desired)
@@ -194,7 +194,7 @@ func spawn_ingredient():
 	if get_tree().get_nodes_in_group("Balls").size() > MAX:
 		return
 	
-	for i in randi_range(3, 5 + current_level):
+	for i in randi_range(2, 4 + current_level):
 		await get_tree().create_timer(randf_range(0.2, 0.5)).timeout
 		var new_ingredient: Ingredient = ingredient.instantiate()
 		var random_radians = randi_range(0, 360)
@@ -203,7 +203,7 @@ func spawn_ingredient():
 		new_ingredient.type = get_ingredient_chance(levels[current_level][current_round])
 		add_child(new_ingredient, true)
 	
-	spawn_timer.start(randi_range(8, 13 - current_level))
+	spawn_timer.start(randi_range(7, 12 - current_level))
 
 # TODO: Secret sauce: adjust ratio of incoming ingredients based on current round
 func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 12) -> Ingredient.TYPE:
@@ -211,10 +211,10 @@ func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 12) -> Ingred
 	var options = [Ingredient.TYPE.MUSHROOM, Ingredient.TYPE.STAR, Ingredient.TYPE.BERRY]
 	options.erase(primary)
 	
-	var roll = randi_range(0, upper_bound)
-	if roll <= 7:
+	var roll = randi_range(0, upper_bound + current_level * 2)
+	if roll <= 9:
 		return primary
-	elif roll <= 10:
+	elif roll <= 11:
 		return options[randi_range(0, 1)]
 	else:
 		return Ingredient.TYPE.SKULL

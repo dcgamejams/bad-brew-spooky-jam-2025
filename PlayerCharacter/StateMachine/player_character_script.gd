@@ -251,8 +251,11 @@ func kick_object(body):
 		if not item.torque_timer.is_stopped():
 			item.torque_timer.stop()
 			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
-
-		item.apply_central_impulse(mouse_dir * 15.0) #apply 
+		if get_mouse(result).position.distance_to(Vector3.ZERO) < 4.0:
+			print('tried')
+			item.apply_central_impulse(item.position.direction_to(Vector3(0.0, 0.5, 0.0)) * 12.0) #apply 
+		else:
+			item.apply_central_impulse(mouse_dir * 15.0) #apply 
 		
 func stop(body):
 	if body.is_in_group("Ingredients"):
