@@ -240,6 +240,7 @@ func kick():
 func kick_object(body):
 	if body.is_in_group("Ingredients"):
 		var item: Ingredient = body
+		stop(body)
 		
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(50, 0.0, 100))

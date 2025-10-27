@@ -53,7 +53,7 @@ func start_game():
 	print("INFO: ROUND STARTED")
 	await get_tree().create_timer(3).timeout
 	%LabelStart.hide()
-	%RoundTimer.wait_time = 40.0
+	%RoundTimer.wait_time = 60.0
 	%RoundTimer.timeout.connect(on_round_timer_end)
 	%RoundTimer.start()
 	
@@ -144,7 +144,7 @@ var total_complete = 0
 func on_round_timer_end():
 	var round_item: RequiredItem = %RequiredList.get_child(current_round)
 	var desired_count = current_ingredients.count(get_current_primary())
-	if desired_count >= 4 + current_level:
+	if desired_count >= 5 + current_level:
 		# OK, now make sure we don't have a majority of the non-desired
 		var options = [Ingredient.TYPE.MUSHROOM, Ingredient.TYPE.STAR, Ingredient.TYPE.BERRY]
 		options.erase(round_item.ingredient_desired)
