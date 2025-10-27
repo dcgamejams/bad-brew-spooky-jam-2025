@@ -29,7 +29,12 @@ var MAX = 25.0
 
 var current_ingredients: = []
 
-func _ready():
+func start_game():
+	%MainMusic.play()
+	$BubbleNoise.play()
+	$PlayerUI.show()
+	$Valtestscene.cam()
+	
 	%CauldronArea.set_collision_mask_value(8, true)
 	%CauldronArea.body_entered.connect(on_collect)
 	%Kill.body_entered.connect(on_collect_kill)

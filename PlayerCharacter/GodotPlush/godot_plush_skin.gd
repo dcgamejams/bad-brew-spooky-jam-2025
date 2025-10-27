@@ -170,12 +170,13 @@ func final_cleanup(mesh_instance: MeshInstance3D, persist_ms: float):
 @onready var ray_cast_down = %RayCast3D
 		
 func _physics_process(_delta: float) -> void:
+	if ray_cast_down.is_colliding and ragdoll:
+		slam_area.position = ray_cast_down.get_collision_point()
+
 	pass
-	#if ray_cast_down.is_colliding and ragdoll:
 		#if not cR.floor_check.is_colliding():
 			#line(global_position + Vector3(0.0, -2.0, 0.0), ray_cast_down.get_collision_point())
 		#%TorusIndicator.position = ray_cast_down.get_collision_point()
-		#slam_area.position = ray_cast_down.get_collision_point()
 	#elif %TorusIndicator.visible:
 		#%TorusIndicator.hide()
 	

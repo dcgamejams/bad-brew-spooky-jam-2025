@@ -54,7 +54,7 @@ radius = 0.4
 height = 0.8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0teac"]
-radius = 1.5
+radius = 2.5
 
 [sub_resource type="Curve" id="Curve_wrw8f"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
