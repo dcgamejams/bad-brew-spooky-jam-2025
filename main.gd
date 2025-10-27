@@ -53,7 +53,7 @@ func start_game():
 	print("INFO: ROUND STARTED")
 	await get_tree().create_timer(3).timeout
 	%LabelStart.hide()
-	%RoundTimer.wait_time = 60.0
+	%RoundTimer.wait_time = 50.0
 	%RoundTimer.timeout.connect(on_round_timer_end)
 	%RoundTimer.start()
 	
@@ -204,7 +204,7 @@ func spawn_ingredient():
 		new_ingredient.type = get_ingredient_chance(levels[current_level][current_round])
 		add_child(new_ingredient, true)
 	
-	spawn_timer.start(randi_range(7, 12 - current_level))
+	spawn_timer.start(randi_range(7  - current_level, 12 - current_level))
 
 # TODO: Secret sauce: adjust ratio of incoming ingredients based on current round
 func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 12) -> Ingredient.TYPE:
@@ -212,7 +212,7 @@ func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 12) -> Ingred
 	var options = [Ingredient.TYPE.MUSHROOM, Ingredient.TYPE.STAR, Ingredient.TYPE.BERRY]
 	options.erase(primary)
 	
-	var roll = randi_range(0, upper_bound + current_level)
+	var roll = randi_range(0, upper_bound + current_level * 2) 
 	if roll <= 9:
 		return primary
 	elif roll <= 11:
