@@ -212,7 +212,9 @@ func get_ingredient_chance(primary: Ingredient.TYPE, upper_bound = 12) -> Ingred
 	var options = [Ingredient.TYPE.MUSHROOM, Ingredient.TYPE.STAR, Ingredient.TYPE.BERRY]
 	options.erase(primary)
 	
-	var roll = randi_range(0, upper_bound + current_level * 2) 
+	var roll = randi_range(0, upper_bound + current_level) 
+	if current_level == 2:
+		roll = roll - 1
 	if roll <= 9:
 		return primary
 	elif roll <= 11:
