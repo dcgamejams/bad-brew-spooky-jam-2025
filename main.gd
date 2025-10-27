@@ -159,6 +159,7 @@ func on_round_timer_end():
 		round_item.complete = false
 
 	print("INFO: ROUND COMPLETED, with: ", round_item.complete, ' LIST: ', current_ingredients)
+	%RoundEnd.play()
 
 	if current_round < levels[current_level].size() - 1:
 		current_round += 1

@@ -11,7 +11,7 @@ var ragdoll_jump_cooldown = Timer.new()
 var center: PhysicalBone3D
 
 var SLAM_IN_PROGRESS := false
-var RAGDOLL_JUMP_FORCE := 120.0 # 120
+var RAGDOLL_JUMP_FORCE := 150.0 # 120
 var RAGDOLL_SPRINT_FORCE := 1.0
 
 var RAGDOLL_ACCEL := 0.35
@@ -51,7 +51,6 @@ func apply_ragdoll():
 	else:
 		# add forward if we are on the ground
 		center.linear_velocity = cR.velocity * 1.5
-
 
 func update(_delta : float):
 	check_if_ragdoll()
