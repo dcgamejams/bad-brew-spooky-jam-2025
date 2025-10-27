@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=40 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" uid="uid://de2sqbhiahmo6" path="res://PlayerCharacter/StateMachine/player_character_script.gd" id="1_ms4x1"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://PlayerCharacter/GodotPlush/godot_plush_skin.tscn" id="2_mtsks"]
@@ -53,8 +53,8 @@ material = SubResource("StandardMaterial3D_0teac")
 radius = 0.4
 height = 0.8
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ih5rl"]
-size = Vector3(2, 2.2, 4)
+[sub_resource type="SphereShape3D" id="SphereShape3D_0teac"]
+radius = 2.5
 
 [sub_resource type="Curve" id="Curve_wrw8f"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -121,19 +121,6 @@ properties/3/replication_mode = 0
 [sub_resource type="SphereShape3D" id="SphereShape3D_ih5rl"]
 radius = 1.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0ydc"]
-transparency = 1
-diffuse_mode = 3
-albedo_color = Color(0.2784093, 0.543951, 0.47657922, 0.749)
-metallic_specular = 0.0
-emission_enabled = true
-emission = Color(0.56940794, 0.88857853, 0.88857853, 1)
-emission_energy_multiplier = 0.4
-
-[sub_resource type="TorusMesh" id="TorusMesh_0teac"]
-material = SubResource("StandardMaterial3D_n0ydc")
-inner_radius = 0.7
-
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 2
 axis_lock_angular_x = true
@@ -171,20 +158,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15467715, 0)
 top_level = true
 mesh = SubResource("SphereMesh_0teac")
 
-[node name="VisualRoot" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="KickArea" type="Area3D" parent="VisualRoot"]
+[node name="KickArea" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.98532057)
 collision_layer = 128
 collision_mask = 128
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/KickArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26192784)
-shape = SubResource("BoxShape3D_ih5rl")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KickArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0623143)
+shape = SubResource("SphereShape3D_0teac")
 disabled = true
+
+[node name="VisualRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
 unique_name_in_owner = true
@@ -396,12 +383,6 @@ max_polyphony = 5
 [node name="Slam" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_0teac")
 max_polyphony = 3
-
-[node name="TorusIndicator" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15467715, 0)
-visible = false
-mesh = SubResource("TorusMesh_0teac")
 
 [node name="Kick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_4283i")

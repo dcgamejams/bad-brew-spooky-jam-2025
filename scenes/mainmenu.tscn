@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bi8vsxyc18w01"]
+[gd_scene load_steps=25 format=3 uid="uid://bi8vsxyc18w01"]
 
 [ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="1_r3g3c"]
 [ext_resource type="Script" uid="uid://tepg32r2c1m6" path="res://scenes/mainmenu.gd" id="1_wf3n4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cajb577yausk2" path="res://assets/models/textures/badbrew_title.png" id="6_wf3n4"]
 [ext_resource type="Material" uid="uid://cqngnjxdym3jh" path="res://scenes/badbrewtitle.tres" id="7_h73c4"]
 [ext_resource type="Material" uid="uid://b6jhyi8t6xv4a" path="res://scenes/pressx.tres" id="8_uui5l"]
+[ext_resource type="PackedScene" uid="uid://bnhbasot1u7g4" path="res://main.tscn" id="10_h73c4"]
 
 [sub_resource type="Environment" id="Environment_7yvfd"]
 background_mode = 1
@@ -96,95 +97,105 @@ albedo_texture = ExtResource("6_wf3n4")
 [node name="Mainmenu" type="Node3D"]
 script = ExtResource("1_wf3n4")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Menu" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Menu"]
 environment = SubResource("Environment_7yvfd")
 
-[node name="BunnyBubble" type="Node3D" parent="."]
+[node name="BunnyBubble" type="Node3D" parent="Menu"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608, 0)
 
-[node name="PlayerBubble" parent="BunnyBubble" instance=ExtResource("2_3vvtq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3012754, 0)
+[node name="PlayerBubble" parent="Menu/BunnyBubble" instance=ExtResource("2_3vvtq")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.3012754, 0)
 
-[node name="Playerbubble" parent="BunnyBubble/PlayerBubble" index="0"]
+[node name="Playerbubble" parent="Menu/BunnyBubble/PlayerBubble" index="0"]
 material_override = ExtResource("3_s5g8n")
 
-[node name="PlayerBunny" parent="BunnyBubble/PlayerBubble" instance=ExtResource("1_r3g3c")]
+[node name="PlayerBunny" parent="Menu/BunnyBubble/PlayerBubble" instance=ExtResource("1_r3g3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3012754, 0)
 
-[node name="Skeleton3D" parent="BunnyBubble/PlayerBubble/PlayerBunny/Rig" index="0"]
+[node name="Skeleton3D" parent="Menu/BunnyBubble/PlayerBubble/PlayerBunny/Rig" index="0"]
 bones/0/position = Vector3(-2.1175824e-22, 0.7960062, 2.0401803e-15)
-bones/0/rotation = Quaternion(0.9958545, -0.0040822127, -0.058378395, -0.069637015)
+bones/0/rotation = Quaternion(0.9956034, 0.0043714065, 0.062514074, -0.06961945)
 bones/1/position = Vector3(-2.9653557e-09, 5.9604645e-08, 2.1963569e-15)
-bones/1/rotation = Quaternion(1, -1.1195269e-09, -2.6249314e-08, -2.8947056e-09)
-bones/2/rotation = Quaternion(-0.046314687, 0.039036293, 0.5168128, -0.853953)
-bones/3/rotation = Quaternion(0.25752407, 0.039203458, -0.011130902, 0.9654121)
-bones/5/rotation = Quaternion(-0.044860885, -0.12422062, 0.5097936, 0.8500985)
-bones/6/rotation = Quaternion(0.0980298, 0.05304922, -0.004579298, 0.993758)
-bones/8/rotation = Quaternion(-0.39638045, -0.010576211, -0.15592146, 0.9046874)
+bones/1/rotation = Quaternion(1, -8.689189e-10, -2.6130365e-08, -1.477748e-09)
+bones/2/rotation = Quaternion(-0.029329496, 0.008390677, 0.51558274, -0.85629654)
+bones/3/rotation = Quaternion(0.14258666, 0.022720443, -0.0045020664, 0.9895113)
+bones/5/rotation = Quaternion(-0.027742479, -0.09380126, 0.5111888, 0.853884)
+bones/6/rotation = Quaternion(0.21409243, 0.035066616, -0.0064460747, 0.97616255)
+bones/8/rotation = Quaternion(-0.34666634, -0.008982533, -0.13209035, 0.9285978)
 bones/9/position = Vector3(-6.998177e-08, 0.15368368, -4.5088708e-08)
-bones/9/rotation = Quaternion(0.15449592, -0.21364062, 0.034222003, 0.96401125)
+bones/9/rotation = Quaternion(0.46803784, -0.18988925, 0.1037089, 0.8568122)
 bones/10/position = Vector3(2.5586017e-08, 0.2075474, 2.5617073e-09)
 bones/10/rotation = Quaternion(-0.45825052, -5.0531373e-05, 8.52457e-05, 0.8888231)
 bones/11/position = Vector3(-2.4242517e-08, 0.25123602, -3.4368462e-08)
 bones/11/rotation = Quaternion(-0.0001062468, 0.93242776, -0.3613565, 4.7652356e-05)
-bones/12/rotation = Quaternion(-0.11885784, 0.0014884342, 0.024306351, 0.99261266)
+bones/12/rotation = Quaternion(-0.17266008, 0.0031803218, 0.04954963, 0.98372924)
 bones/13/position = Vector3(-3.4806785e-08, 0.15368384, -1.3933543e-09)
-bones/13/rotation = Quaternion(0.45797616, 0.19120578, -0.10158268, 0.8621943)
+bones/13/rotation = Quaternion(0.14321402, 0.21417025, -0.031777937, 0.9657179)
 bones/14/position = Vector3(2.1086592e-08, 0.2075475, -5.01766e-08)
 bones/14/rotation = Quaternion(-0.45825055, 0.00016561303, -2.59422e-05, 0.88882303)
 bones/15/position = Vector3(1.690012e-08, 0.25123593, -4.6594806e-08)
 bones/15/rotation = Quaternion(-1.849563e-05, 0.93242764, -0.36135644, 0.00027428215)
 
-[node name="AnimationPlayer" parent="BunnyBubble/PlayerBubble/PlayerBunny" index="1"]
+[node name="AnimationPlayer" parent="Menu/BunnyBubble/PlayerBubble/PlayerBunny" index="1"]
 speed_scale = 0.212
 
-[node name="BubbleAnimationPlayer" type="AnimationPlayer" parent="BunnyBubble/PlayerBubble"]
+[node name="BubbleAnimationPlayer" type="AnimationPlayer" parent="Menu/BunnyBubble/PlayerBubble"]
 libraries = {
 &"": SubResource("AnimationLibrary_s5g8n")
 }
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="Menu"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.259, 5.362)
+current = true
 fov = 61.8
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Menu"]
 root_node = NodePath("../BunnyBubble/PlayerBubble/PlayerBunny")
 tree_root = SubResource("AnimationNodeBlendTree_7yvfd")
 anim_player = NodePath("../BunnyBubble/PlayerBubble/PlayerBunny/AnimationPlayer")
 parameters/TimeScale/scale = 0.4399999999999977
 
-[node name="BallAnimationTree" type="AnimationTree" parent="."]
+[node name="BallAnimationTree" type="AnimationTree" parent="Menu"]
 root_node = NodePath("../BunnyBubble/PlayerBubble")
 tree_root = SubResource("AnimationNodeBlendTree_wf3n4")
 anim_player = NodePath("../BunnyBubble/PlayerBubble/BubbleAnimationPlayer")
 parameters/TimeScale/scale = 1.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="Menu"]
+unique_name_in_owner = true
 stream = ExtResource("4_3vvtq")
 autoplay = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.78814524, 0.5239396, -0.3229773, -0.5571612, 0.38435978, -0.7360971, -0.26153088, 0.76010185, 0.5948501, -3.5976481, 2.9275882, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Menu"]
+transform = Transform3D(0.7881453, 0.5239396, -0.32297736, -0.5571613, 0.38435978, -0.7360971, -0.2615309, 0.76010185, 0.5948502, -3.5976481, 2.9275882, 0)
 light_color = Color(0.9077715, 0.95439476, 0.8532765, 1)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="Menu"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Menu/Node3D"]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 material_override = ExtResource("5_85riq")
 mesh = SubResource("QuadMesh_4hago")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Menu"]
 transform = Transform3D(2.324, 0, 0, 0, 0.58, 0, 0, 0, 0.58, 0, -0.428, 0)
 material_override = SubResource("StandardMaterial3D_gjjcl")
 mesh = SubResource("QuadMesh_kait0")
+skeleton = NodePath("../..")
 
-[node name="StartText" type="MeshInstance3D" parent="."]
+[node name="StartText" type="MeshInstance3D" parent="Menu"]
 unique_name_in_owner = true
 transform = Transform3D(3.083, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, -0.975, 0)
 material_override = ExtResource("7_h73c4")
 mesh = SubResource("QuadMesh_kait0")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("8_uui5l")
 
-[editable path="BunnyBubble/PlayerBubble"]
-[editable path="BunnyBubble/PlayerBubble/PlayerBunny"]
+[node name="Main" parent="." instance=ExtResource("10_h73c4")]
+unique_name_in_owner = true
+visible = false
+
+[editable path="Menu/BunnyBubble/PlayerBubble"]
+[editable path="Menu/BunnyBubble/PlayerBubble/PlayerBunny"]

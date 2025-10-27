@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bdi52w8dyaums"]
+[gd_scene load_steps=19 format=4 uid="uid://bdi52w8dyaums"]
 
 [ext_resource type="Script" uid="uid://dskwrjoh4ajs5" path="res://objects/ingredient.gd" id="1_ru0ln"]
 [ext_resource type="ArrayMesh" uid="uid://bcegvh5gsqwwg" path="res://assets/models/mesh_save_assets/Prop_Skull_Skull.res" id="2_g6kyu"]
@@ -8,18 +8,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru0ln"]
 radius = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru0ln"]
-transparency = 1
-diffuse_mode = 3
-albedo_color = Color(0, 0.80784315, 0.7176471, 0.41960785)
-emission_enabled = true
-emission = Color(0, 0.5428046, 0.5418817, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_g6kyu"]
-material = SubResource("StandardMaterial3D_ru0ln")
-radius = 1.0
-height = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fmuvs"]
 radius = 1.2
@@ -150,10 +138,6 @@ script = ExtResource("1_ru0ln")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ru0ln")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transparency = 1.0
-mesh = SubResource("SphereMesh_g6kyu")
-
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -185,42 +169,41 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="Icons" type="Node3D" parent="."]
-unique_name_in_owner = true
-top_level = true
-
-[node name="Star" type="Node3D" parent="Icons"]
+[node name="Star" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.41951668, 0.75432056, 0.5049814, -0.48178023, 0.65650636, -0.5804201, -0.7693464, 0.00020581484, 0.63883215, 0, 0, 0)
 visible = false
 
-[node name="Prop_Star" type="MeshInstance3D" parent="Icons/Star"]
+[node name="Prop_Star" type="MeshInstance3D" parent="Star"]
 mesh = SubResource("ArrayMesh_vt8cq")
 skeleton = NodePath("")
 
-[node name="Skull" type="Node3D" parent="Icons"]
+[node name="Skull" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.91910094, 0.39402214, 0, -0.39402214, 0.91910094, 0, 0.0937323, 0)
 visible = false
 
-[node name="Skull" type="MeshInstance3D" parent="Icons/Skull"]
+[node name="Skull" type="MeshInstance3D" parent="Skull"]
 mesh = ExtResource("2_g6kyu")
 skeleton = NodePath("")
 
-[node name="Mushroom" type="Node3D" parent="Icons"]
+[node name="Mushroom" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14601234, 0)
 visible = false
 
-[node name="Prop_Mushroom" type="MeshInstance3D" parent="Icons/Mushroom"]
+[node name="Prop_Mushroom" type="MeshInstance3D" parent="Mushroom"]
 mesh = SubResource("ArrayMesh_utaq4")
 skeleton = NodePath("")
 
-[node name="Berry" type="Node3D" parent="Icons"]
+[node name="Berry" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.16258556, 0)
 visible = false
 
-[node name="Berry_001" type="MeshInstance3D" parent="Icons/Berry"]
+[node name="Berry_001" type="MeshInstance3D" parent="Berry"]
 mesh = SubResource("ArrayMesh_kv405")
 skeleton = NodePath("")
+
+[node name="Icons" type="Node3D" parent="."]
+unique_name_in_owner = true

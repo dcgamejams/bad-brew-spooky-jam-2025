@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var mesh: QuadMesh = %StartText.mesh
-var main_scene = preload("res://main.tscn")
 var loading := false
 
 func _process(_delta):
@@ -46,4 +45,7 @@ func load_game():
 	await get_tree().create_timer(0.1).timeout
 	%StartText.hide()
 	await get_tree().create_timer(1.0).timeout
-	get_tree().change_scene_to_packed(main_scene)
+	%MenuMusic.stop()
+	$Menu.queue_free()
+	%Main.show()
+	%Main.start_game()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=28 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
@@ -11,6 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://btqnwxt36ml0m" path="res://sound/splash5.wav" id="9_dg77c"]
 [ext_resource type="AudioStream" uid="uid://b7q0irdqxr08e" path="res://sound/splash6.wav" id="10_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://8oald4y0be2e" path="res://scenes/valtestscene.tscn" id="12_dg77c"]
+[ext_resource type="AudioStream" uid="uid://e382qlml8k0v" path="res://sound/Bad_Brew.wav" id="12_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://bcsaxoonttk50" path="res://sound/cauldron bubbling 2.wav" id="13_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://bg8pjeu4xub4p" path="res://sound/bloop3.wav" id="14_w48qg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
 radius = 3.0
@@ -19,7 +22,7 @@ radius = 3.0
 plane = Plane(0, 0, -1, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_efxa6"]
-size = Vector3(1, 7, 4)
+size = Vector3(1, 7, 7)
 
 [sub_resource type="Theme" id="Theme_0teac"]
 default_font = ExtResource("5_7mycd")
@@ -41,8 +44,15 @@ region = Rect2(577, 256, 64, 64)
 atlas = ExtResource("6_272bh")
 region = Rect2(385, 640, 64, 64)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efxa6"]
+load_path = "res://.godot/imported/keyboard-&-mouse_sheet_default.png-ade76fad2f2ebd1f9ae0e3ac7db03392.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = SubResource("CompressedTexture2D_efxa6")
+region = Rect2(193, 64, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
-atlas = ExtResource("6_272bh")
+atlas = SubResource("CompressedTexture2D_efxa6")
 region = Rect2(641, 640, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mebcp"]
@@ -107,18 +117,19 @@ collision_mask = 129
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Game/Kill"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2606792, -1.2555904, -3.1486342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.442854, -1.2555904, -3.1486342)
 shape = SubResource("BoxShape3D_efxa6")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Game/Kill"]
-transform = Transform3D(0.013264104, 0, -0.999912, 0, 1, 0, 0.999912, 0, 0.013264104, 16.691399, -0.9781904, -23.754732)
+transform = Transform3D(0.013264104, 0, -0.999912, 0, 1, 0, 0.999912, 0, 0.013264104, 16.691399, -0.9781904, -23.984486)
 shape = SubResource("BoxShape3D_efxa6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Game/Kill"]
-transform = Transform3D(-0.99900824, 0, -0.04452607, 0, 1, 0, 0.04452607, 0, -0.99900824, 36.71352, -1.2457075, -3.6270971)
+transform = Transform3D(-0.99900824, 0, -0.04452607, 0, 1, 0, 0.04452607, 0, -0.99900824, 36.607285, -1.2457075, -3.6270971)
 shape = SubResource("BoxShape3D_efxa6")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="PlayerUI"]
 layout_mode = 3
@@ -172,6 +183,14 @@ text = "Move"
 [node name="Key4" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="KeyImage2" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_dg77c")
+
+[node name="Label2" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+text = "or"
+
 [node name="KeyImage" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_efxa6")
@@ -179,6 +198,11 @@ texture = SubResource("AtlasTexture_efxa6")
 [node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
 layout_mode = 2
 text = "Kick"
+
+[node name="Label3" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "( -> towards mouse pointer )"
 
 [node name="Key2" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -221,7 +245,15 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key5"]
 layout_mode = 2
-text = "Slam Skull (when in bubble)"
+text = "Slam"
+
+[node name="Label2" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key5"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "( when in bubble ) "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Top" type="MarginContainer" parent="PlayerUI/Control"]
 layout_mode = 1
@@ -326,6 +358,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("7_efxa6")
 
+[node name="TextureRect9" type="TextureRect" parent="PlayerUI/Control/BottomLeft/Hearts"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_efxa6")
+
 [node name="Center" type="MarginContainer" parent="PlayerUI"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -397,3 +434,17 @@ max_polyphony = 5
 [node name="Splash2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_ycdy4")
 max_polyphony = 5
+
+[node name="MainMusic" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("12_ycdy4")
+
+[node name="BubbleNoise" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("13_ycdy4")
+volume_db = -9.753
+max_db = 0.453
+pitch_scale = 0.89
+
+[node name="RoundEnd" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_w48qg")

@@ -103,7 +103,7 @@ func _enter_tree() -> void:
 
 func _ready():
 	add_to_group('Players')
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			
 	if not is_multiplayer_authority():
 		set_process(false)
@@ -133,8 +133,7 @@ func display_mouse():
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(50, 0.0, 100))
 	var result = space_state.intersect_ray(query)
-	if result: 
-		%Mouse.position = get_mouse(result).position
+	%Mouse.position = get_mouse(result).position
 
 func _process(delta: float):
 	modify_model_orientation(delta)
@@ -180,7 +179,7 @@ func modify_physics_properties():
 	last_frame_position = position #get play char position every frame
 	last_frame_velocity = velocity #get play char velocity every frame
 	was_on_floor = !is_on_floor() #get if play char is on floor or not
-	godot_plush_skin.torus.visible = !is_on_floor()
+	#godot_plush_skin.torus.visible = !is_on_floor()
 	
 func gravity_apply(delta : float):
 	#if play char goes up, apply jump gravity
@@ -216,7 +215,6 @@ func slam_down():
 	$Slam.play()
 	await get_tree().create_timer(0.2).timeout 
 	godot_plush_skin.slam_area.get_node('CollisionShape3D').disabled = true
-	
 
 var items: int = 0
 signal signal_item_picked_up
@@ -251,9 +249,11 @@ func kick_object(body):
 		var mouse_dir = item.position.direction_to(get_mouse(result).position)
 		if not item.torque_timer.is_stopped():
 			item.torque_timer.stop()
-			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
-
-		item.apply_central_impulse(mouse_dir * 15.0) #apply 
+			item.apply_torque_impulse(item.angular_velocity)
+		if get_mouse(result).position.distance_to(Vector3.ZERO) < 4.0:
+			item.apply_central_impulse(item.position.direction_to(Vector3(0.0, -0.5, 0.0)) * 10.0) #apply 
+		else:
+			item.apply_central_impulse(mouse_dir * 15.0) #apply 
 		
 func stop(body):
 	if body.is_in_group("Ingredients"):
@@ -263,9 +263,7 @@ func stop(body):
 			item.torque_timer.stop()
 			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
 		#item.apply_central_impulse(item.global_position.direction_to(Vector3.ZERO) * 1.0) #apply 
-		%TorusIndicator.show()
 		await get_tree().create_timer(0.2).timeout		
-		%TorusIndicator.hide()
 		
 func get_mouse(_rid_wall):
 	var space_state = get_world_3d().direct_space_state
