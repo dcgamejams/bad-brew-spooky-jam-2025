@@ -9,7 +9,6 @@ extends Node3D
 @onready var center_col: CollisionShape3D = $"GodotPlushModel/Rig/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone DEF-hips/CollisionShape3D"
 
 @onready var cR: CharacterBody3D = get_parent().get_parent()
-@onready var torus: MeshInstance3D = %TorusIndicator
 @onready var slam_area: Area3D = %SlamArea
 
 var ragdoll : bool = false : set = set_ragdoll
@@ -21,7 +20,6 @@ signal footstep(intensity : float)
 func _ready():
 	set_ragdoll(ragdoll)
 	apply_no_weights()
-	%TorusIndicator.top_level = true
 	%SlamArea.top_level = true
 	slam_area.body_entered.connect(destroy_skulls)
 	
@@ -68,10 +66,10 @@ func set_ragdoll(value : bool) -> void:
 	
 	if ragdoll:
 		physical_bone_simulator_3d.physical_bones_start_simulation()
-		%TorusIndicator.show()
+		#%TorusIndicator.show()
 	else: 
 		physical_bone_simulator_3d.physical_bones_stop_simulation()
-		%TorusIndicator.hide()
+		#%TorusIndicator.hide()
 
 
 	#if is_multiplayer_authority():
@@ -171,14 +169,15 @@ func final_cleanup(mesh_instance: MeshInstance3D, persist_ms: float):
 		
 @onready var ray_cast_down = %RayCast3D
 		
-func _process(_delta):
-	if ray_cast_down.is_colliding and ragdoll:
-		if not cR.floor_check.is_colliding():
-			line(global_position + Vector3(0.0, -2.0, 0.0), ray_cast_down.get_collision_point())
-		%TorusIndicator.position = ray_cast_down.get_collision_point()
-		slam_area.position = ray_cast_down.get_collision_point()
-	elif %TorusIndicator.visible:
-		%TorusIndicator.hide()
+func _physics_process(_delta: float) -> void:
+	pass
+	#if ray_cast_down.is_colliding and ragdoll:
+		#if not cR.floor_check.is_colliding():
+			#line(global_position + Vector3(0.0, -2.0, 0.0), ray_cast_down.get_collision_point())
+		#%TorusIndicator.position = ray_cast_down.get_collision_point()
+		#slam_area.position = ray_cast_down.get_collision_point()
+	#elif %TorusIndicator.visible:
+		#%TorusIndicator.hide()
 	
 #func set_name_tag(username_text: String):
 	#%NametagPlush.text = username_text

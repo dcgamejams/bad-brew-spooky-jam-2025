@@ -60,21 +60,20 @@ func set_type(value: TYPE):
 		TYPE.BERRY:
 			%Berry.show()	
 		TYPE.SKULL:
-			$Mesh.hide()
 			%Skull.show()
 			con_torque += 1.0
 
 func set_mesh_color(new_color: Color):
 	color = new_color
-	var mesh_material: StandardMaterial3D = $Mesh.get_active_material(0)
-	var new_mat = mesh_material.duplicate() 
-	new_mat.albedo_color = new_color
-	new_mat.emission = new_color
-	$Mesh.set_surface_override_material(0, new_mat)
-	var sasTween : Tween = create_tween()
-	sasTween.set_ease(Tween.EASE_IN)
-	sasTween.tween_property($Mesh, "transparency", 0.7, 4.0)
-	is_showing_line = true
+	#var mesh_material: StandardMaterial3D = $Mesh.get_active_material(0)
+	#var new_mat = mesh_material.duplicate() 
+	#new_mat.albedo_color = new_color
+	#new_mat.emission = new_color
+	#$Mesh.set_surface_override_material(0, new_mat)
+	#var sasTween : Tween = create_tween()
+	#sasTween.set_ease(Tween.EASE_IN)
+	#sasTween.tween_property($Mesh, "transparency", 0.7, 4.0)
+	#is_showing_line = true
 	
 func _process(_delta: float) -> void:
 	move_ray_casts()

@@ -218,4 +218,3 @@ func get_point_on_circumference(center: Vector2, radius: float, angle_radians) -
 	var x = center.x + radius * cos(angle_radians)
 	var y = center.y + radius * sin(angle_radians)
 	return Vector3(x, 8.5, y)
-	

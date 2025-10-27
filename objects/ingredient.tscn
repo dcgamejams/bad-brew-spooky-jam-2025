@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bdi52w8dyaums"]
+[gd_scene load_steps=19 format=4 uid="uid://bdi52w8dyaums"]
 
 [ext_resource type="Script" uid="uid://dskwrjoh4ajs5" path="res://objects/ingredient.gd" id="1_ru0ln"]
 [ext_resource type="ArrayMesh" uid="uid://bcegvh5gsqwwg" path="res://assets/models/mesh_save_assets/Prop_Skull_Skull.res" id="2_g6kyu"]
@@ -8,18 +8,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru0ln"]
 radius = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru0ln"]
-transparency = 1
-diffuse_mode = 3
-albedo_color = Color(0, 0.80784315, 0.7176471, 0.41960785)
-emission_enabled = true
-emission = Color(0, 0.5428046, 0.5418817, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_g6kyu"]
-material = SubResource("StandardMaterial3D_ru0ln")
-radius = 1.0
-height = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fmuvs"]
 radius = 1.2
@@ -149,10 +137,6 @@ script = ExtResource("1_ru0ln")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ru0ln")
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transparency = 1.0
-mesh = SubResource("SphereMesh_g6kyu")
 
 [node name="Area3D" type="Area3D" parent="."]
 

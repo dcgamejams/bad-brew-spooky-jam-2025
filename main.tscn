@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bnhbasot1u7g4"]
+[gd_scene load_steps=25 format=3 uid="uid://bnhbasot1u7g4"]
 
 [ext_resource type="Script" uid="uid://5dsj51blu5uv" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://PlayerCharacter/PlayerCharacterScene.tscn" id="2_0xm2m"]
@@ -41,8 +41,15 @@ region = Rect2(577, 256, 64, 64)
 atlas = ExtResource("6_272bh")
 region = Rect2(385, 640, 64, 64)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efxa6"]
+load_path = "res://.godot/imported/keyboard-&-mouse_sheet_default.png-ade76fad2f2ebd1f9ae0e3ac7db03392.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = SubResource("CompressedTexture2D_efxa6")
+region = Rect2(193, 64, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
-atlas = ExtResource("6_272bh")
+atlas = SubResource("CompressedTexture2D_efxa6")
 region = Rect2(641, 640, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mebcp"]
@@ -172,6 +179,14 @@ text = "Move"
 [node name="Key4" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="KeyImage2" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_dg77c")
+
+[node name="Label2" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+text = "or"
+
 [node name="KeyImage" type="TextureRect" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_efxa6")
@@ -179,6 +194,11 @@ texture = SubResource("AtlasTexture_efxa6")
 [node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
 layout_mode = 2
 text = "Kick"
+
+[node name="Label3" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "( -> towards mouse pointer )"
 
 [node name="Key2" type="HBoxContainer" parent="PlayerUI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -221,7 +241,15 @@ stretch_mode = 6
 
 [node name="Label" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key5"]
 layout_mode = 2
-text = "Slam Skull (when in bubble)"
+text = "Slam"
+
+[node name="Label2" type="Label" parent="PlayerUI/Control/MarginContainer/VBoxContainer/Key5"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 19
+text = "( kills skulls when in bubble )"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Top" type="MarginContainer" parent="PlayerUI/Control"]
 layout_mode = 1

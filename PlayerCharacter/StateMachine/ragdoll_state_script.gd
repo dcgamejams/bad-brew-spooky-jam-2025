@@ -109,7 +109,7 @@ func input_management(delta):
 
 func move(delta : float):
 	var impulse: Vector3 = Vector3.ZERO
-	cR.godot_plush_skin.torus.visible = !cR.floor_check.is_colliding()
+	#cR.godot_plush_skin.torus.visible = !cR.floor_check.is_colliding()
 	
 	cR.move_dir = Input.get_vector(cR.moveLeftAction, cR.moveRightAction, cR.moveForwardAction, cR.moveBackwardAction).rotated(-cR.cam_holder.global_rotation.y)
 	if Input.is_action_pressed("sprint"):

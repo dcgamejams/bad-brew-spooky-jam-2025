@@ -31,7 +31,7 @@ var aim_cam_pos_side : bool = true #false = left, true = right
 
 func _ready():
 	#capture mouse cursor, and enable camera
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Input.set_use_accumulated_input(false)
 	set_active(active)
 	
@@ -43,11 +43,11 @@ func set_active(state : bool):
 
 func _input(event):
 	#free/capture mouse cursor
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: 
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			
-	#if mouse cursor is free, can't rotate cam
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
+	#if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: 
+			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			#
+	##if mouse cursor is free, can't rotate cam
+	#if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	
 	#change cam mode (default, aim)
 	if event.is_action_pressed(aim_cam_action):
