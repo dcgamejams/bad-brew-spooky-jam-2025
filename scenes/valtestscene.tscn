@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://8oald4y0be2e"]
+[gd_scene load_steps=26 format=4 uid="uid://8oald4y0be2e"]
 
 [ext_resource type="Script" uid="uid://bn5y0anwubvj" path="res://scenes/valtestscene.gd" id="1_74sie"]
 [ext_resource type="Texture2D" uid="uid://bx8g2xtkrao8v" path="res://assets/models/Cauldron_CauldronPalette.png" id="3_gnuei"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bm5dduiyqaect" path="res://assets/FX/cauldron_bubbles.tscn" id="10_74sie"]
 [ext_resource type="Texture2D" uid="uid://bvvmgji44ak3k" path="res://assets/models/Walls_CauldronPalette.png" id="10_gnuei"]
 [ext_resource type="PackedScene" uid="uid://fgxdqxxe88j0" path="res://assets/FX/cauldron_splash.tscn" id="11_gnuei"]
+[ext_resource type="ArrayMesh" uid="uid://drpxot04mhrjr" path="res://assets/models/mesh_save_assets/PortalDoor_Plane_003.res" id="12_1uwq8"]
+[ext_resource type="Material" uid="uid://iy8b8urjpb7r" path="res://assets/models/materials/PortalSwirl.tres" id="12_gnuei"]
 [ext_resource type="PackedScene" uid="uid://bfnxgfasogdgq" path="res://assets/models/SlopedFloor.glb" id="13_shbqf"]
 [ext_resource type="Material" uid="uid://cu1j7cujabk23" path="res://assets/models/materials/Floor.tres" id="14_m7uk2"]
 [ext_resource type="PackedScene" uid="uid://du02llh70eqm8" path="res://assets/models/CauldronGoop.glb" id="14_n0w4l"]
@@ -174,7 +176,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9350247, 0)
 visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="GameScene"]
-transform = Transform3D(-0.9747612, 0, -0.22325021, 0, 1, 0, 0.22325021, 0, -0.9747612, 0, 0, 0)
+transform = Transform3D(-0.9747612, 0, -0.22325021, 0, 1, 0, 0.22325021, 0, -0.9747612, 0, 1.5715804, -9.302274)
 light_color = Color(1, 0.9529412, 1, 1)
 light_energy = 1.137
 light_indirect_energy = 4.245
@@ -202,6 +204,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.779158, -9.559731)
 [node name="DoorFrame" parent="GameScene/PortalDoor-N" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6199455)
 
+[node name="Portal" type="MeshInstance3D" parent="GameScene/PortalDoor-N/DoorFrame/Portal" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -0.090884686, 0.2536831)
+mesh = ExtResource("12_1uwq8")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("12_gnuei")
+
 [node name="StaticBody3D" parent="GameScene/PortalDoor-N/DoorFrame" index="1"]
 collision_layer = 2
 collision_mask = 2
@@ -221,6 +229,12 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.0
 [node name="DoorFrame" parent="GameScene/PortalDoor-E" index="0"]
 layers = 3
 
+[node name="Portal" type="MeshInstance3D" parent="GameScene/PortalDoor-E/DoorFrame/Portal" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -0.090884686, 0.20171928)
+mesh = ExtResource("12_1uwq8")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("12_gnuei")
+
 [node name="StaticBody3D" parent="GameScene/PortalDoor-E/DoorFrame" index="1"]
 collision_layer = 2
 collision_mask = 2
@@ -237,7 +251,15 @@ omni_attenuation = 1.582
 [node name="PortalDoor-W" parent="GameScene" instance=ExtResource("19_m7uk2")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.16025, 4.779158, 0.3142538)
 
-[node name="StaticBody3D" parent="GameScene/PortalDoor-W/DoorFrame" index="1"]
+[node name="Portal2" type="MeshInstance3D" parent="GameScene/PortalDoor-W/DoorFrame" index="0"]
+mesh = ExtResource("12_1uwq8")
+skeleton = NodePath("")
+
+[node name="Portal" parent="GameScene/PortalDoor-W/DoorFrame" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -0.090884686, 0.20171928)
+surface_material_override/0 = ExtResource("12_gnuei")
+
+[node name="StaticBody3D" parent="GameScene/PortalDoor-W/DoorFrame" index="2"]
 collision_layer = 2
 collision_mask = 0
 

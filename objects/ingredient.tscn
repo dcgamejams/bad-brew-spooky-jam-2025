@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://bdi52w8dyaums"]
+[gd_scene load_steps=20 format=4 uid="uid://bdi52w8dyaums"]
 
 [ext_resource type="Script" uid="uid://dskwrjoh4ajs5" path="res://objects/ingredient.gd" id="1_ru0ln"]
 [ext_resource type="ArrayMesh" uid="uid://bcegvh5gsqwwg" path="res://assets/models/mesh_save_assets/Prop_Skull_Skull.res" id="2_g6kyu"]
 [ext_resource type="Texture2D" uid="uid://ccr8d5asexoh4" path="res://assets/models/Prop_Star_Bunny.png" id="2_m0wag"]
 [ext_resource type="Texture2D" uid="uid://ir44wgfn3pwr" path="res://assets/models/Prop_Mushroom_Bunny.png" id="3_fmuvs"]
+[ext_resource type="Material" uid="uid://csxg73otgfrso" path="res://objects/ingredient_shader.tres" id="3_yghpy"]
 [ext_resource type="Texture2D" uid="uid://c8hlyvta7fbnp" path="res://assets/models/Prop_Berry_PlayerBunny_Bunny.png" id="5_yghpy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ru0ln"]
@@ -19,6 +20,7 @@ outer_radius = 0.7
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7epdw"]
 resource_name = "Bunny"
+next_pass = ExtResource("3_yghpy")
 shading_mode = 0
 albedo_texture = ExtResource("2_m0wag")
 
@@ -56,6 +58,7 @@ shadow_mesh = SubResource("ArrayMesh_co6jt")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnq6e"]
 resource_name = "Bunny"
+next_pass = ExtResource("3_yghpy")
 shading_mode = 0
 albedo_texture = ExtResource("3_fmuvs")
 
@@ -95,6 +98,7 @@ shadow_mesh = SubResource("ArrayMesh_7f4s7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyylt"]
 resource_name = "Bunny"
+next_pass = ExtResource("3_yghpy")
 shading_mode = 0
 albedo_texture = ExtResource("5_yghpy")
 

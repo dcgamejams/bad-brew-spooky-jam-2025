@@ -15,7 +15,7 @@ func enter(char_ref : CharacterBody3D):
 func verifications():
 	#manage the appliements that need to be set at the start of the state
 	cR.godot_plush_skin.set_state("idle")
-	cR.mouse_mesh.show()
+	#cR.mouse_mesh.show()
 	cR.floor_snap_length = 1.0
 	if cR.jump_cooldown > 0.0: cR.jump_cooldown = -1.0
 	if cR.nb_jumps_in_air_allowed < cR.nb_jumps_in_air_allowed_ref: cR.nb_jumps_in_air_allowed = cR.nb_jumps_in_air_allowed_ref

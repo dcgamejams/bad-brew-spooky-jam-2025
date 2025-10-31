@@ -104,13 +104,11 @@ func _enter_tree() -> void:
 func _ready():
 	add_to_group('Players')
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			
+	
 	if not is_multiplayer_authority():
 		set_process(false)
 		set_physics_process(false)
 
-
-	
 	#set move variables, and value references
 	move_speed = walk_speed
 	move_accel = walk_accel
@@ -134,6 +132,7 @@ func display_mouse():
 	var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(50, 0.0, 100))
 	var result = space_state.intersect_ray(query)
 	%Mouse.position = get_mouse(result).position
+	%MousePivot.look_at(global_position)
 
 func _process(delta: float):
 	modify_model_orientation(delta)
@@ -143,7 +142,6 @@ func _physics_process(_delta : float):
 	kick()
 	modify_physics_properties()
 	move_and_slide()
-	display_mouse()
 	
 func display_properties():
 	#display play char properties
@@ -240,8 +238,6 @@ func kick():
 func kick_object(body):
 	if body.is_in_group("Ingredients"):
 		var item: Ingredient = body
-		stop(body)
-		
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(50, 0.0, 100))
 		var result = space_state.intersect_ray(query)
@@ -250,9 +246,13 @@ func kick_object(body):
 		var mouse_dir = item.position.direction_to(get_mouse(result).position)
 		if not item.torque_timer.is_stopped():
 			item.torque_timer.stop()
-			item.apply_torque_impulse(item.angular_velocity)
-		if get_mouse(result).position.distance_to(Vector3.ZERO) < 4.0:
-			item.apply_central_impulse(item.position.direction_to(Vector3(0.0, -0.5, 0.0)) * 10.0) #apply 
+		await get_tree().process_frame
+		item.freeze = true
+		item.set_angular_velocity(Vector3.ZERO)
+		await get_tree().process_frame
+		item.freeze = false
+		if %Mouse.global_position.distance_to(Vector3.ZERO) < 8.0:
+			item.apply_central_impulse(item.global_position.direction_to(Vector3(0.0, -2.0, 0.0)) * 10.0) #apply 
 		else:
 			item.apply_central_impulse(mouse_dir * 15.0) #apply 
 		
@@ -260,11 +260,11 @@ func stop(body):
 	if body.is_in_group("Ingredients"):
 		$Hit.play()
 		var item: Ingredient = body
+		item.set_angular_velocity(Vector3.ZERO)
 		if not item.torque_timer.is_stopped():
 			item.torque_timer.stop()
-			item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
-		#item.apply_central_impulse(item.global_position.direction_to(Vector3.ZERO) * 1.0) #apply 
-		await get_tree().create_timer(0.2).timeout		
+			#item.apply_torque_impulse(item.initial_angle * -item.con_torque * 1.15)
+			#item.apply_central_impulse(item.global_position.direction_to(Vector3.ZERO) * 1.0) #apply 
 		
 func get_mouse(_rid_wall):
 	var space_state = get_world_3d().direct_space_state

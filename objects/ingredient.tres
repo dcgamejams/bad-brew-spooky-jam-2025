@@ -4,5 +4,6 @@
 
 [resource]
 resource_name = "Bunny"
+transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("1_te2py")

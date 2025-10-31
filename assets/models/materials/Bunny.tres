@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://dcpc43bpjtxnr" path="res://assets/shaders/toonshading.gdshader" id="1_k8qey"]
 [ext_resource type="Texture2D" uid="uid://ctlu7pfha4id7" path="res://assets/models/PlayerBunny_Bunny.png" id="2_6i8o2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6m40f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6i8o2"]
 render_priority = 0
 shader = ExtResource("1_6i8o2")
 shader_parameter/color = Color(0.12156863, 0.023529412, 0.4392157, 1)
@@ -13,7 +13,7 @@ shader_parameter/thickness = 0.01999999955296
 [resource]
 resource_local_to_scene = true
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_6m40f")
+next_pass = SubResource("ShaderMaterial_6i8o2")
 shader = ExtResource("1_k8qey")
 shader_parameter/ToonRampOffset = 0.03600000171
 shader_parameter/ToonRampSmoothness = 0.2610000123975

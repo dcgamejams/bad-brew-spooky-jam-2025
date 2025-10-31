@@ -41,7 +41,7 @@ func apply_ragdoll():
 	#set model to ragdoll mode
 	cR.set_process(false)
 	cR.set_physics_process(false)
-	cR.mouse_mesh.hide()
+	#cR.mouse_mesh.hide()
 
 	cR.godot_plush_skin.ragdoll = true
 	# Add a little angle if we start in the air

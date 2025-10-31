@@ -171,7 +171,10 @@ func final_cleanup(mesh_instance: MeshInstance3D, persist_ms: float):
 		return mesh_instance
 		
 @onready var ray_cast_down = %RayCast3D
-		
+
+func _process(_delta):
+	cR.display_mouse()
+
 func _physics_process(_delta: float) -> void:
 	if ray_cast_down.is_colliding and ragdoll:
 		slam_area.position = ray_cast_down.get_collision_point()

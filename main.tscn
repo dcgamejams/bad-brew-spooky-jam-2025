@@ -73,12 +73,13 @@ walk_deccel = 5.5
 
 [node name="Valtestscene" parent="." instance=ExtResource("12_dg77c")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.5847375, 0)
+visible = true
 
 [node name="Game" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5847375, 0)
 
 [node name="Spawner" type="Marker3D" parent="Game"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.068849, 0)
 script = ExtResource("8_5vw27")
 
 [node name="RoundTimer" type="Timer" parent="Game"]

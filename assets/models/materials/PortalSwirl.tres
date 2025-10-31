@@ -1,13 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://iy8b8urjpb7r"]
 
 [ext_resource type="Shader" uid="uid://bu4c4fdhrqerv" path="res://assets/shaders/UVRotator.gdshader" id="1_eictx"]
-[ext_resource type="Texture2D" uid="uid://1gayo4lxuyom" path="res://assets/models/textures/PortalSwirl.png" id="2_2meeg"]
+[ext_resource type="Texture2D" uid="uid://beeg5imkl0bmf" path="res://assets/models/textures/bgswirl.png" id="2_eictx"]
 
 [resource]
 render_priority = 1
 shader = ExtResource("1_eictx")
 shader_parameter/noise_strength = Vector3(-0.36, 0.755, 1.597)
-shader_parameter/noise_speed = Vector3(0.161, -0.778, 0.667)
+shader_parameter/noise_speed = Vector3(0.1, -0.394, 0.167)
 shader_parameter/displacement_strength = Vector3(0.543, 0.063, 0)
 shader_parameter/displacement_speed = Vector3(2, 3, 0.5)
-shader_parameter/noise = ExtResource("2_2meeg")
+shader_parameter/noise = ExtResource("2_eictx")

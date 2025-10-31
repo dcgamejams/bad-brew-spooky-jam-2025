@@ -127,7 +127,6 @@ void light() {
 		vec3 subSurfColor = SubSurfTint * texture(SubSurfTexture, UV).rgb;
 		DIFFUSE_LIGHT += subSurfScattering * SubSurfBrightness * subSurfColor;
 	#endif
-
-
+	
 	SPECULAR_LIGHT = ambientLightOutput;
 }

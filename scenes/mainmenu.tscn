@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bi8vsxyc18w01"]
+[gd_scene load_steps=30 format=3 uid="uid://bi8vsxyc18w01"]
 
 [ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="1_r3g3c"]
 [ext_resource type="Script" uid="uid://tepg32r2c1m6" path="res://scenes/mainmenu.gd" id="1_wf3n4"]
@@ -6,10 +6,12 @@
 [ext_resource type="Material" uid="uid://du1iiixuiunis" path="res://assets/models/materials/Bubble.tres" id="3_s5g8n"]
 [ext_resource type="AudioStream" uid="uid://d0e5w04eaihhm" path="res://sound/Menu Music.wav" id="4_3vvtq"]
 [ext_resource type="Material" uid="uid://c68mnks3yaxxc" path="res://assets/models/materials/menuBG.tres" id="5_85riq"]
+[ext_resource type="Material" uid="uid://b66abwf8o722t" path="res://assets/models/materials/Bunny.tres" id="5_uui5l"]
 [ext_resource type="Texture2D" uid="uid://cajb577yausk2" path="res://assets/models/textures/badbrew_title.png" id="6_wf3n4"]
 [ext_resource type="Material" uid="uid://cqngnjxdym3jh" path="res://scenes/badbrewtitle.tres" id="7_h73c4"]
 [ext_resource type="Material" uid="uid://b6jhyi8t6xv4a" path="res://scenes/pressx.tres" id="8_uui5l"]
 [ext_resource type="PackedScene" uid="uid://bnhbasot1u7g4" path="res://main.tscn" id="10_h73c4"]
+[ext_resource type="Texture2D" uid="uid://dasbbv47syq1m" path="res://assets/keyboard_space.png" id="11_4hago"]
 
 [sub_resource type="Environment" id="Environment_7yvfd"]
 background_mode = 1
@@ -94,6 +96,18 @@ albedo_texture = ExtResource("6_wf3n4")
 
 [sub_resource type="QuadMesh" id="QuadMesh_kait0"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_gjjcl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kait0"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("11_4hago")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pj40"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.02745098, 0, 0.1764706, 1)
+
 [node name="Mainmenu" type="Node3D"]
 script = ExtResource("1_wf3n4")
 
@@ -106,7 +120,7 @@ environment = SubResource("Environment_7yvfd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608, 0)
 
 [node name="PlayerBubble" parent="Menu/BunnyBubble" instance=ExtResource("2_3vvtq")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 1.3012754, 0)
+transform = Transform3D(0.99999964, 0, 0, 0, 0.9999996, 0, 0, 0, 0.9999997, 0, 1.3012754, 0)
 
 [node name="Playerbubble" parent="Menu/BunnyBubble/PlayerBubble" index="0"]
 material_override = ExtResource("3_s5g8n")
@@ -116,27 +130,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3012754, 0)
 
 [node name="Skeleton3D" parent="Menu/BunnyBubble/PlayerBubble/PlayerBunny/Rig" index="0"]
 bones/0/position = Vector3(-2.1175824e-22, 0.7960062, 2.0401803e-15)
-bones/0/rotation = Quaternion(0.9956023, -0.0043726075, -0.06253123, -0.06961939)
+bones/0/rotation = Quaternion(0.9966954, -0.0029105307, -0.04162255, -0.06969579)
 bones/1/position = Vector3(-2.9653557e-09, 5.9604645e-08, 2.1963569e-15)
-bones/1/rotation = Quaternion(1, -1.1298894e-09, -2.6254234e-08, -2.9532965e-09)
-bones/2/rotation = Quaternion(-0.03913377, 0.026006777, 0.51562214, -0.8555268)
-bones/3/rotation = Quaternion(0.2565341, 0.031933296, -0.009130149, 0.9659644)
-bones/5/rotation = Quaternion(-0.0375486, -0.11129885, 0.5097187, 0.85228485)
-bones/6/rotation = Quaternion(0.0991592, 0.04554234, -0.0039122156, 0.99402124)
-bones/8/rotation = Quaternion(-0.3753495, -0.009901087, -0.14582492, 0.9152867)
+bones/1/rotation = Quaternion(1, -1.0804806e-09, -2.623078e-08, -2.6739346e-09)
+bones/2/rotation = Quaternion(-0.07109597, 0.08410094, 0.5202743, -0.846869)
+bones/3/rotation = Quaternion(0.2584155, 0.0644632, -0.017869987, 0.963715)
+bones/5/rotation = Quaternion(-0.070123576, -0.16876379, 0.50940245, 0.84089875)
+bones/6/rotation = Quaternion(0.09656696, 0.079048246, -0.007126691, 0.9921569)
+bones/8/rotation = Quaternion(-0.46718928, -0.0128601855, -0.19008985, 0.8633857)
 bones/9/position = Vector3(-6.998177e-08, 0.15368368, -4.5088708e-08)
-bones/9/rotation = Quaternion(0.14317837, -0.21402735, 0.031713866, 0.96575695)
+bones/9/rotation = Quaternion(0.19990326, -0.21178356, 0.04428498, 0.9556283)
 bones/10/position = Vector3(2.5586017e-08, 0.2075474, 2.5617073e-09)
 bones/10/rotation = Quaternion(-0.45825052, -5.0531373e-05, 8.52457e-05, 0.8888231)
 bones/11/position = Vector3(-2.4242517e-08, 0.25123602, -3.4368462e-08)
 bones/11/rotation = Quaternion(-0.0001062468, 0.93242776, -0.3613565, 4.7652356e-05)
-bones/12/rotation = Quaternion(-0.14186044, 0.0022107991, 0.035084967, 0.9892623)
+bones/12/rotation = Quaternion(-0.038602676, -0.001020459, -0.013140217, 0.9991678)
 bones/13/position = Vector3(-3.4806785e-08, 0.15368384, -1.3933543e-09)
-bones/13/rotation = Quaternion(0.4680574, 0.19000117, -0.10381836, 0.8567635)
+bones/13/rotation = Quaternion(0.41669816, 0.19579507, -0.092428595, 0.88288397)
 bones/14/position = Vector3(2.1086592e-08, 0.2075475, -5.01766e-08)
 bones/14/rotation = Quaternion(-0.45825055, 0.00016561303, -2.59422e-05, 0.88882303)
 bones/15/position = Vector3(1.690012e-08, 0.25123593, -4.6594806e-08)
 bones/15/rotation = Quaternion(-1.849563e-05, 0.93242764, -0.36135644, 0.00027428215)
+
+[node name="PlayerBunnyMesh_001" parent="Menu/BunnyBubble/PlayerBubble/PlayerBunny/Rig/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("5_uui5l")
 
 [node name="AnimationPlayer" parent="Menu/BunnyBubble/PlayerBubble/PlayerBunny" index="1"]
 speed_scale = 0.212
@@ -192,6 +209,20 @@ material_override = ExtResource("7_h73c4")
 mesh = SubResource("QuadMesh_kait0")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("8_uui5l")
+
+[node name="StartText3" type="MeshInstance3D" parent="Menu/StartText"]
+unique_name_in_owner = true
+transform = Transform3D(0.19461565, 0, 0, 0, 1.2727273, 0, 0, 0, 1.2727273, -0.08221186, 0.05218327, 0.09723061)
+mesh = SubResource("QuadMesh_gjjcl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_kait0")
+
+[node name="StartText4" type="MeshInstance3D" parent="Menu/StartText"]
+unique_name_in_owner = true
+transform = Transform3D(-0.097, 0, 0, 0, 0.273, 1.9221766e-07, 0, -4.1221853e-08, 1.273, -0.07583293, 0.033053756, 0.0846433)
+mesh = SubResource("QuadMesh_gjjcl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6pj40")
 
 [node name="Main" parent="." instance=ExtResource("10_h73c4")]
 unique_name_in_owner = true

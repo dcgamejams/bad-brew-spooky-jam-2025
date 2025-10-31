@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvpobf7odjnjk"
-path.s3tc="res://.godot/imported/keyboard-&-mouse_sheet_default.png-ade76fad2f2ebd1f9ae0e3ac7db03392.s3tc.ctex"
-path.etc2="res://.godot/imported/keyboard-&-mouse_sheet_default.png-ade76fad2f2ebd1f9ae0e3ac7db03392.etc2.ctex"
+uid="uid://dasbbv47syq1m"
+path.s3tc="res://.godot/imported/keyboard_space.png-21730f03365e74296d7f75bef62f4e77.s3tc.ctex"
+path.etc2="res://.godot/imported/keyboard_space.png-21730f03365e74296d7f75bef62f4e77.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/ui/keyboard-&-mouse_sheet_default.png"
-dest_files=["res://.godot/imported/keyboard-&-mouse_sheet_default.png-ade76fad2f2ebd1f9ae0e3ac7db03392.s3tc.ctex", "res://.godot/imported/keyboard-&-mouse_sheet_default.png-ade76fad2f2ebd1f9ae0e3ac7db03392.etc2.ctex"]
+source_file="res://assets/keyboard_space.png"
+dest_files=["res://.godot/imported/keyboard_space.png-21730f03365e74296d7f75bef62f4e77.s3tc.ctex", "res://.godot/imported/keyboard_space.png-21730f03365e74296d7f75bef62f4e77.etc2.ctex"]
 
 [params]
 

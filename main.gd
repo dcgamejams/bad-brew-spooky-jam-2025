@@ -63,6 +63,7 @@ func start_game():
 	add_child(spawn_timer)
 	spawn_timer.start()
 	
+	
 var levels: Array[Array] = [
 	[0, 2, 0, 0, randi_range(1, 2)], 
 	[1, randi_range(1, 2), randi_range(0, 2), 0, 1], 
