@@ -55,6 +55,7 @@ visible = false
 visible = false
 
 [node name="FlatterCauldron" parent="." instance=ExtResource("3_e8rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62380934, 0)
 
 [node name="Cauldron" parent="FlatterCauldron" index="0"]
 material_override = ExtResource("2_w22tq")
