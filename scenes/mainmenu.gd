@@ -11,7 +11,7 @@ func load_game():
 	loading = true
 	var sasTween: Tween = create_tween()
 	sasTween.set_ease(Tween.EASE_OUT)
-	sasTween.tween_property(	$AudioStreamPlayer, "volume_db", -35.0, 3.0)
+	sasTween.tween_property(	%MenuMusic, "volume_db", -35.0, 3.0)
 
 	# TODO: tween this material, but ... gotta move on
 	await get_tree().create_timer(0.1).timeout
