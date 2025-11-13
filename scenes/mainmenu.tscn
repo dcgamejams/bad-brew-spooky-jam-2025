@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://pr6aysnxthbn" path="res://assets/models/PlayerBunny.glb" id="1_r3g3c"]
 [ext_resource type="Script" uid="uid://tepg32r2c1m6" path="res://scenes/mainmenu.gd" id="1_wf3n4"]
 [ext_resource type="PackedScene" uid="uid://cugwjlmkrupvg" path="res://assets/models/PlayerBubble.glb" id="2_3vvtq"]
-[ext_resource type="Material" uid="uid://du1iiixuiunis" path="res://assets/models/materials/Bubble.tres" id="3_s5g8n"]
 [ext_resource type="AudioStream" uid="uid://d0e5w04eaihhm" path="res://sound/Menu Music.wav" id="4_3vvtq"]
 [ext_resource type="Material" uid="uid://c68mnks3yaxxc" path="res://assets/models/materials/menuBG.tres" id="5_85riq"]
 [ext_resource type="Material" uid="uid://b66abwf8o722t" path="res://assets/models/materials/Bunny.tres" id="5_uui5l"]
@@ -17,6 +16,19 @@
 background_mode = 1
 background_color = Color(7.821247e-08, 0, 0.12764716, 1)
 ambient_light_color = Color(0.53895146, 0.772882, 0.90685284, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uui5l"]
+transparency = 1
+diffuse_mode = 3
+albedo_color = Color(0.65, 1, 0.8541666, 0.6901961)
+roughness = 0.0
+emission_enabled = true
+emission = Color(6.016344e-07, 0.35113618, 0.26977393, 1)
+rim_enabled = true
+rim_tint = 0.0
+backlight_enabled = true
+backlight = Color(0.2592937, 0.2592937, 0.2592937, 1)
+texture_filter = 0
 
 [sub_resource type="Animation" id="Animation_r3g3c"]
 resource_name = "BubbleLoop"
@@ -122,30 +134,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608, 0)
 transform = Transform3D(0.99999964, 0, 0, 0, 0.9999996, 0, 0, 0, 0.9999997, 0, 1.3012754, 0)
 
 [node name="Playerbubble" parent="Menu/BunnyBubble/PlayerBubble" index="0"]
-material_override = ExtResource("3_s5g8n")
+material_override = SubResource("StandardMaterial3D_uui5l")
 
 [node name="PlayerBunny" parent="Menu/BunnyBubble/PlayerBubble" instance=ExtResource("1_r3g3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3012754, 0)
 
 [node name="Skeleton3D" parent="Menu/BunnyBubble/PlayerBubble/PlayerBunny/Rig" index="0"]
 bones/0/position = Vector3(-2.1175824e-22, 0.7960062, 2.0401803e-15)
-bones/0/rotation = Quaternion(0.99618435, 0.0036676214, 0.052449457, -0.069660075)
+bones/0/rotation = Quaternion(0.99697006, 0.0024069375, 0.034420826, -0.069715)
 bones/1/position = Vector3(-2.9653557e-09, 5.9604645e-08, 2.1963569e-15)
-bones/1/rotation = Quaternion(1, -7.673739e-10, -2.6082162e-08, -9.0360464e-10)
-bones/2/rotation = Quaternion(0.05256347, -0.13777734, 0.5102473, -0.8472911)
-bones/3/rotation = Quaternion(0.09827901, -0.06098225, 0.005221321, 0.9932749)
-bones/5/rotation = Quaternion(0.053828914, 0.0527264, 0.51843804, 0.851789)
-bones/6/rotation = Quaternion(0.25714839, -0.04686018, 0.013322059, 0.9651432)
-bones/8/rotation = Quaternion(-0.09453556, -0.001005885, -0.012922444, 0.9954371)
+bones/1/rotation = Quaternion(1, -9.447652e-10, -2.6166362e-08, -1.9065889e-09)
+bones/2/rotation = Quaternion(-0.07973743, 0.09985921, 0.52131796, -0.8437402)
+bones/3/rotation = Quaternion(0.19597046, 0.074415386, -0.015820226, 0.9776543)
+bones/5/rotation = Quaternion(-0.07895097, -0.18428512, 0.509101, 0.83703166)
+bones/6/rotation = Quaternion(0.15985557, 0.087534055, -0.013334403, 0.98316133)
+bones/8/rotation = Quaternion(-0.4912025, -0.013638912, -0.20174353, 0.84725064)
 bones/9/position = Vector3(-6.998177e-08, 0.15368368, -4.5088708e-08)
-bones/9/rotation = Quaternion(0.44349796, -0.1927599, 0.0982703, 0.86976784)
+bones/9/rotation = Quaternion(0.3986937, -0.19750793, 0.08834075, 0.89119583)
 bones/10/position = Vector3(2.5586017e-08, 0.2075474, 2.5617073e-09)
 bones/10/rotation = Quaternion(-0.45825052, -5.0531373e-05, 8.52457e-05, 0.8888231)
 bones/11/position = Vector3(-2.4242517e-08, 0.25123602, -3.4368462e-08)
 bones/11/rotation = Quaternion(-0.0001062468, 0.93242776, -0.3613565, 4.7652356e-05)
-bones/12/rotation = Quaternion(-0.41830242, 0.011016748, 0.16636497, 0.89287436)
+bones/12/rotation = Quaternion(-0.010321265, -0.001900408, -0.026277771, 0.9995996)
 bones/13/position = Vector3(-3.4806785e-08, 0.15368384, -1.3933543e-09)
-bones/13/rotation = Quaternion(0.17060204, 0.2131805, -0.037851803, 0.96125764)
+bones/13/rotation = Quaternion(0.21926425, 0.21097988, -0.048643786, 0.95133835)
 bones/14/position = Vector3(2.1086592e-08, 0.2075475, -5.01766e-08)
 bones/14/rotation = Quaternion(-0.45825055, 0.00016561303, -2.59422e-05, 0.88882303)
 bones/15/position = Vector3(1.690012e-08, 0.25123593, -4.6594806e-08)

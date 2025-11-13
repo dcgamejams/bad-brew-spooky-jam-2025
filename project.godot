@@ -39,7 +39,7 @@ window/stretch/scale=0.8
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ambientcg/plugin.cfg", "res://addons/very-simple-twitch/plugin.cfg")
+enabled=PackedStringArray("res://addons/very-simple-twitch/plugin.cfg")
 
 [file_customization]
 
