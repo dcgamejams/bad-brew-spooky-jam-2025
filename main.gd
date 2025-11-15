@@ -23,6 +23,7 @@ var max_multi: float = 5.0
 
 func start_game():
 	var new_player = player_scene.instantiate()
+	new_player.global_position = Vector3(5.0, -12.0, 5.0)
 	new_player.global_position = Vector3(5.0, 12.0, 5.0)
 	add_child(new_player, true)
 	

@@ -425,6 +425,7 @@ horizontal_alignment = 1
 
 [node name="ScoreBoxTop" type="VBoxContainer" parent="PlayerUI/Center/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PlayerUI/Center/VBoxContainer/ScoreBoxTop"]

@@ -10,6 +10,7 @@ extends Node3D
 
 @onready var cR: CharacterBody3D = get_parent().get_parent()
 @onready var slam_area: Area3D = %SlamArea
+@onready var torus = %Torus
 
 var ragdoll : bool = false : set = set_ragdoll
 var squash_and_stretch = 1.0 : set = set_squash_and_stretch
