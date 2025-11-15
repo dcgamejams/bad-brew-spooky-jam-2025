@@ -2,10 +2,11 @@
 extends Node3D
 
 @onready var window: Window = get_window()
-@onready var player: Player = get_tree().get_first_node_in_group('Players')
+@onready var player: Player
 @onready var player_ui: CanvasLayer = $PlayerUI
 @onready var required_item = preload("res://objects/required_item.tscn")
 @onready var ingredient = preload("res://objects/ingredient.tscn")
+@onready var player_scene = preload("res://PlayerCharacter/PlayerCharacterScene.tscn")
 
 var spawn_timer = Timer.new()
 var skull_timer = Timer.new()
@@ -18,12 +19,14 @@ var multi := 1.0: set = set_multi
 var score := 0.0
 
 var streak: int = 0
-var max_multi: float = 8.0
-
+var max_multi: float = 5.0
 
 func start_game():
-
-	%ButtonRestart.pressed.connect(_on_button_restart_pressed)
+	var new_player = player_scene.instantiate()
+	new_player.global_position = Vector3(5.0, 12.0, 5.0)
+	add_child(new_player, true)
+	
+	player = get_tree().get_first_node_in_group('Players')
 
 	player.set_process(true)
 	player.set_physics_process(true)
@@ -37,6 +40,8 @@ func start_game():
 	%CauldronArea.set_collision_mask_value(8, true)
 	%CauldronArea.body_entered.connect(on_collect)
 	%Kill.body_entered.connect(on_collect_kill)
+	%ButtonRestart.pressed.connect(_on_button_restart_pressed)
+	%ButtonQuit.pressed.connect(func(): get_tree().quit())
 
 	await get_tree().create_timer(3).timeout
 	%LabelStart.text = "GET READY"
@@ -210,7 +215,12 @@ func get_point_on_circumference(center: Vector2, radius: float, angle_radians) -
 
 	return Vector3(x, 8.5, y)
 
-
 func _on_button_restart_pressed() -> void:
-	print("RESTARTT!!!")
+	%ScoreBoxTop.hide()
+	score = 0.0
+	multi = 0.0
+	current_round = 0
+	skull_timer.start()
+	spawn_timer.start()
+	%RoundTimer.start()
 	pass # Replace with function body.
