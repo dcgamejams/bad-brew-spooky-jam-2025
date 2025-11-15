@@ -23,10 +23,10 @@ var max_multi: float = 5.0
 
 func start_game():
 	var new_player = player_scene.instantiate()
-	new_player.position = Vector3(5.0, -12.0, 5.0)
-	await get_tree().process_frame
-	new_player.position = Vector3(5.0, 12.0, 5.0)
+	new_player.position = Vector3(50.0, 0.0, -50.)
 	add_child(new_player, true)
+	await get_tree().create_timer(1.0).timeout
+	new_player.position = Vector3(5.0, 12.0, 5.0)
 	
 	player = get_tree().get_first_node_in_group('Players')
 
