@@ -197,6 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14601234, 0)
 visible = false
 
 [node name="Prop_Mushroom" type="MeshInstance3D" parent="Mushroom"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 mesh = SubResource("ArrayMesh_utaq4")
 skeleton = NodePath("")
 

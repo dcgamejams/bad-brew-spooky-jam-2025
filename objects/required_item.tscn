@@ -49,7 +49,7 @@ fill_from = Vector2(0.47435898, 0.49786323)
 viewport_path = NodePath("Vis/SubViewport")
 
 [node name="RequiredItem" type="PanelContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(200, 200)
 offset_right = 128.0
 offset_bottom = 128.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oiq2n")
@@ -57,6 +57,7 @@ script = ExtResource("1_lmmft")
 
 [node name="Question" type="TextureRect" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 1, 0.8)
 layout_mode = 2
 texture = SubResource("GradientTexture2D_q5a0n")
@@ -74,7 +75,6 @@ text = "?"
 
 [node name="Success" type="TextureRect" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 texture = SubResource("GradientTexture2D_b518t")
 
@@ -109,14 +109,13 @@ text = "X"
 
 [node name="Vis" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="Mesh" type="TextureRect" parent="Vis"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
-offset_right = 512.0
-offset_bottom = 512.0
+offset_right = 980.0
+offset_bottom = 980.0
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_oiq2n")
 

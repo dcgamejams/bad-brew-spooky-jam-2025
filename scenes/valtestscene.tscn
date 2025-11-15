@@ -137,9 +137,9 @@ collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_gnuei")
 
 [node name="FlatterCauldron" type="StaticBody3D" parent="GameScene"]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, -0.43554425, 0)
-collision_layer = 19
-collision_mask = 19
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.011013508, 0)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Cauldron" type="MeshInstance3D" parent="GameScene/FlatterCauldron"]
 sorting_offset = -20.0

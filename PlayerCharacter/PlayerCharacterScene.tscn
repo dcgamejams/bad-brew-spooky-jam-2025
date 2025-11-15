@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=42 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" uid="uid://de2sqbhiahmo6" path="res://PlayerCharacter/StateMachine/player_character_script.gd" id="1_ms4x1"]
 [ext_resource type="Material" uid="uid://ciwk4tbpd63q5" path="res://assets/mouse_mesh_material.tres" id="2_5qbu3"]
@@ -20,7 +20,6 @@
 [ext_resource type="LabelSettings" uid="uid://sescerp70o6b" path="res://assets/ui/font/LabelFontSettings.tres" id="17_c1i0s"]
 [ext_resource type="Script" uid="uid://d2tif6xsjkwnw" path="res://PlayerCharacter/StateMachine/ragdoll_state_script.gd" id="17_pdxi8"]
 [ext_resource type="Script" uid="uid://chnbi4s1tf7pa" path="res://PlayerCharacter/Debug/DebugHUDScript.gd" id="17_qmq2g"]
-[ext_resource type="AudioStream" uid="uid://d056tp4uwi78r" path="res://sound/bloop.wav" id="19_n0ydc"]
 [ext_resource type="AudioStream" uid="uid://b0pbgmxoe40wv" path="res://sound/Slam Womp.wav" id="20_0teac"]
 
 [sub_resource type="Curve" id="Curve_l1d2p"]
@@ -391,11 +390,6 @@ collision_mask = 128
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stop"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63137543, 0)
 shape = SubResource("SphereShape3D_ih5rl")
-
-[node name="Hit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_n0ydc")
-volume_db = -5.0
-max_polyphony = 5
 
 [node name="Slam" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_0teac")

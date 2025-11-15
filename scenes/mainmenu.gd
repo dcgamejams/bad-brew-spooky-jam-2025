@@ -3,6 +3,10 @@ extends Node3D
 @onready var mesh: QuadMesh = %StartText.mesh
 var loading := false
 
+func _ready():
+	%Main.hide()
+	%Main.player_ui.hide()
+
 func _process(_delta):
 	if Input.is_action_just_pressed("jump") and not loading:
 		load_game()

@@ -98,12 +98,16 @@ var coyote_jump_on : bool = false
 
 var immobile := false
 
-func _enter_tree() -> void:
-	set_multiplayer_authority(1)
+#func _enter_tree() -> void:
+	#set_multiplayer_authority(1)
 
 func _ready():
 	add_to_group('Players')
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	set_process(false)
+	set_physics_process(false)
+	godot_plush_skin.set_process(false)
 	
 	if not is_multiplayer_authority():
 		set_process(false)
@@ -244,21 +248,14 @@ func kick_object(body):
 		
 		#var player_dir = %VisualRoot.global_transform.basis.z
 		var mouse_dir = item.position.direction_to(get_mouse(result).position)
-		if not item.torque_timer.is_stopped():
-			item.torque_timer.stop()
-		await get_tree().process_frame
-		item.freeze = true
-		item.set_angular_velocity(Vector3.ZERO)
-		await get_tree().process_frame
-		item.freeze = false
+		await item.stop()
 		if %Mouse.global_position.distance_to(Vector3.ZERO) < 8.0:
-			item.apply_central_impulse(item.global_position.direction_to(Vector3(0.0, -2.0, 0.0)) * 10.0) #apply 
+			item.apply_central_impulse(item.global_position.direction_to(Vector3(0.0, -2.0, 0.0)) * 18.0) #apply 
 		else:
-			item.apply_central_impulse(mouse_dir * 15.0) #apply 
+			item.apply_central_impulse(mouse_dir * 18.0) #apply 
 		
 func stop(body):
 	if body.is_in_group("Ingredients"):
-		$Hit.play()
 		var item: Ingredient = body
 		item.set_angular_velocity(Vector3.ZERO)
 		if not item.torque_timer.is_stopped():

@@ -3,7 +3,7 @@ extends Control
 class_name RequiredItem
 
 var active : bool = false : set = set_active
-var complete : bool = false : set = set_complete
+#var complete : bool = false : set = set_complete
 var ingredient_desired: Ingredient.TYPE
 
 var COLORS: Array[Color] = [Color.AQUA, Color.CRIMSON, Color.CORNFLOWER_BLUE, Color.DARK_GOLDENROD]
@@ -12,21 +12,23 @@ func _ready() -> void:
 	add_to_group("RequiredItems")
 	set_active(false)
 
-func	 set_active(value: bool):
+func set_active(value: bool):
 	active = value
-	if value: 
-		%Question.hide()
-		%Vis.show()
-	else:
-		%Question.show()
+	
+	## NOTE: Old level system deprecated
+	#if value: 
+		#%Question.hide()
+		#%Vis.show()
+	#else:
+		#%Question.show()
 
-func set_complete(value: bool):
-	complete = value
-	if value == true:
-		%Success.show()
-	else:
-		%Failure.show()
-		%Vis.hide()
+#func set_complete(value: bool):
+	#complete = value
+	#if value == true:
+		#%Success.show()
+	#else:
+		#%Failure.show()
+		#%Vis.hide()
 
 func set_required(type: Ingredient.TYPE):
 	if type == Ingredient.TYPE.MUSHROOM:
