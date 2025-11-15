@@ -98,9 +98,10 @@ func on_collect(body):
 			$Good.play() 
 		else: 
 			if collected.type == Ingredient.TYPE.SKULL and not %RoundTimer.is_stopped():
-				%Hearts.get_child(0).queue_free()
-				if %Hearts.get_child_count() == 0:
+				if %Hearts.get_child_count() == 1:
 					game_over()
+				
+				%Hearts.get_child(0).queue_free()
 	
 			$Hurt.play()	
 
@@ -135,6 +136,7 @@ func on_round_timer_end():
 	for item in %RequiredList.get_children():
 		item.queue_free()
 	
+	%RoundEnd.play()
 	current_round += 1
 	current_ingredient = randi_range(0, 2) as Ingredient.TYPE
 

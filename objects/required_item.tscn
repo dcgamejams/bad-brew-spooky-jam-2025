@@ -28,8 +28,8 @@ fill = 1
 fill_from = Vector2(0.47435898, 0.49786323)
 
 [sub_resource type="Gradient" id="Gradient_lmmft"]
-offsets = PackedFloat32Array(0.5187266, 0.52657)
-colors = PackedColorArray(0, 0.92021066, 0.29543713, 1, 0, 0.92168134, 0.29337206, 0)
+offsets = PackedFloat32Array(0.5187266, 0.6240458)
+colors = PackedColorArray(0, 0.92021066, 0.29543713, 0.35000002, 0, 0.92168134, 0.29337206, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b518t"]
 gradient = SubResource("Gradient_lmmft")
@@ -49,7 +49,7 @@ fill_from = Vector2(0.47435898, 0.49786323)
 viewport_path = NodePath("Vis/SubViewport")
 
 [node name="RequiredItem" type="PanelContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(150, 150)
 offset_right = 128.0
 offset_bottom = 128.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oiq2n")
@@ -75,6 +75,7 @@ text = "?"
 
 [node name="Success" type="TextureRect" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 texture = SubResource("GradientTexture2D_b518t")
 
@@ -112,10 +113,11 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Mesh" type="TextureRect" parent="Vis"]
-custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
-offset_right = 980.0
-offset_bottom = 980.0
+offset_left = 5.9999995
+offset_top = 6.9999995
+offset_right = 706.0
+offset_bottom = 707.0
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_oiq2n")
 
@@ -137,7 +139,7 @@ layers = 3
 
 [node name="Star" parent="Vis/SubViewport" instance=ExtResource("3_mxep2")]
 unique_name_in_owner = true
-transform = Transform3D(0.9612191, 0.14299767, -0.23581716, 0.07605894, -0.9593645, -0.2717258, -0.26509076, 0.24325198, -0.9330357, 0, 0.2, 0)
+transform = Transform3D(0.7654762, 0.012823895, -0.64333636, 0.6388566, -0.13458206, 0.7574627, -0.07686786, -0.9908194, -0.11121179, 0, 0.2, 0)
 visible = false
 
 [node name="Prop_Star" parent="Vis/SubViewport/Star" index="0"]
